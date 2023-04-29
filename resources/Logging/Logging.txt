@@ -1,0 +1,926 @@
+2021-3-30-11-14-34  :  App started.
+
+2021-3-30-11-14-37  :  Going to create account state.
+
+2021-3-30-11-14-48  :  Account successfully created.
+
+2021-3-30-11-14-48  :  Logged in as @iz4di
+
+2021-3-30-11-14-59  :  User chose to check their profile info.
+
+2021-3-30-11-14-59  :  User checked their profile info.
+
+2021-3-30-11-15-2  :  User wants to go to the settings.
+
+2021-3-30-11-15-5  :  User wants to log out.
+
+2021-3-30-11-15-8  :  Logged out of @iz4di
+
+2021-5-21-16-20-37  :  App started.
+
+2021-5-21-16-20-40  :  Going to create account state.
+
+2021-5-21-16-20-48  :  Account successfully created.
+
+2021-5-21-16-20-48  :  Logged in as @ala
+
+2021-5-21-16-20-59  :  User chose to close the app.
+
+2021-5-21-16-21-6  :  App started.
+
+2021-5-21-16-21-8  :  Going to create account state.
+
+2021-5-21-16-21-10  :  Account successfully created.
+
+2021-5-21-16-21-10  :  Logged in as @ala
+
+2021-5-21-16-21-17  :  User chose to check their profile info.
+
+2021-5-21-16-21-17  :  User checked their profile info.
+
+2021-5-21-16-21-22  :  User wants to go to the settings.
+
+2021-5-21-16-21-25  :  User wants to log out.
+
+2021-5-21-16-21-27  :  Logged out of @ala
+
+2021-5-21-16-21-31  :  App started.
+
+2021-5-21-16-21-33  :  Going to create account state.
+
+2021-5-25-13-1-28  :  App started.
+
+2021-5-25-13-1-30  :  Going to create account state.
+
+2021-5-25-13-1-32  :  Account successfully created.
+
+2021-5-25-13-1-32  :  Logged in as @a
+
+2021-5-25-13-1-35  :  User chose to check their timeline.
+
+2021-5-25-13-1-35  :  Timeline is being made.
+
+2021-5-25-13-1-35  :  There is no tweet to show to the user.
+
+2021-5-25-13-1-40  :  User chose to write a new tweet.
+
+2021-5-25-13-1-43  :  User wrote a tweet with id:0
+
+2021-5-25-13-1-47  :  User chose to write a new tweet.
+
+2021-5-25-13-1-51  :  User wrote a tweet with id:1
+
+2021-5-25-13-1-55  :  User chose to check their timeline.
+
+2021-5-25-13-1-55  :  Timeline is being made.
+
+2021-5-25-13-1-55  :  Entered timeline.
+
+2021-5-25-13-1-55  :  Tweet with id:0 is shown.
+
+2021-5-25-13-2-7  :  User wants to see next tweet.
+
+2021-5-25-13-2-7  :  Tweet with id:0 is shown.
+
+2021-5-25-13-2-39  :  App started.
+
+2021-5-25-13-2-40  :  Going to create account state.
+
+2021-5-25-13-2-42  :  Account successfully created.
+
+2021-5-25-13-2-42  :  Logged in as @a
+
+2021-5-25-13-2-45  :  User chose to write a new tweet.
+
+2021-5-25-13-2-47  :  User wrote a tweet with id:0
+
+2021-5-25-13-2-49  :  User chose to write a new tweet.
+
+2021-5-25-13-2-52  :  User wrote a tweet with id:1
+
+2021-5-25-13-2-54  :  User chose to check their timeline.
+
+2021-5-25-13-2-54  :  Timeline is being made.
+
+2021-5-25-13-2-54  :  Entered timeline.
+
+2021-5-25-13-2-54  :  Tweet with id:1 is shown.
+
+2021-5-25-13-3-7  :  User wants to see next tweet.
+
+2021-5-25-13-3-50  :  Tweet with id:1 is shown.
+
+2021-5-25-13-5-13  :  User wants to see next tweet.
+
+2021-5-25-13-8-17  :  Tweet with id:1 is shown.
+
+2021-5-25-13-8-17  :  User chose to go back.
+
+2021-5-25-13-8-27  :  User chose to check their timeline.
+
+2021-5-25-13-8-27  :  Timeline is being made.
+
+2021-5-25-13-8-27  :  Entered timeline.
+
+2021-5-25-13-8-27  :  Tweet with id:1 is shown.
+
+2021-5-25-13-8-32  :  User wants to see next tweet.
+
+2021-5-25-13-8-32  :  Tweet with id:1 is shown.
+
+2021-5-25-13-8-44  :  User wants to see next tweet.
+
+2021-5-25-13-8-44  :  Tweet with id:1 is shown.
+
+2021-5-25-13-8-50  :  User chose to go back.
+
+2021-5-25-13-9-13  :  User chose to check their timeline.
+
+2021-5-25-13-9-13  :  Timeline is being made.
+
+2021-5-25-13-9-13  :  Entered timeline.
+
+2021-5-25-13-9-13  :  Tweet with id:1 is shown.
+
+2021-5-25-13-10-14  :  User chose to go back.
+
+2021-5-25-13-10-15  :  User chose to check their timeline.
+
+2021-5-25-13-10-15  :  Timeline is being made.
+
+2021-5-25-13-10-15  :  Entered timeline.
+
+2021-5-25-13-10-25  :  Tweet with id:1 is shown.
+
+2021-5-25-13-10-29  :  User wants to see next tweet.
+
+2021-5-25-13-10-40  :  Tweet with id:1 is shown.
+
+2021-5-25-13-10-43  :  User chose to go back.
+
+2021-5-25-13-10-46  :  User chose to check their timeline.
+
+2021-5-25-13-10-46  :  Timeline is being made.
+
+2021-5-25-13-10-46  :  Entered timeline.
+
+2021-5-25-13-11-4  :  Tweet with id:1 is shown.
+
+2021-5-25-13-11-40  :  User wants to see next tweet.
+
+2021-5-25-13-12-4  :  Tweet with id:1 is shown.
+
+2021-5-25-13-12-13  :  App started.
+
+2021-5-25-13-12-14  :  Going to create account state.
+
+2021-5-25-13-12-15  :  Account successfully created.
+
+2021-5-25-13-12-15  :  Logged in as @a
+
+2021-5-25-13-12-17  :  User chose to write a new tweet.
+
+2021-5-25-13-12-19  :  User wrote a tweet with id:0
+
+2021-5-25-13-12-20  :  User chose to write a new tweet.
+
+2021-5-25-13-12-22  :  User wrote a tweet with id:1
+
+2021-5-25-13-12-24  :  User chose to check their timeline.
+
+2021-5-25-13-12-24  :  Timeline is being made.
+
+2021-5-25-13-12-24  :  Entered timeline.
+
+2021-5-25-13-12-30  :  Tweet with id:1 is shown.
+
+2021-5-25-13-12-49  :  User wants to see next tweet.
+
+2021-5-25-13-13-30  :  Tweet with id:1 is shown.
+
+2021-5-25-13-13-46  :  User chose to go back.
+
+2021-5-25-13-13-50  :  User chose to check their timeline.
+
+2021-5-25-13-13-50  :  Timeline is being made.
+
+2021-5-25-13-13-50  :  Entered timeline.
+
+2021-5-25-13-13-59  :  Tweet with id:1 is shown.
+
+2021-5-25-13-14-14  :  User wants to see next tweet.
+
+2021-5-25-13-14-30  :  Tweet with id:1 is shown.
+
+2021-5-25-13-15-2  :  User chose to go back.
+
+2021-5-25-13-15-5  :  User chose to check their timeline.
+
+2021-5-25-13-15-5  :  Timeline is being made.
+
+2021-5-25-13-15-5  :  Entered timeline.
+
+2021-5-25-13-15-5  :  Tweet with id:1 is shown.
+
+2021-5-25-13-15-21  :  User wants to see next tweet.
+
+2021-5-25-13-40-41  :  Tweet with id:1 is shown.
+
+2021-5-25-13-42-34  :  App started.
+
+2021-5-25-13-42-35  :  Going to create account state.
+
+2021-5-25-13-42-36  :  Account successfully created.
+
+2021-5-25-13-42-36  :  Logged in as @a
+
+2021-5-25-13-42-39  :  User chose to write a new tweet.
+
+2021-5-25-13-42-40  :  User wrote a tweet with id:0
+
+2021-5-25-13-42-41  :  User chose to write a new tweet.
+
+2021-5-25-13-42-43  :  User wrote a tweet with id:1
+
+2021-5-25-13-42-45  :  User chose to write a new tweet.
+
+2021-5-25-13-42-47  :  User wrote a tweet with id:2
+
+2021-5-25-13-42-49  :  User chose to check their timeline.
+
+2021-5-25-13-42-49  :  Timeline is being made.
+
+2021-5-25-13-42-49  :  Entered timeline.
+
+2021-5-25-13-42-49  :  Tweet with id:1 is shown.
+
+2021-5-25-13-42-49  :  Tweet with id:1 is shown.
+
+2021-5-25-13-43-8  :  User wants to see next tweet.
+
+2021-5-25-13-43-8  :  Tweet with id:1 is shown.
+
+2021-5-25-13-43-11  :  User wants to see next tweet.
+
+2021-5-25-13-43-11  :  Tweet with id:1 is shown.
+
+2021-5-25-13-50-37  :  App started.
+
+2021-5-25-13-50-38  :  Going to create account state.
+
+2021-5-25-13-50-42  :  Account successfully created.
+
+2021-5-25-13-50-42  :  Logged in as @a
+
+2021-5-25-13-59-35  :  App started.
+
+2021-5-25-13-59-36  :  Going to create account state.
+
+2021-5-25-13-59-43  :  Account successfully created.
+
+2021-5-25-13-59-43  :  Logged in as @a
+
+2021-5-25-14-1-8  :  User chose to write a new tweet.
+
+2021-5-25-14-1-14  :  User wrote a tweet with id:0
+
+2021-5-25-14-1-14  :  User entered invalid number.
+
+2021-5-25-14-1-14  :  User entered invalid number.
+
+2021-5-25-14-39-46  :  App started.
+
+2021-5-25-14-39-47  :  Going to create account state.
+
+2021-5-25-14-39-51  :  Account successfully created.
+
+2021-5-25-14-39-51  :  Logged in as @a
+
+2021-5-25-14-40-1  :  User chose to write a new tweet.
+
+2021-5-25-14-40-1  :  User wrote a tweet with id:0
+
+2021-5-25-14-43-10  :  App started.
+
+2021-5-25-14-43-11  :  Going to create account state.
+
+2021-5-25-14-43-12  :  Account successfully created.
+
+2021-5-25-14-43-12  :  Logged in as @a
+
+2021-5-25-14-43-12  :  User entered invalid number.
+
+2021-5-25-14-43-15  :  User chose to write a new tweet.
+
+2021-5-25-14-43-19  :  User wrote a tweet with id:0
+
+2021-5-25-14-43-21  :  User chose to write a new tweet.
+
+2021-5-25-14-43-23  :  User wrote a tweet with id:1
+
+2021-5-25-14-43-26  :  User chose to write a new tweet.
+
+2021-5-25-14-43-27  :  User wrote a tweet with id:2
+
+2021-5-25-14-43-30  :  User chose to check their timeline.
+
+2021-5-25-14-43-30  :  Timeline is being made.
+
+2021-5-25-14-43-30  :  Entered timeline.
+
+2021-5-25-14-43-30  :  Tweet with id:0 is shown.
+
+2021-5-25-14-43-47  :  User wants to see next tweet.
+
+2021-5-25-14-43-47  :  Tweet with id:0 is shown.
+
+2021-5-25-14-46-5  :  App started.
+
+2021-5-25-14-46-6  :  Going to create account state.
+
+2021-5-25-14-46-7  :  Account successfully created.
+
+2021-5-25-14-46-7  :  Logged in as @a
+
+2021-5-25-14-46-7  :  User entered invalid number.
+
+2021-5-25-14-46-9  :  User chose to write a new tweet.
+
+2021-5-25-14-46-10  :  User wrote a tweet with id:0
+
+2021-5-25-14-46-11  :  User chose to write a new tweet.
+
+2021-5-25-14-46-12  :  User wrote a tweet with id:1
+
+2021-5-25-14-46-13  :  User chose to write a new tweet.
+
+2021-5-25-14-46-14  :  User wrote a tweet with id:2
+
+2021-5-25-14-46-16  :  User chose to check their timeline.
+
+2021-5-25-14-46-16  :  Timeline is being made.
+
+2021-5-25-14-46-16  :  Entered timeline.
+
+2021-5-25-14-46-16  :  Tweet with id:0 is shown.
+
+2021-5-25-14-46-20  :  User wants to see next tweet.
+
+2021-5-25-14-46-20  :  Tweet with id:2 is shown.
+
+2021-5-25-14-46-26  :  User wants to see next tweet.
+
+2021-5-25-14-46-26  :  Tweet with id:1 is shown.
+
+2021-5-25-14-46-31  :  User wants to see next tweet.
+
+2021-5-25-14-46-31  :  Tweet with id:1 is shown.
+
+2021-5-25-14-46-39  :  User chose to go back.
+
+2021-5-25-14-46-39  :  Tweet with id:2 is shown.
+
+2021-5-25-14-46-42  :  User chose to go back.
+
+2021-5-25-14-46-42  :  Tweet with id:0 is shown.
+
+2021-5-25-14-46-44  :  User chose to go back.
+
+2021-5-25-14-46-44  :  Timeline is being made.
+
+2021-5-25-14-46-44  :  Entered timeline.
+
+2021-5-25-14-46-44  :  Tweet with id:0 is shown.
+
+2021-5-25-17-39-23  :  App started.
+
+2021-5-25-17-39-23  :  Going to create account state.
+
+2021-5-25-17-39-27  :  Account successfully created.
+
+2021-5-25-17-39-27  :  Logged in as @
+
+2021-5-25-17-41-31  :  App started.
+
+2021-5-25-17-41-32  :  Going to create account state.
+
+2021-5-25-17-41-34  :  Account successfully created.
+
+2021-5-25-17-41-34  :  Logged in as @a
+
+2021-5-25-17-41-37  :  User chose to write a new tweet.
+
+2021-5-25-17-41-41  :  User wrote a tweet with id:0
+
+2021-5-25-17-41-43  :  User chose to write a new tweet.
+
+2021-5-25-17-41-46  :  User wrote a tweet with id:1
+
+2021-5-25-17-41-50  :  User chose to write a new tweet.
+
+2021-5-25-17-41-52  :  User wrote a tweet with id:2
+
+2021-5-25-17-41-54  :  User chose to check their timeline.
+
+2021-5-25-17-41-54  :  Tweet with id:1 is shown.
+
+2021-5-25-17-42-7  :  User wants to see next tweet.
+
+2021-5-25-17-42-7  :  Tweet with id:2 is shown.
+
+2021-5-25-17-42-13  :  User wants to see next tweet.
+
+2021-5-25-17-42-13  :  Tweet with id:0 is shown.
+
+2021-5-25-17-42-18  :  User wants to see next tweet.
+
+2021-5-25-17-42-18  :  Tweet with id:0 is shown.
+
+2021-5-25-17-42-35  :  User deleted this tweet.
+
+2021-5-25-17-42-35  :  Tweet with id:1 is shown.
+
+2021-5-25-17-42-50  :  User chose to go back.
+
+2021-5-25-17-42-50  :  Tweet with id:0 is shown.
+
+2021-5-25-17-42-55  :  User chose to go back.
+
+2021-5-25-17-42-55  :  Tweet with id:2 is shown.
+
+2021-5-25-17-42-57  :  User chose to go back.
+
+2021-5-25-17-42-57  :  Tweet with id:1 is shown.
+
+2021-5-25-17-45-45  :  App started.
+
+2021-5-25-17-45-45  :  Going to create account state.
+
+2021-5-25-17-45-46  :  Account successfully created.
+
+2021-5-25-17-45-46  :  Logged in as @a
+
+2021-5-25-17-45-48  :  User chose to write a new tweet.
+
+2021-5-25-17-45-49  :  User wrote a tweet with id:0
+
+2021-5-25-17-45-50  :  User chose to write a new tweet.
+
+2021-5-25-17-45-51  :  User wrote a tweet with id:1
+
+2021-5-25-17-45-53  :  User chose to check their timeline.
+
+2021-5-25-17-45-53  :  Tweet with id:1 is shown.
+
+2021-5-25-17-45-57  :  User wants to see next tweet.
+
+2021-5-25-17-45-57  :  Tweet with id:0 is shown.
+
+2021-5-25-17-45-59  :  User deleted this tweet.
+
+2021-5-25-17-45-59  :  Tweet with id:1 is shown.
+
+2021-5-25-17-46-4  :  User wants to see next tweet.
+
+2021-5-25-17-46-4  :  Tweet with id:1 is shown.
+
+2021-5-25-17-46-8  :  User chose to go back.
+
+2021-5-25-18-21-10  :  App started.
+
+2021-5-25-18-21-10  :  Going to create account state.
+
+2021-5-25-18-21-13  :  Account successfully created.
+
+2021-5-25-18-21-13  :  Logged in as @a
+
+2021-5-25-18-21-18  :  User chose to check their profile info.
+
+2021-5-25-18-21-18  :  User checked their profile info.
+
+2021-5-25-18-21-25  :  User wants to go to the settings.
+
+2021-5-25-18-21-28  :  User wants to log out.
+
+2021-5-25-18-21-31  :  Logged out of @a
+
+2021-5-25-18-21-35  :  App started.
+
+2021-5-25-18-21-37  :  Going to create account state.
+
+2021-5-25-18-21-40  :  Account successfully created.
+
+2021-5-25-18-21-40  :  Logged in as @b
+
+2021-5-25-18-21-44  :  User chose to search for an account.
+
+2021-5-25-18-23-15  :  App started.
+
+2021-5-25-18-23-15  :  Going to create account state.
+
+2021-5-25-18-23-19  :  Account successfully created.
+
+2021-5-25-18-23-19  :  Logged in as @a
+
+2021-5-25-18-23-24  :  User chose to check their profile info.
+
+2021-5-25-18-23-24  :  User checked their profile info.
+
+2021-5-25-18-23-26  :  User wants to go to the settings.
+
+2021-5-25-18-23-28  :  User wants to log out.
+
+2021-5-25-18-23-32  :  User wants to log out.
+
+2021-5-25-18-23-34  :  Logged out of @a
+
+2021-5-25-18-23-35  :  App started.
+
+2021-5-25-18-23-36  :  Going to create account state.
+
+2021-5-25-18-23-39  :  Account successfully created.
+
+2021-5-25-18-23-39  :  Logged in as @b
+
+2021-5-25-18-23-44  :  User chose to search for an account.
+
+2021-5-25-18-23-46  :  User entered invalid number.
+
+2021-5-25-18-24-19  :  User chose to search for an account.
+
+2021-5-25-18-25-41  :  App started.
+
+2021-5-25-18-25-41  :  Going to create account state.
+
+2021-5-25-18-25-42  :  Account successfully created.
+
+2021-5-25-18-25-42  :  Logged in as @a
+
+2021-5-25-18-25-45  :  User chose to check their profile info.
+
+2021-5-25-18-25-45  :  User checked their profile info.
+
+2021-5-25-18-25-47  :  User wants to go to the settings.
+
+2021-5-25-18-25-49  :  User wants to log out.
+
+2021-5-25-18-25-49  :  Logged out of @a
+
+2021-5-25-18-25-54  :  App started.
+
+2021-5-25-18-25-55  :  Going to create account state.
+
+2021-5-25-18-25-56  :  Account successfully created.
+
+2021-5-25-18-25-56  :  Logged in as @b
+
+2021-5-25-18-25-58  :  User chose to search for an account.
+
+2021-5-25-18-28-34  :  App started.
+
+2021-5-25-18-28-34  :  Going to create account state.
+
+2021-5-25-18-28-36  :  Account successfully created.
+
+2021-5-25-18-28-36  :  Logged in as @a
+
+2021-5-25-18-28-41  :  User chose to check their profile info.
+
+2021-5-25-18-28-41  :  User checked their profile info.
+
+2021-5-25-18-28-41  :  User wants to go to the settings.
+
+2021-5-25-18-28-42  :  User wants to log out.
+
+2021-5-25-18-28-43  :  Logged out of @a
+
+2021-5-25-18-28-45  :  App started.
+
+2021-5-25-18-28-45  :  Going to create account state.
+
+2021-5-25-18-28-47  :  Account successfully created.
+
+2021-5-25-18-28-47  :  Logged in as @b
+
+2021-5-25-18-28-48  :  User chose to search for an account.
+
+2021-5-25-18-32-33  :  App started.
+
+2021-5-25-18-32-34  :  Going to create account state.
+
+2021-5-25-18-32-35  :  Account successfully created.
+
+2021-5-25-18-32-35  :  Logged in as @a
+
+2021-5-25-18-32-39  :  User chose to check their profile info.
+
+2021-5-25-18-32-39  :  User checked their profile info.
+
+2021-5-25-18-32-40  :  User wants to go to the settings.
+
+2021-5-25-18-32-41  :  User wants to log out.
+
+2021-5-25-18-32-43  :  Logged out of @a
+
+2021-5-25-18-32-44  :  App started.
+
+2021-5-25-18-32-44  :  Going to create account state.
+
+2021-5-25-18-32-46  :  Account successfully created.
+
+2021-5-25-18-32-46  :  Logged in as @b
+
+2021-5-25-18-32-49  :  User chose to search for an account.
+
+2021-5-25-18-33-55  :  App started.
+
+2021-5-25-18-33-55  :  Going to create account state.
+
+2021-5-25-18-33-57  :  Account successfully created.
+
+2021-5-25-18-33-57  :  Logged in as @a
+
+2021-5-25-18-33-58  :  User chose to search for an account.
+
+2021-5-25-18-34-4  :  User entered invalid number.
+
+2021-5-25-18-34-5  :  User chose to check their profile info.
+
+2021-5-25-18-34-5  :  User checked their profile info.
+
+2021-5-25-18-34-7  :  User wants to go to the settings.
+
+2021-5-25-18-34-8  :  User wants to log out.
+
+2021-5-25-18-34-9  :  Logged out of @a
+
+2021-5-25-18-34-10  :  App started.
+
+2021-5-25-18-34-11  :  Going to create account state.
+
+2021-5-25-18-34-11  :  Account successfully created.
+
+2021-5-25-18-34-11  :  Logged in as @b
+
+2021-5-25-18-34-13  :  User chose to search for an account.
+
+2021-5-25-18-34-13  :  User checked @a's profile.
+
+2021-5-25-18-34-13  :  User entered invalid number.
+
+2021-5-25-18-34-13  :  User checked @a's profile.
+
+2021-5-25-18-47-51  :  App started.
+
+2021-5-25-18-47-52  :  Going to create account state.
+
+2021-5-25-18-47-53  :  Account successfully created.
+
+2021-5-25-18-47-53  :  Logged in as @a
+
+2021-5-25-18-47-56  :  User chose to write a new tweet.
+
+2021-5-25-18-47-57  :  User wrote a tweet with id:0
+
+2021-5-25-18-48-0  :  User chose to write a new tweet.
+
+2021-5-25-18-48-0  :  User wrote a tweet with id:1
+
+2021-5-25-18-48-2  :  User chose to write a new tweet.
+
+2021-5-25-18-48-3  :  User wrote a tweet with id:2
+
+2021-5-25-18-48-5  :  User chose to check their timeline.
+
+2021-5-25-18-48-5  :  Tweet with id:1 is shown.
+
+2021-5-25-18-48-12  :  User wants to see next tweet.
+
+2021-5-25-18-48-12  :  Tweet with id:2 is shown.
+
+2021-5-25-18-48-15  :  User wants to see next tweet.
+
+2021-5-25-18-48-15  :  Tweet with id:0 is shown.
+
+2021-5-25-19-0-40  :  App started.
+
+2021-5-25-19-0-40  :  Going to create account state.
+
+2021-5-25-19-0-41  :  Account successfully created.
+
+2021-5-25-19-0-41  :  Logged in as @a
+
+2021-5-25-19-0-46  :  User chose to write a new tweet.
+
+2021-5-25-19-0-46  :  User wrote a tweet with id:0
+
+2021-5-25-19-0-48  :  User chose to write a new tweet.
+
+2021-5-25-19-0-49  :  User wrote a tweet with id:1
+
+2021-5-25-19-0-50  :  User chose to write a new tweet.
+
+2021-5-25-19-0-51  :  User wrote a tweet with id:2
+
+2021-5-25-19-0-53  :  User chose to check their profile info.
+
+2021-5-25-19-0-53  :  User checked their profile info.
+
+2021-5-25-19-0-55  :  User chose to go back.
+
+2021-5-25-19-0-57  :  User chose to check their timeline.
+
+2021-5-25-19-0-57  :  Tweet with id:2 is shown.
+
+2021-5-25-19-1-4  :  User wants to see next tweet.
+
+2021-5-25-19-1-4  :  Tweet with id:2 is shown.
+
+2021-5-25-19-1-8  :  User wants to see next tweet.
+
+2021-5-25-19-1-8  :  Tweet with id:2 is shown.
+
+2021-5-25-19-1-20  :  App started.
+
+2021-5-25-19-1-20  :  Going to create account state.
+
+2021-5-25-19-1-23  :  Account successfully created.
+
+2021-5-25-19-1-23  :  Logged in as @a
+
+2021-5-25-19-1-25  :  User chose to write a new tweet.
+
+2021-5-25-19-1-26  :  User wrote a tweet with id:0
+
+2021-5-25-19-1-32  :  User chose to write a new tweet.
+
+2021-5-25-19-1-34  :  User wrote a tweet with id:1
+
+2021-5-25-19-1-37  :  User chose to write a new tweet.
+
+2021-5-25-19-1-39  :  User wrote a tweet with id:2
+
+2021-5-25-19-1-41  :  User chose to check their timeline.
+
+2021-5-25-19-1-41  :  Tweet with id:2 is shown.
+
+2021-5-25-19-1-48  :  User wants to see next tweet.
+
+2021-5-25-19-1-48  :  Tweet with id:2 is shown.
+
+2021-5-25-19-2-7  :  App started.
+
+2021-5-25-19-2-8  :  Going to create account state.
+
+2021-5-25-19-2-9  :  Account successfully created.
+
+2021-5-25-19-2-9  :  Logged in as @a
+
+2021-5-25-19-2-11  :  User chose to write a new tweet.
+
+2021-5-25-19-2-12  :  User wrote a tweet with id:0
+
+2021-5-25-19-2-13  :  User chose to write a new tweet.
+
+2021-5-25-19-2-14  :  User wrote a tweet with id:1
+
+2021-5-25-19-2-15  :  User chose to write a new tweet.
+
+2021-5-25-19-2-15  :  User wrote a tweet with id:2
+
+2021-5-25-19-2-16  :  User chose to check their timeline.
+
+2021-5-25-19-2-17  :  Tweet with id:1 is shown.
+
+2021-5-25-19-13-37  :  App started.
+
+2021-5-25-19-13-37  :  Going to create account state.
+
+2021-5-25-19-13-39  :  Account successfully created.
+
+2021-5-25-19-13-39  :  Logged in as @a
+
+2021-5-25-19-13-41  :  User chose to write a new tweet.
+
+2021-5-25-19-13-41  :  User wrote a tweet with id:0
+
+2021-5-25-19-13-42  :  User chose to write a new tweet.
+
+2021-5-25-19-13-43  :  User wrote a tweet with id:1
+
+2021-5-25-19-13-44  :  User chose to write a new tweet.
+
+2021-5-25-19-13-44  :  User wrote a tweet with id:2
+
+2021-5-25-19-13-47  :  User chose to check their timeline.
+
+2021-5-25-19-13-47  :  Tweet with id:2 is shown.
+
+2021-5-25-19-13-50  :  User wants to see next tweet.
+
+2021-5-25-19-13-50  :  Tweet with id:2 is shown.
+
+2021-5-25-19-19-53  :  App started.
+
+2021-5-25-19-19-53  :  Going to create account state.
+
+2021-5-25-19-19-55  :  Account successfully created.
+
+2021-5-25-19-19-55  :  Logged in as @a
+
+2021-5-25-19-19-56  :  User chose to write a new tweet.
+
+2021-5-25-19-19-57  :  User wrote a tweet with id:0
+
+2021-5-25-19-19-59  :  User chose to write a new tweet.
+
+2021-5-25-19-20-0  :  User wrote a tweet with id:1
+
+2021-5-25-19-20-1  :  User chose to write a new tweet.
+
+2021-5-25-19-20-2  :  User wrote a tweet with id:2
+
+2021-5-25-19-20-4  :  User chose to check their timeline.
+
+2021-5-25-19-20-4  :  Tweet with id:2 is shown.
+
+2021-5-25-19-20-10  :  User wants to see next tweet.
+
+2021-5-25-19-20-10  :  Tweet with id:2 is shown.
+
+2021-5-25-19-21-2  :  App started.
+
+2021-5-25-19-21-2  :  Going to create account state.
+
+2021-5-25-19-21-4  :  Account successfully created.
+
+2021-5-25-19-21-4  :  Logged in as @a
+
+2021-5-25-19-21-6  :  User chose to write a new tweet.
+
+2021-5-25-19-21-7  :  User wrote a tweet with id:0
+
+2021-5-25-19-21-8  :  User chose to write a new tweet.
+
+2021-5-25-19-21-9  :  User wrote a tweet with id:1
+
+2021-5-25-19-21-10  :  User chose to write a new tweet.
+
+2021-5-25-19-21-10  :  User wrote a tweet with id:2
+
+2021-5-25-19-21-13  :  User chose to check their timeline.
+
+2021-5-25-19-21-13  :  Tweet with id:2 is shown.
+
+2021-5-25-19-25-6  :  User wants to see next tweet.
+
+2021-5-25-19-30-53  :  Tweet with id:2 is shown.
+
+2021-5-25-20-38-41  :  App started.
+
+2021-5-25-20-38-43  :  Going to create account state.
+
+2021-5-25-20-38-49  :  Account successfully created.
+
+2021-5-25-20-38-50  :  Logged in as @izadi
+
+2021-5-25-20-38-53  :  User chose to search for an account.
+
+2021-5-25-20-39-2  :  User entered invalid number.
+
+2021-5-25-20-39-52  :  User chose to search for an account.
+
+2021-5-25-20-39-56  :  User checked @izadi's profile.
+
+2021-5-25-20-39-56  :  User entered invalid number.
+
+2021-5-25-20-39-56  :  User checked @izadi's profile.
+
+2021-5-25-20-40-0  :  User followed @izadi
+
+2021-5-25-20-40-0  :  User checked @izadi's profile.
+
+2022-12-13-0-55-13  :  App started.
+
+2022-12-13-0-55-20  :  Going to create account state.
+
+2022-12-13-0-55-35  :  Account successfully created.
+
+2022-12-13-0-55-35  :  Logged in as @faeze
+
+2022-12-13-0-55-54  :  User chose to write a new tweet.
+
+2022-12-13-0-55-58  :  User wrote a tweet with id:0
+
+2022-12-13-0-56-1  :  User chose to check their timeline.
+
+2022-12-13-0-56-1  :  Tweet with id:0 is shown.
+
+2022-12-13-0-56-39  :  User chose to go back.
+
+2022-12-13-0-56-49  :  User chose to check their profile info.
+
+2022-12-13-0-56-49  :  User checked their profile info.
+
+2022-12-13-0-57-10  :  User wants to go to the settings.
+

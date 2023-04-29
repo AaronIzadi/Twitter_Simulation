@@ -1,0 +1,56 @@
+package twitter.state.startings;
+
+import twitter.Context;
+import twitter.logic.HandleAccount;
+import twitter.utils.ConsoleColors;
+import twitter.state.MenuState;
+import twitter.state.State;
+import twitter.utils.Logger;
+
+public class CreateAccountState extends State {
+
+
+    @Override
+    public void printCliMenu(Context context) {
+        System.out.println(ConsoleColors.YELLOW + "Set username:");
+    }
+
+    @Override
+    public State doAction(Context context) {
+
+        printCliMenu(context);
+
+        HandleAccount handleAccount = context.getHandleAccount();
+
+        String username = context.getScanner().nextLine();
+
+        Logger log = context.getLogger();
+
+        if (!handleAccount.checkIfExist(username)) {
+            System.out.println(ConsoleColors.YELLOW + "Set password:");
+
+            String password = context.getScanner().nextLine();
+
+            handleAccount.createAccount(username, password);
+            System.out.println(ConsoleColors.BLUE + "Account created.");
+            System.out.println(ConsoleColors.BLUE + "You can later complete your profile info in settings!");
+            log.info("Account successfully created.");
+            log.info("Logged in as @" + username);
+            return new MenuState();
+        } else {
+            printFinalCliError();
+            log.info("Username they entered already exists.");
+            return null;
+        }
+    }
+
+    @Override
+    public void printFinalCliError() {
+        System.out.println(ConsoleColors.RED + "User already exists. Try another one.");
+    }
+
+    @Override
+    public void close(Context context) {
+
+    }
+}

@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Account {
     private String userName;
+    private long id;
     private String name;
     private String emailAddress;
     private String password;
@@ -15,7 +16,6 @@ public class Account {
     public static final int ONLINE = 1;
     public static final int DEFAULT_STATUS = 2;
     private long phoneNumber;
-    private long id;
     public static final int DEFAULT = 1;
     public static final int PUBLIC = 1;
     public static final int PRIVATE = 2;
@@ -26,123 +26,247 @@ public class Account {
     private int numberOfFollowRequest;
     private int numberOfAccountsSentRequest;
     private long numberOfTweets;
-    private List<Long> followers = new LinkedList<>();
-    private List<Long> followings = new LinkedList<>();
-    private List<Long> blacklist = new LinkedList<>();
-    private List<Long> mutedAccounts = new LinkedList<>();
-    private List<Long> tweets = new LinkedList<>();
-    private List<Long> replied = new LinkedList<>();
-    private List<Long> savedTweet = new LinkedList<>();
-    private List<Long> likedTweet = new LinkedList<>();
-    private List<Long> followRequest = new LinkedList<>();
-    private List<Long> accountsRequestedToFollow = new LinkedList<>();
+    private final List<Long> followers = new LinkedList<>();
+    private final List<Long> followings = new LinkedList<>();
+    private final List<Long> blacklist = new LinkedList<>();
+    private final List<Long> mutedAccounts = new LinkedList<>();
+    private final List<Long> tweets = new LinkedList<>();
+    private final List<Long> replied = new LinkedList<>();
+    private final List<Long> savedTweet = new LinkedList<>();
+    private final List<Long> likedTweet = new LinkedList<>();
+    private final List<Long> followRequest = new LinkedList<>();
+    private final List<Long> accountsRequestedToFollow = new LinkedList<>();
 
-    public Account(String userName, String password , int type , int status) {
+    public Account(String userName, String password, int type) {
         this.userName = userName;
         this.password = password;
         this.type = type;
         this.status = "Last seen recently";
     }
 
-    public long getId() { return id; }
+    public Account(String userName, String password, int type, int status) {
+        this.userName = userName;
+        this.password = password;
+        this.type = type;
+        switch (status) {
+            case 0:
+                this.status = "Offline";
+                break;
+            case 1:
+                this.status = "Online";
+                break;
+            default:
+                this.status = "Last seen recently";
+                break;
+        }
+    }
 
-    public String getUserName() { return userName; }
+    public long getId() {
+        return id;
+    }
 
-    public String getName() { return name; }
+    public String getUserName() {
+        return userName;
+    }
 
-    public List<Long> getTweets() { return tweets; }
+    public String getName() {
+        return name;
+    }
 
-    public String getPassword() { return password; }
+    public List<Long> getTweets() {
+        return tweets;
+    }
 
-    public List<Long> getFollowers() { return followers; }
+    public String getPassword() {
+        return password;
+    }
 
-    public List<Long> getFollowings() { return followings; }
+    public List<Long> getFollowers() {
+        return followers;
+    }
 
-    public List<Long> getLikedTweet() { return likedTweet; }
+    public List<Long> getFollowings() {
+        return followings;
+    }
 
-    public List<Long> getBlacklist() { return blacklist; }
+    public List<Long> getLikedTweet() {
+        return likedTweet;
+    }
 
-    public String getBiography() { return biography; }
+    public List<Long> getBlacklist() {
+        return blacklist;
+    }
 
-    public int getNumberOfFollowers() { return numberOfFollowers; }
+    public String getBiography() {
+        return biography;
+    }
 
-    public int getNumberOfFollowings() { return numberOfFollowings; }
+    public int getNumberOfFollowers() {
+        return numberOfFollowers;
+    }
 
-    public int getNumberOfBlackList() { return numberOfBlackList; }
+    public int getNumberOfFollowings() {
+        return numberOfFollowings;
+    }
 
-    public long getNumberOfTweets() { return numberOfTweets; }
+    public int getNumberOfBlackList() {
+        return numberOfBlackList;
+    }
 
-    public List<Long> getMutedAccounts() { return mutedAccounts; }
+    public long getNumberOfTweets() {
+        return numberOfTweets;
+    }
 
-    public long getPhoneNumber() { return phoneNumber; }
+    public List<Long> getMutedAccounts() {
+        return mutedAccounts;
+    }
 
-    public String getDateOfBirth() { return dateOfBirth; }
+    public long getPhoneNumber() {
+        return phoneNumber;
+    }
 
-    public String getEmailAddress() { return emailAddress; }
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
 
-    public List<Long> getSavedTweet() { return savedTweet; }
+    public String getEmailAddress() {
+        return emailAddress;
+    }
 
-    public String getStatus() { return status; }
+    public List<Long> getSavedTweet() {
+        return savedTweet;
+    }
 
-    public int getNumberOfFollowRequest() { return numberOfFollowRequest; }
+    public String getStatus() {
+        return status;
+    }
 
-    public int getNumberOfAccountsSentRequest() { return numberOfAccountsSentRequest; }
+    public int getNumberOfFollowRequest() {
+        return numberOfFollowRequest;
+    }
 
-    public List<Long> getFollowRequest() { return followRequest; }
+    public int getNumberOfAccountsSentRequest() {
+        return numberOfAccountsSentRequest;
+    }
 
-    public List<Long> getAccountsRequestedToFollow() { return accountsRequestedToFollow; }
+    public List<Long> getFollowRequest() {
+        return followRequest;
+    }
 
-    public int getType() { return type; }
+    public List<Long> getAccountsRequestedToFollow() {
+        return accountsRequestedToFollow;
+    }
 
-    public void setType(int type) { this.type = type; }
+    public int getType() {
+        return type;
+    }
 
-    public void setNumberOfAccountsSentRequest(int num) { numberOfAccountsSentRequest += num; }
+    public List<Long> getReplied() {
+        return replied;
+    }
 
-    public void setNumberOfFollowRequest(int followRequest) { numberOfFollowRequest += followRequest; }
+    public void setType(int type) {
+        this.type = type;
+    }
 
-    public void setFollowRequest(long request) { followRequest.add(request); }
+    public void setNumberOfAccountsSentRequest(int num) {
+        numberOfAccountsSentRequest += num;
+    }
 
-    public void setAccountsRequestedToFollow(long sendRequestTo) { accountsRequestedToFollow.add(sendRequestTo); }
+    public void setNumberOfFollowRequest(int followRequest) {
+        numberOfFollowRequest += followRequest;
+    }
 
-    public void setStatus(String status) { this.status = status; }
+    public void setFollowRequest(long request) {
+        followRequest.add(request);
+    }
 
-    public void setMutedAccounts(long idNum) { mutedAccounts.add(idNum); }
+    public void setAccountsRequestedToFollow(long sendRequestTo) {
+        accountsRequestedToFollow.add(sendRequestTo);
+    }
 
-    public void setId(int id) { this.id = id; }
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-    public void setPassword(String password) { this.password = password; }
+    public void setMutedAccounts(long idNum) {
+        mutedAccounts.add(idNum);
+    }
 
-    public void setTweets(long tweetId) { tweets.add(tweetId); }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public void setSavedTweet(long idNum) { savedTweet.add(idNum); }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-    public void setLikedTweet(long idNum) { likedTweet.add(idNum); }
+    public void setTweets(long tweetId) {
+        tweets.add(tweetId);
+    }
 
-    public void setReplied(long repliedId) { replied.add(repliedId); }
+    public void setSavedTweet(long idNum) {
+        savedTweet.add(idNum);
+    }
 
-    public void setNumberOfTweets(int n) { numberOfTweets += n; }
+    public void setLikedTweet(long idNum) {
+        likedTweet.add(idNum);
+    }
 
-    public void setNumberOfFollowers(int n) { numberOfFollowers += n; }
+    public void setReplied(long repliedId) {
+        replied.add(repliedId);
+    }
 
-    public void setFollowers(long idNum) { followers.add(idNum); }
+    public void setNumberOfTweets(int n) {
+        numberOfTweets += n;
+    }
 
-    public void setNumberOfFollowings(int n) { numberOfFollowings += n; }
+    public void setNumberOfFollowers() {
+        numberOfFollowers = followers.size();
+    }
 
-    public void setFollowings(long idNum) { followings.add(idNum); }
+    public void setFollowers(long idNum) {
+        followers.add(idNum);
+    }
 
-    public void setNumberOfBlackList(int n) { numberOfBlackList += n; }
+    public void setNumberOfFollowings() {
+        numberOfFollowings = followings.size();
+    }
 
-    public void setBlacklist(long idNum) { blacklist.add(idNum); }
+    public void setFollowings(long idNum) {
+        followings.add(idNum);
+    }
 
-    public void setUserName(String userName) { this.userName = userName; }
+    public void setNumberOfBlackList(int n) {
+        numberOfBlackList += n;
+    }
 
-    public void setBiography(String biography) { this.biography = biography; }
+    public void setBlacklist(long idNum) {
+        blacklist.add(idNum);
+    }
 
-    public void setDateOfBirth(String dateOfBirth) { this.dateOfBirth = dateOfBirth; }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-    public void setPhoneNumber(long phoneNumber) { this.phoneNumber = phoneNumber; }
+    public void setBiography(String biography) {
+        this.biography = biography;
+    }
 
-    public void setName(String name) { this.name = name; }
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
 
-    public void setEmailAddress(String emailAddress) { this.emailAddress = emailAddress; }
+    public void setPhoneNumber(long phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
 }

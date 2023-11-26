@@ -4,8 +4,8 @@ import twitter.model.Account;
 
 public class SecureAccountRepository implements AccountRepository{
 
-    private static AccountRepository instance = new SecureAccountRepository();
-    private AccountRepository accRep = AccountHashMapRepository.getInstance();
+    private static final AccountRepository instance = new SecureAccountRepository();
+    private final AccountRepository accountRepository = AccountHashMapRepository.getInstance();
 
 
     private SecureAccountRepository() {}
@@ -16,27 +16,27 @@ public class SecureAccountRepository implements AccountRepository{
 
     @Override
     public Account update(Account newAccount) {
-        Account target = accRep.getAccount(getUser().getId());
+        Account target = accountRepository.getAccount(getUser().getId());
         if (hasPermission(getUser(),target) && hasPermission(newAccount,getUser())) {
-            return accRep.update(newAccount);
+            return accountRepository.update(newAccount);
         }
         return null;
     }
 
     @Override
     public Account add(Account account) {
-        return accRep.add(account);
+        return accountRepository.add(account);
     }
 
     @Override
     public Account getAccount(long id) {
-        Account target = accRep.getAccount(id);
+        Account target = accountRepository.getAccount(id);
         return secureAccount(getUser(), target);
     }
 
     @Override
     public Account getAccountByUserName(String username) {
-        Account result = accRep.getAccountByUserName(username);
+        Account result = accountRepository.getAccountByUserName(username);
         if (result != null){
             result = secureAccount(result, getUser());
         }
@@ -45,12 +45,12 @@ public class SecureAccountRepository implements AccountRepository{
 
     @Override
     public Account getUser() {
-        return accRep.getUser();
+        return accountRepository.getUser();
     }
 
     @Override
     public void setUser(Account user) {
-        accRep.setUser(user);
+        accountRepository.setUser(user);
     }
 
     private boolean hasPermission(Account account1, Account account2) {
@@ -69,15 +69,15 @@ public class SecureAccountRepository implements AccountRepository{
 
     @Override
     public boolean removeAccount(long id) {
-        Account target = accRep.getAccount(id);
+        Account target = accountRepository.getAccount(id);
         if (hasPermission(getUser(),target)) {
-            return accRep.removeAccount(id);
+            return accountRepository.removeAccount(id);
         }
         return false;
     }
 
     @Override
     public boolean exists(long id) {
-        return accRep.exists(id);
+        return accountRepository.exists(id);
     }
 }

@@ -1,7 +1,7 @@
 package twitter.state.profile;
 
 import twitter.Context;
-import twitter.logic.HandleAccount;
+import twitter.logic.AccountManager;
 import twitter.utils.ConsoleColors;
 import twitter.state.State;
 import twitter.state.TweetListState;
@@ -31,7 +31,7 @@ public class ViewProfileState extends State {
 
         printCliMenu(context);
 
-        HandleAccount handleAccount = context.getHandleAccount();
+        AccountManager accountManager = context.getHandleAccount();
         Logger log = context.getLogger();
 
 
@@ -39,38 +39,38 @@ public class ViewProfileState extends State {
             username = context.getScanner().next();
         }
 
-        if (!handleAccount.checkIfExist(username)) {
+        if (!accountManager.checkIfExist(username)) {
             System.out.println(ConsoleColors.RED + "Sorry! This account seems not to exist!");
             return null;
         }
 
         System.out.println(ConsoleColors.BLUE + "Profile information:");
         System.out.println(ConsoleColors.BLUE + "Username: @" + username);
-        System.out.println(ConsoleColors.BLUE + "Name: " + handleAccount.getName(username));
-        System.out.println(ConsoleColors.BLUE + "Biography: " + handleAccount.getBiography(username));
-        System.out.println(ConsoleColors.BLUE + "Followers: " + handleAccount.getNumberOfFollowers(username));
-        System.out.println(ConsoleColors.BLUE + "Followings: " + handleAccount.getNumberOfFollowings(username));
-        System.out.println(ConsoleColors.BLUE + "Tweets: " + handleAccount.getNumberOfTweets(username));
+        System.out.println(ConsoleColors.BLUE + "Name: " + accountManager.getName(username));
+        System.out.println(ConsoleColors.BLUE + "Biography: " + accountManager.getBiography(username));
+        System.out.println(ConsoleColors.BLUE + "Followers: " + accountManager.getNumberOfFollowers(username));
+        System.out.println(ConsoleColors.BLUE + "Followings: " + accountManager.getNumberOfFollowings(username));
+        System.out.println(ConsoleColors.BLUE + "Tweets: " + accountManager.getNumberOfTweets(username));
 
-        if (!handleAccount.ifYouAreBlocked(username)) {
-            System.out.println(ConsoleColors.BLUE + "Status: " + handleAccount.getStatus(username));
+        if (!accountManager.ifYouAreBlocked(username)) {
+            System.out.println(ConsoleColors.BLUE + "Status: " + accountManager.getStatus(username));
         }
-        if (handleAccount.ifYouAreBlocked(username)) {
+        if (accountManager.ifYouAreBlocked(username)) {
             System.out.println(ConsoleColors.BLUE + "This user has blocked you.");
         }
-        if (handleAccount.isFollowed(username)) {
+        if (accountManager.isFollowed(username)) {
             System.out.println(ConsoleColors.BLUE + "You currently follow this user.");
         }
 
-        if (handleAccount.isRequested(username)) {
+        if (accountManager.isRequested(username)) {
             System.out.println(ConsoleColors.BLUE + "You have sent follow request to this user.");
         }
 
-        if (handleAccount.isFollowingYOu(username)) {
+        if (accountManager.isFollowingYOu(username)) {
             System.out.println(ConsoleColors.BLUE + "This user follows you.");
         }
 
-        if (handleAccount.isMute(username)) {
+        if (accountManager.isMute(username)) {
             System.out.println(ConsoleColors.BLUE + "You have muted this user.");
         }
 
@@ -79,14 +79,14 @@ public class ViewProfileState extends State {
         System.out.println(ConsoleColors.YELLOW + "What do you want to do next?");
         System.out.println(ConsoleColors.YELLOW + "1.Back");
         System.out.println(ConsoleColors.YELLOW + "2.Check another profile");
-        if (handleAccount.isPublic(username)) {
-            if (handleAccount.isFollowed(username)) {
+        if (accountManager.isPublic(username)) {
+            if (accountManager.isFollowed(username)) {
                 System.out.println(ConsoleColors.YELLOW + "3.Unfollow this user");
             } else {
                 System.out.println(ConsoleColors.YELLOW + "3.Follow this user");
             }
         } else {
-            if (handleAccount.isRequested(username)) {
+            if (accountManager.isRequested(username)) {
                 System.out.println(ConsoleColors.YELLOW + "3.Delete my follow request");
             } else {
                 System.out.println(ConsoleColors.YELLOW + "3.Send follow request");
@@ -94,10 +94,10 @@ public class ViewProfileState extends State {
             //TODO a private page can also be unfollowed, not just deleting request.
         }
 
-        System.out.println(handleAccount.isMute(username) ? ConsoleColors.YELLOW + "4.Unmute this user" : ConsoleColors.YELLOW + "4.Mute this user");
-        System.out.println(handleAccount.isBlocked(username) ? ConsoleColors.YELLOW + "5.Unlock this user" : ConsoleColors.YELLOW + "5.Block this user");
+        System.out.println(accountManager.isMute(username) ? ConsoleColors.YELLOW + "4.Unmute this user" : ConsoleColors.YELLOW + "4.Mute this user");
+        System.out.println(accountManager.isBlocked(username) ? ConsoleColors.YELLOW + "5.Unlock this user" : ConsoleColors.YELLOW + "5.Block this user");
 
-        if (handleAccount.isPublic(username)) {
+        if (accountManager.isPublic(username)) {
             System.out.println(ConsoleColors.YELLOW + "6.Check their follower list");
             System.out.println(ConsoleColors.YELLOW + "7.Check their following list");
             System.out.println(ConsoleColors.YELLOW + "8.Check their tweets");
@@ -119,45 +119,45 @@ public class ViewProfileState extends State {
 
             case "3":
 
-                if (handleAccount.isPublic(username)) {
-                    log.info(handleAccount.isFollowed(username) ? "User unfollowed @" + username : "User followed @" + username);
-                    handleAccount.followOrUnfollow(username);
+                if (accountManager.isPublic(username)) {
+                    log.info(accountManager.isFollowed(username) ? "User unfollowed @" + username : "User followed @" + username);
+                    accountManager.followOrUnfollow(username);
                     return this;
                 } else {
-                    if (handleAccount.isRequested(username)) {
+                    if (accountManager.isRequested(username)) {
                         log.info("User unsent their follow request to @" + username);
-                        handleAccount.unsendFollowRequest(username);
+                        accountManager.unsendFollowRequest(username);
                         return this;
                     } else {
                         log.info("User sent follow request to @" + username);
-                        handleAccount.sendFollowRequest(username);
+                        accountManager.sendFollowRequest(username);
                         return this;
                     }
                 }
 
             case "4":
 
-                log.info(handleAccount.isMute(username) ? "User unmuted @" + username : "User muted @" + username);
-                handleAccount.muteOrUnmute(username);
+                log.info(accountManager.isMute(username) ? "User unmuted @" + username : "User muted @" + username);
+                accountManager.muteOrUnmute(username);
                 return this;
 
             case "5":
 
-                if (handleAccount.isBlocked(username)) {
+                if (accountManager.isBlocked(username)) {
                     log.info("User unblocked @" + username);
-                    handleAccount.unblock(username);
+                    accountManager.unblock(username);
                 } else {
                     log.info("User blocked @" + username);
-                    handleAccount.block(username);
+                    accountManager.block(username);
                 }
                 return this;
 
         }
         //TODO this if is mess because of splitting the switchcase. you need to make it one chain again.
-        if (handleAccount.isPublic(username) || handleAccount.isFollowed(username)) {
+        if (accountManager.isPublic(username) || accountManager.isFollowed(username)) {
             switch (ch) {
                 case "6":
-                    if (handleAccount.getNumberOfFollowers(username) != 0) {
+                    if (accountManager.getNumberOfFollowers(username) != 0) {
                         log.info("User wants to check @" + username + "'s follower list.");
                         return new FollowerListState(username);
                     } else {
@@ -170,7 +170,7 @@ public class ViewProfileState extends State {
                     return new FollowingListState(username);
 
                 case "8":
-                    if (handleAccount.getNumberOfTweets(username) != 0) {
+                    if (accountManager.getNumberOfTweets(username) != 0) {
                         log.info("User wants to check @" + username + "'s tweets.");
                         return new TweetListState(username);
                     } else {

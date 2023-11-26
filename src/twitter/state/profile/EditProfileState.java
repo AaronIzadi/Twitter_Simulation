@@ -1,7 +1,7 @@
 package twitter.state.profile;
 
 import twitter.Context;
-import twitter.logic.HandleAccount;
+import twitter.logic.AccountManager;
 import twitter.model.Account;
 import twitter.utils.ConsoleColors;
 import twitter.state.State;
@@ -11,7 +11,7 @@ public class EditProfileState extends State {
     @Override
     public void printCliMenu(Context context) {
 
-        HandleAccount handleAccount = context.getHandleAccount();
+        AccountManager accountManager = context.getHandleAccount();
 
         System.out.println(ConsoleColors.YELLOW + "Edit profile:");
         System.out.println(ConsoleColors.YELLOW + "What do you want to do?");
@@ -23,7 +23,7 @@ public class EditProfileState extends State {
         System.out.println(ConsoleColors.YELLOW + "6.Change password");
         System.out.println(ConsoleColors.YELLOW + "7.Change phone number");
         System.out.println(ConsoleColors.YELLOW + "8.Switch status to recently/last seen");
-        System.out.println(handleAccount.isPublic(handleAccount.getUser().getUserName()) ? ConsoleColors.YELLOW + "9.Switch account to private" : ConsoleColors.YELLOW + "9.Switch account to public");
+        System.out.println(accountManager.isPublic(accountManager.getUser().getUserName()) ? ConsoleColors.YELLOW + "9.Switch account to private" : ConsoleColors.YELLOW + "9.Switch account to public");
         System.out.println(ConsoleColors.YELLOW + "10.Back");
     }
 
@@ -32,7 +32,7 @@ public class EditProfileState extends State {
 
         printCliMenu(context);
 
-        HandleAccount handleAccount = context.getHandleAccount();
+        AccountManager accountManager = context.getHandleAccount();
         Logger log = context.getLogger();
 
         String choice = context.getScanner().nextLine();
@@ -42,7 +42,7 @@ public class EditProfileState extends State {
 
                 System.out.println(ConsoleColors.YELLOW + "Enter your new name:");
                 String name = context.getScanner().nextLine();
-                handleAccount.changeName(name);
+                accountManager.changeName(name);
                 log.info("User changed their name to:" + name);
                 return this;
 
@@ -50,7 +50,7 @@ public class EditProfileState extends State {
 
                 System.out.println(ConsoleColors.YELLOW + "Enter your new bio:");
                 String bio = context.getScanner().nextLine();
-                handleAccount.changeBiography(bio);
+                accountManager.changeBiography(bio);
                 log.info("User changed their bio to: " + bio);
                 return this;
 
@@ -58,7 +58,7 @@ public class EditProfileState extends State {
 
                 System.out.println(ConsoleColors.YELLOW + "Enter your date of birth:");
                 String birthday = context.getScanner().nextLine();
-                handleAccount.changeDateOfBirth(birthday);
+                accountManager.changeDateOfBirth(birthday);
                 log.info("User changed their birthday to: " + birthday);
                 return this;
 
@@ -66,7 +66,7 @@ public class EditProfileState extends State {
 
                 System.out.println(ConsoleColors.YELLOW + "Enter your new email address:");
                 String email = context.getScanner().nextLine();
-                handleAccount.changeEmailAddress(email);
+                accountManager.changeEmailAddress(email);
                 log.info("User changed their email to: " + email);
                 return this;
 
@@ -74,8 +74,8 @@ public class EditProfileState extends State {
 
                 System.out.println(ConsoleColors.YELLOW + "Enter your new username:");
                 String user = context.getScanner().nextLine();
-                if (!handleAccount.checkIfExist(user)) {
-                    handleAccount.changeUserName(user);
+                if (!accountManager.checkIfExist(user)) {
+                    accountManager.changeUserName(user);
                     log.info("User changed their username to: " + user);
                 } else {
                     System.out.println(ConsoleColors.RED + "This user already exists! Try another one.");
@@ -89,27 +89,27 @@ public class EditProfileState extends State {
                 String oldPass = context.getScanner().nextLine();
                 System.out.println(ConsoleColors.YELLOW + "Enter your new password:");
                 String newPass = context.getScanner().nextLine();
-                handleAccount.changePassword(oldPass, newPass);
+                accountManager.changePassword(oldPass, newPass);
                 return this;
 
             case "7":
 
                 System.out.println(ConsoleColors.YELLOW + "Enter your new phone number:");
                 long phoneNum = context.getScanner().nextLong();
-                handleAccount.changePhoneNum(phoneNum);
+                accountManager.changePhoneNum(phoneNum);
                 log.info("User changed their phone number to: " + phoneNum);
                 return this;
 
             case "8":
 
                 log.info("User changed their status.");
-                handleAccount.updateStatus(handleAccount.ifRecently() ? Account.ONLINE : Account.DEFAULT_STATUS);
+                accountManager.updateStatus(accountManager.ifRecently() ? Account.ONLINE : Account.DEFAULT_STATUS);
                 return this;
 
             case "9":
 
                 log.info("User switched their account to public/private.");
-                handleAccount.makePublicOrPrivate();
+                accountManager.makePublicOrPrivate();
                 return this;
 
             case "10":

@@ -2,7 +2,7 @@ package twitter.state;
 
 import twitter.utils.ConsoleColors;
 import twitter.Context;
-import twitter.logic.HandleAccount;
+import twitter.logic.AccountManager;
 import twitter.state.profile.ViewProfileState;
 import twitter.utils.Logger;
 
@@ -17,11 +17,11 @@ public class RequestSentListState extends State {
     public State doAction(Context context) {
         printCliMenu(context);
 
-        HandleAccount handleAccount = context.getHandleAccount();
+        AccountManager accountManager = context.getHandleAccount();
         Logger log = context.getLogger();
 
-        for (long idAcc : handleAccount.getUser().getAccountsRequestedToFollow()) {
-            System.out.println(ConsoleColors.BLUE + handleAccount.getUsername(idAcc));
+        for (long idAcc : accountManager.getUser().getAccountsRequestedToFollow()) {
+            System.out.println(ConsoleColors.BLUE + accountManager.getUsername(idAcc));
         }
 
         System.out.println(ConsoleColors.YELLOW + "What do you want to do next?");
@@ -36,8 +36,8 @@ public class RequestSentListState extends State {
 
                 System.out.println(ConsoleColors.YELLOW + "Enter username:");
                 String username = context.getScanner().next();
-                if (handleAccount.checkIfExist(username)) {
-                    handleAccount.unsendFollowRequest(username);
+                if (accountManager.checkIfExist(username)) {
+                    accountManager.unsendFollowRequest(username);
                     log.info("User unsent their follow request to @" + username);
                 } else {
                     System.out.println(ConsoleColors.RED + "This user seems not to exist!");

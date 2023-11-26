@@ -2,7 +2,7 @@ package twitter.state;
 
 import twitter.utils.ConsoleColors;
 import twitter.Context;
-import twitter.logic.HandleAccount;
+import twitter.logic.AccountManager;
 import twitter.state.profile.ViewProfileState;
 import twitter.utils.Logger;
 
@@ -18,13 +18,13 @@ public class BlackListState extends State{
 
         printCliMenu(context);
 
-        HandleAccount handleAccount = context.getHandleAccount();
+        AccountManager accountManager = context.getHandleAccount();
         Logger log = context.getLogger();
 
-        System.out.println(ConsoleColors.BLUE + handleAccount.viewAccountList(handleAccount.getUser().getBlacklist()));
+        System.out.println(ConsoleColors.BLUE + accountManager.viewAccountList(accountManager.getUser().getBlacklist()));
         System.out.println(ConsoleColors.YELLOW + "Do you want to check a profile?(y/n)");
 
-        if(handleAccount.getUser().getNumberOfBlackList() == 0) {
+        if(accountManager.getUser().getNumberOfBlackList() == 0) {
             log.info("There is no list to show.");
             System.out.println(ConsoleColors.RED + "There is no list to show!");
             return null;

@@ -1,7 +1,6 @@
 package twitter.state;
 
 import twitter.Context;
-import twitter.logic.HandleAccount;
 import twitter.model.Account;
 
 public class ExitState extends State{

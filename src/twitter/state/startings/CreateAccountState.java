@@ -1,7 +1,7 @@
 package twitter.state.startings;
 
 import twitter.Context;
-import twitter.logic.HandleAccount;
+import twitter.logic.AccountManager;
 import twitter.utils.ConsoleColors;
 import twitter.state.MenuState;
 import twitter.state.State;
@@ -20,18 +20,18 @@ public class CreateAccountState extends State {
 
         printCliMenu(context);
 
-        HandleAccount handleAccount = context.getHandleAccount();
+        AccountManager accountManager = context.getHandleAccount();
 
         String username = context.getScanner().nextLine();
 
         Logger log = context.getLogger();
 
-        if (!handleAccount.checkIfExist(username)) {
+        if (!accountManager.checkIfExist(username)) {
             System.out.println(ConsoleColors.YELLOW + "Set password:");
 
             String password = context.getScanner().nextLine();
 
-            handleAccount.createAccount(username, password);
+            accountManager.createAccount(username, password);
             System.out.println(ConsoleColors.BLUE + "Account created.");
             System.out.println(ConsoleColors.BLUE + "You can later complete your profile info in settings!");
             log.info("Account successfully created.");

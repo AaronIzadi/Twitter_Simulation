@@ -1,8 +1,8 @@
 package twitter;
 
-import twitter.logic.HandleAccount;
-import twitter.logic.HandleTimeLine;
-import twitter.logic.HandleTweet;
+import twitter.logic.AccountManager;
+import twitter.logic.TimeLineManager;
+import twitter.logic.TweetManager;
 import twitter.model.Account;
 import twitter.state.startings.StartState;
 import twitter.state.State;
@@ -14,9 +14,9 @@ import java.util.Stack;
 
 public class Context {
 
-    private final HandleAccount handleAccount = new HandleAccount();
-    private final HandleTweet handleTweet = new HandleTweet();
-    private final HandleTimeLine handleTimeLine = new HandleTimeLine();
+    private final AccountManager accountManager = new AccountManager();
+    private final TweetManager tweetManager = new TweetManager();
+    private final TimeLineManager timeLineManager = new TimeLineManager();
     private final Stack<State> stateTrace = new Stack<>();
     private final Scanner scanner = new Scanner(System.in);
     private Logger logger= new Logger();
@@ -72,19 +72,19 @@ public class Context {
     }
 
     Account getUser() {
-        return handleAccount.getUser();
+        return accountManager.getUser();
     }
 
-    public HandleTimeLine getHandleTimeLine() {
-        return handleTimeLine;
+    public TimeLineManager getHandleTimeLine() {
+        return timeLineManager;
     }
 
-    public HandleAccount getHandleAccount() {
-        return handleAccount;
+    public AccountManager getHandleAccount() {
+        return accountManager;
     }
 
-    public HandleTweet getHandleTweet() {
-        return handleTweet;
+    public TweetManager getHandleTweet() {
+        return tweetManager;
     }
 
     public Scanner getScanner() {

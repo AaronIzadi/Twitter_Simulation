@@ -2,7 +2,7 @@ package twitter.state;
 
 import twitter.utils.ConsoleColors;
 import twitter.Context;
-import twitter.logic.HandleAccount;
+import twitter.logic.AccountManager;
 import twitter.model.Tweet;
 import twitter.state.profile.ViewProfileState;
 import twitter.utils.Logger;
@@ -25,7 +25,7 @@ public class AccountRetweetedListState extends State {
 
         printCliMenu(context);
 
-        HandleAccount handleAccount = context.getHandleAccount();
+        AccountManager accountManager = context.getHandleAccount();
         Logger log = context.getLogger();
 
         if (tweet.getNumberOfRetweets() == 0) {
@@ -35,7 +35,7 @@ public class AccountRetweetedListState extends State {
         }
 
         for (long idAcc : tweet.getIdAccountRetweeted()) {
-            String user = handleAccount.getUsername(idAcc);
+            String user = accountManager.getUsername(idAcc);
             System.out.println(ConsoleColors.BLUE + "@" + user);
         }
 

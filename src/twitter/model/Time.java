@@ -74,20 +74,20 @@ public class Time implements Comparable {
     }
 
     public String toString() {
-        String s = "";
-        s = year + "-" + month + "-" + day + "-" + hour + "-" + minute + "-" + second;
-        return s;
+        String time = "";
+        time = year + "-" + month + "-" + day + "-" + hour + "-" + minute + "-" + second;
+        return time;
     }
 
-    public static Time valueOf(String s) {
+    public static Time valueOf(String timeInString) {
         Time time = new Time();
-        String[] all = s.split("-");
-        time.setYear(Integer.valueOf(all[0]));
-        time.setMonth(Integer.valueOf(all[1]));
-        time.setDay(Integer.valueOf(all[2]));
-        time.setHour(Integer.valueOf(all[3]));
-        time.setMinute(Integer.valueOf(all[4]));
-        time.setSecond(Integer.valueOf(all[5]));
+        String[] all = timeInString.split("-");
+        time.setYear(Integer.parseInt(all[0]));
+        time.setMonth(Integer.parseInt(all[1]));
+        time.setDay(Integer.parseInt(all[2]));
+        time.setHour(Integer.parseInt(all[3]));
+        time.setMinute(Integer.parseInt(all[4]));
+        time.setSecond(Integer.parseInt(all[5]));
         return time;
     }
 
@@ -125,14 +125,7 @@ public class Time implements Comparable {
                         if (this.getMinute() < time.getMinute()) {
                             return -1;
                         } else {
-                            if (this.getSecond() > time.getSecond()) {
-                                return 1;
-                            }
-                            if (this.getSecond() < time.getSecond()) {
-                                return -1;
-                            } else {
-                                return 0;
-                            }
+                            return Integer.compare(this.getSecond(), time.getSecond());
                         }
                     }
                 }

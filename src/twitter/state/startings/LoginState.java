@@ -1,7 +1,7 @@
 package twitter.state.startings;
 
 import twitter.Context;
-import twitter.logic.HandleAccount;
+import twitter.logic.AccountManager;
 import twitter.model.Account;
 import twitter.utils.ConsoleColors;
 import twitter.state.MenuState;
@@ -21,19 +21,19 @@ public class LoginState extends State {
 
         printCliMenu(context);
 
-        HandleAccount handleAccount = context.getHandleAccount();
+        AccountManager accountManager = context.getHandleAccount();
         Logger log = context.getLogger();
 
         String username = context.getScanner().nextLine();
 
-        if (handleAccount.checkIfExist(username)) {
+        if (accountManager.checkIfExist(username)) {
 
             System.out.println(ConsoleColors.YELLOW + "Enter your password:");
             String password = context.getScanner().nextLine();
-            if (handleAccount.checkPassword(username, password)) {
+            if (accountManager.checkPassword(username, password)) {
                 System.out.println(ConsoleColors.BLUE + "Login successful.");
-                handleAccount.login(username);
-                handleAccount.updateStatus(Account.ONLINE);
+                accountManager.login(username);
+                accountManager.updateStatus(Account.ONLINE);
                 log.info("Logged in as @" + username);
                 return new MenuState();
             }

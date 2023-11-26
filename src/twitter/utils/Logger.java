@@ -9,7 +9,7 @@ import java.io.PrintStream;
 
 public class Logger {
     public void info(String text){
-        String path = "resources/Logging/Logging.txt";
+        String path = "src/resources/log/logging.txt";
         File file = new File(path);
         try {
             PrintStream printStream = new PrintStream(new FileOutputStream(file, true));

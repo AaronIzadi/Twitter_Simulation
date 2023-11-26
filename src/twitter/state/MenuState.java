@@ -2,7 +2,7 @@ package twitter.state;
 
 import twitter.utils.ConsoleColors;
 import twitter.Context;
-import twitter.logic.HandleAccount;
+import twitter.logic.AccountManager;
 import twitter.model.Tweet;
 import twitter.state.profile.ViewPersonalInfoState;
 import twitter.state.profile.ViewProfileState;
@@ -21,7 +21,7 @@ public class MenuState extends State {
 
         printCliMenu(context);
 
-        HandleAccount handleAccount = context.getHandleAccount();
+        AccountManager accountManager = context.getHandleAccount();
         Logger log = context.getLogger();
 
         System.out.println(ConsoleColors.YELLOW + "Choose what you want to do:");

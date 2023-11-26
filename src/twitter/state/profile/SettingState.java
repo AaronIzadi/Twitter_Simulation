@@ -1,7 +1,7 @@
 package twitter.state.profile;
 
 import twitter.Context;
-import twitter.logic.HandleAccount;
+import twitter.logic.AccountManager;
 import twitter.model.Account;
 import twitter.state.BlackListState;
 import twitter.utils.ConsoleColors;
@@ -25,7 +25,7 @@ public class SettingState extends State {
 
         printCliMenu(context);
 
-        HandleAccount handleAccount = context.getHandleAccount();
+        AccountManager accountManager = context.getHandleAccount();
         Logger log = context.getLogger();
 
         String choice = context.getScanner().nextLine();
@@ -49,8 +49,8 @@ public class SettingState extends State {
                 switch (ch) {
                     case "y":
                     case "Y":
-                        log.info("Logged out of @" + handleAccount.getUser().getUserName());
-                        handleAccount.updateStatus(Account.OFFLINE);
+                        log.info("Logged out of @" + accountManager.getUser().getUserName());
+                        accountManager.updateStatus(Account.OFFLINE);
                         context.getHandleAccount().logout();
                         context.clearStack();
                         return new StartState();
@@ -72,8 +72,8 @@ public class SettingState extends State {
                 switch (ch) {
                     case "y":
                     case "Y":
-                        log.info("User @" + handleAccount.getUser().getUserName() + "has just deleted their account.");
-                        handleAccount.deleteAccount();
+                        log.info("User @" + accountManager.getUser().getUserName() + "has just deleted their account.");
+                        accountManager.deleteAccount();
                         context.clearStack(); //TODO: no todo just a tip: always clearStack after logout and delete account
                         return new StartState();
                     case "n":

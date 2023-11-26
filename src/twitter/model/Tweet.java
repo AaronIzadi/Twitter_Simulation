@@ -3,22 +3,21 @@ package twitter.model;
 import java.util.LinkedList;
 import java.util.List;
 
-
 public class Tweet {
     private long id;
-    private long accountId;
-    private String textOfTweet;
+    private final long accountId;
+    private final String textOfTweet;
     private int numberOfLikes;
     private int numberOfRetweets;
     private int numberOfReplies;
     public static final int DEFAULT_ID = 0;
-    private long idRepliedTweet;
-    private List<Long> replies = new LinkedList<>();
-    private List<Record> accountRetweeted = new LinkedList<>();
-    private List<Record> accountLiked = new LinkedList<>();
-    private List<Long> idAccountLiked = new LinkedList<>();
-    private List<Long> idAccountRetweeted = new LinkedList<>();
-    private List<Long> idAccountSaved = new LinkedList<>();
+    private final long idRepliedTweet;
+    private final List<Long> replies = new LinkedList<>();
+    private final List<Record> accountRetweeted = new LinkedList<>();
+    private final List<Record> accountLiked = new LinkedList<>();
+    private final List<Long> idAccountLiked = new LinkedList<>();
+    private final List<Long> idAccountRetweeted = new LinkedList<>();
+    private final List<Long> idAccountSaved = new LinkedList<>();
     private Time tweetTime;
     private Record record;
 

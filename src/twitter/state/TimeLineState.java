@@ -2,14 +2,13 @@ package twitter.state;
 
 import twitter.utils.ConsoleColors;
 import twitter.Context;
-import twitter.logic.HandleAccount;
-import twitter.logic.HandleTweet;
+import twitter.logic.AccountManager;
+import twitter.logic.TweetManager;
 import twitter.model.Record;
 import twitter.model.Tweet;
 import twitter.state.profile.ViewProfileState;
 import twitter.utils.Logger;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class TimeLineState extends State {
@@ -37,8 +36,8 @@ public class TimeLineState extends State {
 
         printCliMenu(context);
 
-        HandleAccount handleAccount = context.getHandleAccount();
-        HandleTweet handleTweet = context.getHandleTweet();
+        AccountManager accountManager = context.getHandleAccount();
+        TweetManager tweetManager = context.getHandleTweet();
         Logger log = context.getLogger();
 
         map = context.getHandleTimeLine().makeTimeLine();
@@ -52,14 +51,14 @@ public class TimeLineState extends State {
         Tweet tweet = map.get(key);
 
         System.out.println(ConsoleColors.BLUE + tweet.getTextOfTweet());
-        System.out.println(ConsoleColors.BLUE + "User: @" + handleAccount.getUsername(tweet.getAccountId()));
+        System.out.println(ConsoleColors.BLUE + "User: @" + accountManager.getUsername(tweet.getAccountId()));
         System.out.println(ConsoleColors.BLUE + tweet.getNumberOfLikes() + " Likes");
         System.out.println(ConsoleColors.BLUE + tweet.getNumberOfRetweets() + " Retweets");
         System.out.println(ConsoleColors.BLUE + tweet.getNumberOfReplies() + " Comments");
-        if (handleAccount.isLiked(tweet)) {
+        if (accountManager.isLiked(tweet)) {
             System.out.println(ConsoleColors.BLUE + "You have liked this tweet.");
         }
-        if (handleAccount.isRetweeted(tweet)) {
+        if (accountManager.isRetweeted(tweet)) {
             System.out.println(ConsoleColors.BLUE + "You have retweeted this tweet.");
         }
         System.out.println();
@@ -74,7 +73,7 @@ public class TimeLineState extends State {
         System.out.println(ConsoleColors.YELLOW + "5.Like/remove like");
         System.out.println(ConsoleColors.YELLOW + "6.Retweet/undo");
 
-        if (tweet.getAccountId() == handleAccount.getUser().getId()) {
+        if (tweet.getAccountId() == accountManager.getUser().getId()) {
             System.out.println(ConsoleColors.YELLOW + "7.Delete this tweet");
         } else {
             System.out.println(ConsoleColors.YELLOW + "7.Mute this user");
@@ -111,15 +110,15 @@ public class TimeLineState extends State {
 
             case "5":
 
-                log.info(handleAccount.isLiked(tweet) ? "User removed their like." : "User liked this tweet.");
-                handleAccount.likeOrRemoveLike(tweet);
+                log.info(accountManager.isLiked(tweet) ? "User removed their like." : "User liked this tweet.");
+                accountManager.likeOrRemoveLike(tweet);
                 return this;
 
             case "6":
 
-                if (handleAccount.isPublic(handleAccount.getUsername(tweet.getAccountId()))) {
-                    log.info(handleAccount.isRetweeted(tweet) ? "User removed their retweet." : "User retweeted this tweet.");
-                    handleAccount.retweetOrUndo(tweet);
+                if (accountManager.isPublic(accountManager.getUsername(tweet.getAccountId()))) {
+                    log.info(accountManager.isRetweeted(tweet) ? "User removed their retweet." : "User retweeted this tweet.");
+                    accountManager.retweetOrUndo(tweet);
                 } else {
                     System.out.println(ConsoleColors.RED + "This account is private. You can't retweet this tweet!");
                 }
@@ -127,24 +126,24 @@ public class TimeLineState extends State {
 
             case "7":
 
-                if (tweet.getAccountId() == handleAccount.getUser().getId()) {
+                if (tweet.getAccountId() == accountManager.getUser().getId()) {
                     log.info("User deleted this tweet.");
-                    handleTweet.deleteTweet(tweet);
+                    tweetManager.deleteTweet(tweet);
                 } else {
                     log.info("User muted this tweet's owner.");
-                    handleAccount.muteOrUnmute(handleAccount.getUsername(tweet.getAccountId()));
+                    accountManager.muteOrUnmute(accountManager.getUsername(tweet.getAccountId()));
                 }
                 return null;
 
             case "8":
 
                 log.info("User wants to check this tweet's owner's profile.");
-                return new ViewProfileState(handleAccount.getUsername(tweet.getAccountId()));
+                return new ViewProfileState(accountManager.getUsername(tweet.getAccountId()));
 
             case "9":
 
                 log.info("User saved this tweet.");
-                handleAccount.saveTweet(tweet);
+                accountManager.saveTweet(tweet);
                 return this;
 
             case "10":

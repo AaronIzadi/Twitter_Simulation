@@ -1,8 +1,8 @@
 package twitter.state.profile;
 
 import twitter.Context;
-import twitter.logic.HandleAccount;
-import twitter.logic.HandleTweet;
+import twitter.logic.AccountManager;
+import twitter.logic.TweetManager;
 import twitter.utils.ConsoleColors;
 import twitter.state.RequestSentListState;
 import twitter.state.State;
@@ -15,19 +15,19 @@ public class ViewPersonalInfoState extends State {
     @Override
     public void printCliMenu(Context context) {
 
-        HandleAccount handleAccount = context.getHandleAccount();
-        HandleTweet handleTweet = context.getHandleTweet();
+        AccountManager accountManager = context.getHandleAccount();
+        TweetManager tweetManager = context.getHandleTweet();
 
         System.out.println(ConsoleColors.BLUE + "Profile information:");
-        System.out.println(ConsoleColors.BLUE + "Username: @" + handleAccount.getUser().getUserName());
-        System.out.println(ConsoleColors.BLUE + "Name: " + handleAccount.getUser().getName());
-        System.out.println(ConsoleColors.BLUE + "Biography: " + handleAccount.getUser().getBiography());
-        System.out.println(ConsoleColors.BLUE + "Date of birth: " + handleAccount.getUser().getDateOfBirth());
-        System.out.println(ConsoleColors.BLUE + "Email address: " + handleAccount.getUser().getEmailAddress());
-        System.out.println(ConsoleColors.BLUE + "Phone number: " + handleAccount.getUser().getPhoneNumber());
-        System.out.println(ConsoleColors.BLUE + "Followers: " + handleAccount.getUser().getNumberOfFollowers());
-        System.out.println(ConsoleColors.BLUE + "Followings: " + handleAccount.getUser().getNumberOfFollowings());
-        System.out.println(ConsoleColors.BLUE + "Tweets: " + handleAccount.getUser().getNumberOfTweets());
+        System.out.println(ConsoleColors.BLUE + "Username: @" + accountManager.getUser().getUserName());
+        System.out.println(ConsoleColors.BLUE + "Name: " + accountManager.getUser().getName());
+        System.out.println(ConsoleColors.BLUE + "Biography: " + accountManager.getUser().getBiography());
+        System.out.println(ConsoleColors.BLUE + "Date of birth: " + accountManager.getUser().getDateOfBirth());
+        System.out.println(ConsoleColors.BLUE + "Email address: " + accountManager.getUser().getEmailAddress());
+        System.out.println(ConsoleColors.BLUE + "Phone number: " + accountManager.getUser().getPhoneNumber());
+        System.out.println(ConsoleColors.BLUE + "Followers: " + accountManager.getUser().getNumberOfFollowers());
+        System.out.println(ConsoleColors.BLUE + "Followings: " + accountManager.getUser().getNumberOfFollowings());
+        System.out.println(ConsoleColors.BLUE + "Tweets: " + accountManager.getUser().getNumberOfTweets());
 
         System.out.println(ConsoleColors.YELLOW + "What do you want to do next?");
         System.out.println(ConsoleColors.YELLOW + "1.View saved tweets");
@@ -45,8 +45,8 @@ public class ViewPersonalInfoState extends State {
 
         printCliMenu(context);
 
-        HandleAccount handleAccount = context.getHandleAccount();
-        HandleTweet handleTweet = context.getHandleTweet();
+        AccountManager accountManager = context.getHandleAccount();
+        TweetManager tweetManager = context.getHandleTweet();
         Logger log = context.getLogger();
 
         log.info("User checked their profile info.");
@@ -57,8 +57,8 @@ public class ViewPersonalInfoState extends State {
             case "1":
 
                 log.info("User wants to view their saved tweets.");
-                for (long idTweet : handleAccount.getUser().getSavedTweet()) {
-                    String tweet = handleTweet.getTweet(idTweet).getTextOfTweet();
+                for (long idTweet : accountManager.getUser().getSavedTweet()) {
+                    String tweet = tweetManager.getTweet(idTweet).getTextOfTweet();
                     System.out.println(ConsoleColors.BLUE + tweet);
                 }
                 return this;
@@ -66,16 +66,16 @@ public class ViewPersonalInfoState extends State {
             case "2":
 
                 log.info("User wants to view their followers' list.");
-                return new FollowerListState(handleAccount.getUser().getUserName());
+                return new FollowerListState(accountManager.getUser().getUserName());
 
             case "3":
                 log.info("User wants to view their followings' list.");
-                return new FollowingListState(handleAccount.getUser().getUserName());
+                return new FollowingListState(accountManager.getUser().getUserName());
 
             case "4":
                 log.info("User wants to view their tweets.");
-                if (handleAccount.getUser().getNumberOfTweets() != 0) {
-                    return new TweetListState(handleAccount.getUser().getUserName());
+                if (accountManager.getUser().getNumberOfTweets() != 0) {
+                    return new TweetListState(accountManager.getUser().getUserName());
                 } else {
                     log.info("There is no tweet to show.");
                     System.out.println(ConsoleColors.RED + "There is no tweet to show!");
@@ -83,7 +83,7 @@ public class ViewPersonalInfoState extends State {
                 }
             case "5":
                 log.info("User wants to view follow request's list.");
-                if (handleAccount.getUser().getNumberOfFollowRequest() != 0) {
+                if (accountManager.getUser().getNumberOfFollowRequest() != 0) {
                     return new FollowRequestsListState();
                 } else {
                     log.info("There is no list to show.");
@@ -92,7 +92,7 @@ public class ViewPersonalInfoState extends State {
                 }
             case "6":
                 log.info("User wants to view the list of follow request that they sent.");
-                if (handleAccount.getUser().getNumberOfAccountsSentRequest() != 0) {
+                if (accountManager.getUser().getNumberOfAccountsSentRequest() != 0) {
                     return new RequestSentListState();
                 } else {
                     log.info("There is no list to show.");

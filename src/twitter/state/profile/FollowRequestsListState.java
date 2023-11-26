@@ -1,7 +1,7 @@
 package twitter.state.profile;
 
 import twitter.Context;
-import twitter.logic.HandleAccount;
+import twitter.logic.AccountManager;
 import twitter.utils.ConsoleColors;
 import twitter.state.State;
 import twitter.utils.Logger;
@@ -17,11 +17,11 @@ public class FollowRequestsListState extends State {
 
         printCliMenu(context);
 
-        HandleAccount handleAccount = context.getHandleAccount();
+        AccountManager accountManager = context.getHandleAccount();
         Logger log = context.getLogger();
 
-        for (long idAcc : handleAccount.getUser().getFollowRequest()) {
-            System.out.println(ConsoleColors.BLUE + handleAccount.getUsername(idAcc));
+        for (long idAcc : accountManager.getUser().getFollowRequest()) {
+            System.out.println(ConsoleColors.BLUE + accountManager.getUsername(idAcc));
         }
 
         System.out.println(ConsoleColors.YELLOW + "What do you want to do next?");
@@ -35,8 +35,8 @@ public class FollowRequestsListState extends State {
         if (choice == '1') {
             System.out.println(ConsoleColors.YELLOW + "Enter username:");
             String username = context.getScanner().next();
-            if (handleAccount.checkIfExist(username)) {
-                handleAccount.acceptFollowRequest(username);
+            if (accountManager.checkIfExist(username)) {
+                accountManager.acceptFollowRequest(username);
                 log.info("User accepted @" + username + "'s follow request.");
             } else {
                 System.out.println(ConsoleColors.RED + "This user seems not to exist!");
@@ -45,8 +45,8 @@ public class FollowRequestsListState extends State {
         } else if (choice == '2') {
             System.out.println(ConsoleColors.YELLOW + "Enter username:");
             String username = context.getScanner().next();
-            if (handleAccount.checkIfExist(username)) {
-                handleAccount.deleteFollowRequest(username);
+            if (accountManager.checkIfExist(username)) {
+                accountManager.deleteFollowRequest(username);
                 log.info("User deleted @" + username + "'s follow request.");
             } else {
                 System.out.println(ConsoleColors.RED + "This user seems not to exist!");

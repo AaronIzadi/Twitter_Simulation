@@ -1,7 +1,7 @@
 package twitter.state.profile;
 
 import twitter.Context;
-import twitter.logic.HandleAccount;
+import twitter.logic.AccountManager;
 import twitter.utils.ConsoleColors;
 import twitter.state.State;
 import twitter.utils.Logger;
@@ -27,16 +27,16 @@ public class FollowerListState extends State {
 
         printCliMenu(context);
 
-        HandleAccount handleAccount = context.getHandleAccount();
+        AccountManager accountManager = context.getHandleAccount();
         Logger log = context.getLogger();
 
-        if (handleAccount.getUser().getNumberOfFollowers() != 0) {
+        if (accountManager.getUser().getNumberOfFollowers() != 0) {
             log.info("There is no list to show.");
             System.out.println(ConsoleColors.RED + "There is no list to show!");
             return null;
         }
 
-        for (String follower: handleAccount.viewAccountList(handleAccount.getFollowersList(username))) {
+        for (String follower: accountManager.viewAccountList(accountManager.getFollowersList(username))) {
             System.out.println(ConsoleColors.BLUE + follower);
         }
 

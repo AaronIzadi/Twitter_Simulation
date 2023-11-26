@@ -7,6 +7,7 @@ import twitter.repository.SecureAccountRepository;
 import twitter.repository.TweetHashMapRepository;
 import twitter.repository.TweetRepository;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ public class TimeLineManager {
     AccountManager accountManager = new AccountManager();
 
 
-    public Map<Record, Tweet> makeTimeLine() {
+    public Map<Record, Tweet> makeTimeLine() throws IOException {
 
         Map<Record, Tweet> map = new HashMap<>();
 

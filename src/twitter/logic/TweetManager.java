@@ -9,12 +9,14 @@ import twitter.repository.SecureAccountRepository;
 import twitter.repository.TweetHashMapRepository;
 import twitter.repository.TweetRepository;
 
+import java.io.IOException;
+
 public class TweetManager {
 
     TweetRepository tweetRepository = TweetHashMapRepository.getInstance();
     AccountRepository accountRepository = SecureAccountRepository.getInstance();
 
-    public void writeTweet(Tweet tweet) {
+    public void writeTweet(Tweet tweet) throws IOException {
         tweet.setTweetTime(Time.now());
         tweet.setRecord(new Record(tweet.getAccountId(), tweet.getTweetTime(), Record.DEFAULT));
         tweetRepository.add(tweet);
@@ -33,7 +35,7 @@ public class TweetManager {
         tweetRepository.update(tweet);
     }
 
-    public void deleteTweet(Tweet tweet) {
+    public void deleteTweet(Tweet tweet) throws IOException {
         tweetRepository.removeTweet(tweet.getId());
         accountRepository.getAccount(tweet.getAccountId()).getTweets().remove(tweet.getId());
         accountRepository.getAccount(tweet.getAccountId()).setNumberOfTweets(-1);

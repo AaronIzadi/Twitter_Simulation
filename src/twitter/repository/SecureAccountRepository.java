@@ -2,10 +2,12 @@ package twitter.repository;
 
 import twitter.model.Account;
 
+import java.io.IOException;
+
 public class SecureAccountRepository implements AccountRepository{
 
     private static final AccountRepository instance = new SecureAccountRepository();
-    private final AccountRepository accountRepository = AccountHashMapRepository.getInstance();
+    private final AccountRepository accountRepository = AccountFileRepository.getInstance();
 
 
     private SecureAccountRepository() {}
@@ -15,7 +17,7 @@ public class SecureAccountRepository implements AccountRepository{
     }
 
     @Override
-    public Account update(Account newAccount) {
+    public Account update(Account newAccount) throws IOException {
         Account target = accountRepository.getAccount(getUser().getId());
         if (hasPermission(getUser(),target) && hasPermission(newAccount,getUser())) {
             return accountRepository.update(newAccount);
@@ -24,18 +26,18 @@ public class SecureAccountRepository implements AccountRepository{
     }
 
     @Override
-    public Account add(Account account) {
+    public Account add(Account account) throws IOException {
         return accountRepository.add(account);
     }
 
     @Override
-    public Account getAccount(long id) {
+    public Account getAccount(long id) throws IOException {
         Account target = accountRepository.getAccount(id);
         return secureAccount(getUser(), target);
     }
 
     @Override
-    public Account getAccountByUserName(String username) {
+    public Account getAccountByUserName(String username) throws IOException {
         Account result = accountRepository.getAccountByUserName(username);
         if (result != null){
             result = secureAccount(result, getUser());
@@ -68,7 +70,7 @@ public class SecureAccountRepository implements AccountRepository{
     }
 
     @Override
-    public boolean removeAccount(long id) {
+    public boolean removeAccount(long id) throws IOException {
         Account target = accountRepository.getAccount(id);
         if (hasPermission(getUser(),target)) {
             return accountRepository.removeAccount(id);

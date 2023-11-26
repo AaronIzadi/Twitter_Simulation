@@ -15,27 +15,27 @@ public class Account {
     public static final int OFFLINE = 0;
     public static final int ONLINE = 1;
     public static final int DEFAULT_STATUS = 2;
-    private long phoneNumber;
+    private int type;
     public static final int DEFAULT = 1;
     public static final int PUBLIC = 1;
     public static final int PRIVATE = 2;
-    private int type;
+    private long phoneNumber;
     private int numberOfFollowers;
     private int numberOfFollowings;
     private int numberOfBlackList;
     private int numberOfFollowRequest;
     private int numberOfAccountsSentRequest;
     private long numberOfTweets;
-    private final List<Long> followers = new LinkedList<>();
-    private final List<Long> followings = new LinkedList<>();
-    private final List<Long> blacklist = new LinkedList<>();
-    private final List<Long> mutedAccounts = new LinkedList<>();
-    private final List<Long> tweets = new LinkedList<>();
-    private final List<Long> replied = new LinkedList<>();
-    private final List<Long> savedTweet = new LinkedList<>();
-    private final List<Long> likedTweet = new LinkedList<>();
-    private final List<Long> followRequest = new LinkedList<>();
-    private final List<Long> accountsRequestedToFollow = new LinkedList<>();
+    private List<Long> followers = new LinkedList<>();
+    private List<Long> followings = new LinkedList<>();
+    private List<Long> blacklist = new LinkedList<>();
+    private List<Long> mutedAccounts = new LinkedList<>();
+    private List<Long> tweets = new LinkedList<>();
+    private List<Long> replied = new LinkedList<>();
+    private List<Long> savedTweet = new LinkedList<>();
+    private List<Long> likedTweet = new LinkedList<>();
+    private List<Long> followRequest = new LinkedList<>();
+    private List<Long> accountsRequestedToFollow = new LinkedList<>();
 
     public Account(String userName, String password, int type) {
         this.userName = userName;
@@ -180,6 +180,7 @@ public class Account {
     public void setFollowRequest(long request) {
         followRequest.add(request);
     }
+    public void setFollowRequest(LinkedList<Long> followRequest) { this.followRequest = followRequest;}
 
     public void setAccountsRequestedToFollow(long sendRequestTo) {
         accountsRequestedToFollow.add(sendRequestTo);
@@ -269,4 +270,43 @@ public class Account {
         this.emailAddress = emailAddress;
     }
 
+    public void setFollowers(List<Long> followers) {
+        this.followers = followers;
+    }
+
+    public void setFollowings(List<Long> followings) {
+        this.followings = followings;
+    }
+
+    public void setBlacklist(List<Long> blacklist) {
+        this.blacklist = blacklist;
+    }
+
+    public void setMutedAccounts(List<Long> mutedAccounts) {
+        this.mutedAccounts = mutedAccounts;
+    }
+
+    public void setTweets(List<Long> tweets) {
+        this.tweets = tweets;
+    }
+
+    public void setReplied(List<Long> replied) {
+        this.replied = replied;
+    }
+
+    public void setSavedTweet(List<Long> savedTweet) {
+        this.savedTweet = savedTweet;
+    }
+
+    public void setLikedTweet(List<Long> likedTweet) {
+        this.likedTweet = likedTweet;
+    }
+
+    public void setFollowRequest(List<Long> followRequest) {
+        this.followRequest = followRequest;
+    }
+
+    public void setAccountsRequestedToFollow(List<Long> accountsRequestedToFollow) {
+        this.accountsRequestedToFollow = accountsRequestedToFollow;
+    }
 }

@@ -2,21 +2,25 @@ package twitter.repository;
 
 import twitter.model.Account;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
 public interface AccountRepository {
 
-    Account update(Account account);
+    Account update(Account account) throws IOException;
 
-    Account add(Account account);
+    Account add(Account account) throws IOException;
 
-    Account getAccount(long id);
+    Account getAccount(long id) throws IOException;
 
-    Account getAccountByUserName(String username);
+    Account getAccountByUserName(String username) throws IOException;
 
     Account getUser();
 
     void setUser(Account user);
 
-    boolean removeAccount(long id);
+    boolean removeAccount(long id) throws IOException;
 
     boolean exists(long id);
 

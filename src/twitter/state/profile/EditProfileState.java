@@ -96,7 +96,7 @@ public class EditProfileState extends State {
 
                 System.out.println(ConsoleColors.YELLOW + "Enter your new phone number:");
                 long phoneNum = context.getScanner().nextLong();
-                accountManager.changePhoneNum(phoneNum);
+                accountManager.changePhoneNumber(phoneNum);
                 log.info("User changed their phone number to: " + phoneNum);
                 return this;
 

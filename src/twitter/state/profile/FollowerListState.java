@@ -6,6 +6,8 @@ import twitter.utils.ConsoleColors;
 import twitter.state.State;
 import twitter.utils.Logger;
 
+import java.io.IOException;
+
 public class FollowerListState extends State {
 
     private String username;
@@ -23,11 +25,11 @@ public class FollowerListState extends State {
     }
 
     @Override
-    public State doAction(Context context) {
+    public State doAction(Context context) throws IOException {
 
         printCliMenu(context);
 
-        AccountManager accountManager = context.getHandleAccount();
+        AccountManager accountManager = context.getAccountManager();
         Logger log = context.getLogger();
 
         if (accountManager.getUser().getNumberOfFollowers() != 0) {

@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class TimeLineManager {
     TweetRepository tweetRepository = TweetFileRepository.getInstance();
-    AccountRepository accountRepository = SecureAccountRepository.getInstance();
+    AccountRepository accountRepository = AccountFileRepository.getInstance();
     AccountManager accountManager = new AccountManager();
 
 

@@ -9,6 +9,8 @@ import twitter.state.State;
 import twitter.state.startings.StartState;
 import twitter.utils.Logger;
 
+import java.io.IOException;
+
 public class SettingState extends State {
     @Override
     public void printCliMenu(Context context) {
@@ -21,11 +23,11 @@ public class SettingState extends State {
     }
 
     @Override
-    public State doAction(Context context) {
+    public State doAction(Context context) throws IOException {
 
         printCliMenu(context);
 
-        AccountManager accountManager = context.getHandleAccount();
+        AccountManager accountManager = context.getAccountManager();
         Logger log = context.getLogger();
 
         String choice = context.getScanner().nextLine();
@@ -51,7 +53,7 @@ public class SettingState extends State {
                     case "Y":
                         log.info("Logged out of @" + accountManager.getUser().getUserName());
                         accountManager.updateStatus(Account.OFFLINE);
-                        context.getHandleAccount().logout();
+                        context.getAccountManager().logout();
                         context.clearStack();
                         return new StartState();
                     case "n":
@@ -74,7 +76,7 @@ public class SettingState extends State {
                     case "Y":
                         log.info("User @" + accountManager.getUser().getUserName() + "has just deleted their account.");
                         accountManager.deleteAccount();
-                        context.clearStack(); //TODO: no todo just a tip: always clearStack after logout and delete account
+                        context.clearStack();
                         return new StartState();
                     case "n":
                     case "N":

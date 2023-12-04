@@ -9,14 +9,16 @@ import twitter.state.State;
 import twitter.state.TweetListState;
 import twitter.utils.Logger;
 
+import java.io.IOException;
+
 public class ViewPersonalInfoState extends State {
 
 
     @Override
     public void printCliMenu(Context context) {
 
-        AccountManager accountManager = context.getHandleAccount();
-        TweetManager tweetManager = context.getHandleTweet();
+        AccountManager accountManager = context.getAccountManager();
+        TweetManager tweetManager = context.getTweetManager();
 
         System.out.println(ConsoleColors.BLUE + "Profile information:");
         System.out.println(ConsoleColors.BLUE + "Username: @" + accountManager.getUser().getUserName());
@@ -41,12 +43,12 @@ public class ViewPersonalInfoState extends State {
     }
 
     @Override
-    public State doAction(Context context) {
+    public State doAction(Context context) throws IOException {
 
         printCliMenu(context);
 
-        AccountManager accountManager = context.getHandleAccount();
-        TweetManager tweetManager = context.getHandleTweet();
+        AccountManager accountManager = context.getAccountManager();
+        TweetManager tweetManager = context.getTweetManager();
         Logger log = context.getLogger();
 
         log.info("User checked their profile info.");

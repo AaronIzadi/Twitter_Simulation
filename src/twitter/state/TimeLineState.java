@@ -9,11 +9,12 @@ import twitter.model.Tweet;
 import twitter.state.profile.ViewProfileState;
 import twitter.utils.Logger;
 
+import java.io.IOException;
 import java.util.Map;
 
 public class TimeLineState extends State {
 
-    private int index;
+    private final int index;
     private Map<Record, Tweet> map;
 
     public TimeLineState(Map<Record, Tweet> map, int index) {
@@ -21,9 +22,9 @@ public class TimeLineState extends State {
         this.index = index;
     }
 
-    public TimeLineState(Context context) {
+    public TimeLineState(Context context) throws IOException {
         this.index = 0;
-        this.map = context.getHandleTimeLine().makeTimeLine();
+        this.map = context.getTimeLineManager().makeTimeLine();
     }
 
     @Override
@@ -32,15 +33,15 @@ public class TimeLineState extends State {
     }
 
     @Override
-    public State doAction(Context context) {
+    public State doAction(Context context) throws IOException {
 
         printCliMenu(context);
 
-        AccountManager accountManager = context.getHandleAccount();
-        TweetManager tweetManager = context.getHandleTweet();
+        AccountManager accountManager = context.getAccountManager();
+        TweetManager tweetManager = context.getTweetManager();
         Logger log = context.getLogger();
 
-        map = context.getHandleTimeLine().makeTimeLine();
+        map = context.getTimeLineManager().makeTimeLine();
 
         if (index >= map.size()) {
             printFinalCliError();

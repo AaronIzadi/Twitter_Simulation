@@ -8,6 +8,8 @@ import twitter.model.Tweet;
 import twitter.state.profile.ViewProfileState;
 import twitter.utils.Logger;
 
+import java.io.IOException;
+
 public class ShowReplyState extends State {
 
     private Tweet sourceTweet;
@@ -38,13 +40,13 @@ public class ShowReplyState extends State {
     }
 
     @Override
-    public State doAction(Context context) {
+    public State doAction(Context context) throws IOException {
 
 
         printCliMenu(context);
 
-        AccountManager accountManager = context.getHandleAccount();
-        TweetManager tweetManager = context.getHandleTweet();
+        AccountManager accountManager = context.getAccountManager();
+        TweetManager tweetManager = context.getTweetManager();
         Logger log = context.getLogger();
 
         if (index >= sourceTweet.getReplies().size()) {

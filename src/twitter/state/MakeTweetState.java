@@ -7,6 +7,8 @@ import twitter.logic.TweetManager;
 import twitter.model.Tweet;
 import twitter.utils.Logger;
 
+import java.io.IOException;
+
 public class MakeTweetState extends State{
 
     private final long fatherId;
@@ -21,12 +23,12 @@ public class MakeTweetState extends State{
     }
 
     @Override
-    public State doAction(Context context) {
+    public State doAction(Context context) throws IOException {
 
         printCliMenu(context);
 
-        AccountManager accountManager = context.getHandleAccount();
-        TweetManager tweetManager = context.getHandleTweet();
+        AccountManager accountManager = context.getAccountManager();
+        TweetManager tweetManager = context.getTweetManager();
         Logger log = context.getLogger();
 
         String text = context.getScanner().nextLine();

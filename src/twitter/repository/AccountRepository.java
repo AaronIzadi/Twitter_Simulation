@@ -1,10 +1,7 @@
 package twitter.repository;
 
 import twitter.model.Account;
-
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 public interface AccountRepository {
 

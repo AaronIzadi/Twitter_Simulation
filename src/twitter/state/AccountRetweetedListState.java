@@ -7,6 +7,8 @@ import twitter.model.Tweet;
 import twitter.state.profile.ViewProfileState;
 import twitter.utils.Logger;
 
+import java.io.IOException;
+
 public class AccountRetweetedListState extends State {
 
     private Tweet tweet;
@@ -21,11 +23,11 @@ public class AccountRetweetedListState extends State {
     }
 
     @Override
-    public State doAction(Context context) {
+    public State doAction(Context context) throws IOException {
 
         printCliMenu(context);
 
-        AccountManager accountManager = context.getHandleAccount();
+        AccountManager accountManager = context.getAccountManager();
         Logger log = context.getLogger();
 
         if (tweet.getNumberOfRetweets() == 0) {

@@ -7,11 +7,13 @@ import twitter.utils.ConsoleColors;
 import twitter.state.State;
 import twitter.utils.Logger;
 
+import java.io.IOException;
+
 public class EditProfileState extends State {
     @Override
-    public void printCliMenu(Context context) {
+    public void printCliMenu(Context context) throws IOException {
 
-        AccountManager accountManager = context.getHandleAccount();
+        AccountManager accountManager = context.getAccountManager();
 
         System.out.println(ConsoleColors.YELLOW + "Edit profile:");
         System.out.println(ConsoleColors.YELLOW + "What do you want to do?");
@@ -28,11 +30,11 @@ public class EditProfileState extends State {
     }
 
     @Override
-    public State doAction(Context context) {
+    public State doAction(Context context) throws IOException {
 
         printCliMenu(context);
 
-        AccountManager accountManager = context.getHandleAccount();
+        AccountManager accountManager = context.getAccountManager();
         Logger log = context.getLogger();
 
         String choice = context.getScanner().nextLine();

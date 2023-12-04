@@ -6,6 +6,8 @@ import twitter.utils.ConsoleColors;
 import twitter.state.State;
 import twitter.utils.Logger;
 
+import java.io.IOException;
+
 public class FollowRequestsListState extends State {
     @Override
     public void printCliMenu(Context context) {
@@ -13,11 +15,11 @@ public class FollowRequestsListState extends State {
     }
 
     @Override
-    public State doAction(Context context) {
+    public State doAction(Context context) throws IOException {
 
         printCliMenu(context);
 
-        AccountManager accountManager = context.getHandleAccount();
+        AccountManager accountManager = context.getAccountManager();
         Logger log = context.getLogger();
 
         for (long idAcc : accountManager.getUser().getFollowRequest()) {

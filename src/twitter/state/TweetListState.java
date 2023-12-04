@@ -8,6 +8,8 @@ import twitter.model.Tweet;
 import twitter.state.profile.ViewProfileState;
 import twitter.utils.Logger;
 
+import java.io.IOException;
+
 public class TweetListState extends State {
 
     private String username;
@@ -37,12 +39,12 @@ public class TweetListState extends State {
     }
 
     @Override
-    public State doAction(Context context) {
+    public State doAction(Context context) throws IOException {
 
         printCliMenu(context);
 
-        AccountManager accountManager = context.getHandleAccount();
-        TweetManager tweetManager = context.getHandleTweet();
+        AccountManager accountManager = context.getAccountManager();
+        TweetManager tweetManager = context.getTweetManager();
         Logger log = context.getLogger();
 
         if (index >= accountManager.getTweetList(username).size()) {

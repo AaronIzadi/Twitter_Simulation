@@ -3,16 +3,18 @@ package twitter.state;
 import twitter.Context;
 import twitter.model.Account;
 
+import java.io.IOException;
+
 public class ExitState extends State{
     @Override
     public void printCliMenu(Context context) {
     }
 
     @Override
-    public State doAction(Context context) {
+    public State doAction(Context context) throws IOException {
 
         if (context.nameLastState().equals("MenuState")){
-            context.getHandleAccount().updateStatus(Account.OFFLINE);
+            context.getAccountManager().updateStatus(Account.OFFLINE);
         }
 
         context.clearStack();

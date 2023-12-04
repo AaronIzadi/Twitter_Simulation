@@ -6,6 +6,7 @@ import java.util.List;
 public class Account {
     private String userName;
     private long id;
+    private static long idCounter = 0;
     private String name;
     private String emailAddress;
     private String password;
@@ -42,6 +43,8 @@ public class Account {
         this.password = password;
         this.type = type;
         this.status = "Last seen recently";
+        this.setId(idCounter);
+        idCounter++;
     }
 
     public Account(String userName, String password, int type, int status) {
@@ -141,6 +144,10 @@ public class Account {
         return status;
     }
 
+    public long getIdCounter() {
+        return idCounter;
+    }
+
     public int getNumberOfFollowRequest() {
         return numberOfFollowRequest;
     }
@@ -193,7 +200,7 @@ public class Account {
         mutedAccounts.add(idNum);
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -301,10 +308,6 @@ public class Account {
         this.likedTweet = likedTweet;
     }
 
-    public void setFollowRequest(List<Long> followRequest) {
-        this.followRequest = followRequest;
-    }
-
     public void setAccountsRequestedToFollow(List<Long> accountsRequestedToFollow) {
         this.accountsRequestedToFollow = accountsRequestedToFollow;
     }
@@ -313,4 +316,7 @@ public class Account {
         this.followRequest = followRequest;
     }
 
+    public static void setIdCounter(long idCounter) {
+        Account.idCounter = idCounter;
+    }
 }

@@ -11,7 +11,7 @@ import java.io.IOException;
 public class TweetManager {
 
     TweetRepository tweetRepository = TweetFileRepository.getInstance();
-    AccountRepository accountRepository = SecureAccountRepository.getInstance();
+    AccountRepository accountRepository = AccountFileRepository.getInstance();
 
     public void writeTweet(Tweet tweet) throws IOException {
         tweet.setTweetTime(Time.now());

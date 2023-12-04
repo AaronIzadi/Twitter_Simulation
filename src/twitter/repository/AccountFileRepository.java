@@ -21,6 +21,7 @@ public class AccountFileRepository extends Repository implements AccountReposito
 
     @Override
     public Account add(Account account) throws IOException {
+        addAppInfo(account, account.getIdCounter());
         return (Account) add(account, account.getId(), path);
     }
 
@@ -61,7 +62,7 @@ public class AccountFileRepository extends Repository implements AccountReposito
 
     @Override
     public boolean removeAccount(long id) {
-        return removeObject(id,path);
+        return removeObject(id, path);
     }
 
     @Override

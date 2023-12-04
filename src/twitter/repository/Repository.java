@@ -8,10 +8,7 @@ import twitter.model.Record;
 import twitter.model.Time;
 import twitter.model.Tweet;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -21,11 +18,15 @@ import java.util.List;
 
 public class Repository {
 
+    private static final Repository instance = new Repository();
     private JSONObject jsonObject = new JSONObject();
     public static final int accountType = 0;
     public static final int tweetType = 1;
 
 
+    public static Repository getInstance() {
+        return instance;
+    }
     public JSONObject getJsonObject() {
         return jsonObject;
     }
@@ -61,8 +62,45 @@ public class Repository {
         return object;
     }
 
+    public void addAppInfo(Object object, long idCounter) throws FileNotFoundException, UnsupportedEncodingException {
+
+        String path;
+
+        if (object instanceof Account) {
+            path = "src/resources/app info/account.txt";
+        } else {
+            path = "src/resources/app info/tweet.txt";
+        }
+
+        PrintWriter writer = new PrintWriter(path, "UTF-8");
+        writer.print(idCounter);
+        writer.close();
+    }
+
+    public void getIdCounter() throws IOException {
+
+        File account = new File("src/resources/app info/account.txt");
+        File tweet = new File("src/resources/app info/tweet.txt");
+
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(account));
+        String string;
+        long idCounterAccount = 0;
+        while ((string = bufferedReader.readLine()) != null) {
+            idCounterAccount = Long.parseLong(string);
+        }
+        Account.setIdCounter(idCounterAccount);
+
+        bufferedReader = new BufferedReader(new FileReader(tweet));
+        long idCounterTweet = 0;
+        while ((string = bufferedReader.readLine()) != null) {
+            idCounterTweet = Long.parseLong(string);
+        }
+        Tweet.setIdCounter(idCounterTweet);
+
+    }
+
     public Object getObject(long id, String path, int idObject) throws IOException {
-        File folder = new File(path.substring(0, path.length() - 2));
+        File folder = new File(path.substring(0, path.length() - 1));
         File[] listOfFiles = folder.listFiles();
 
         assert listOfFiles != null;
@@ -89,6 +127,7 @@ public class Repository {
             Account account = (Account) object;
 
             jsonObject.put("id", account.getId());
+            jsonObject.put("id counter", account.getIdCounter());
             jsonObject.put("username", account.getUserName());
             jsonObject.put("password", account.getPassword());
             jsonObject.put("name", account.getName());
@@ -143,6 +182,7 @@ public class Repository {
 
             Tweet tweet = (Tweet) object;
             jsonObject.put("id", tweet.getId());
+            jsonObject.put("id counter", tweet.getIdCounter());
             jsonObject.put("account id", tweet.getAccountId());
             jsonObject.put("text", tweet.getTextOfTweet());
             jsonObject.put("like num", tweet.getNumberOfLikes());
@@ -203,6 +243,7 @@ public class Repository {
             String birthday = (String) jsonObject.get("birthday");
             String bio = (String) jsonObject.get("biography");
             String status = (String) jsonObject.get("status");
+            Long idCounter = (Long) jsonObject.get("id counter");
             Long phoneNumber = (Long) jsonObject.get("phone number");
             Long typeAsLong = (Long) jsonObject.get("type");
             int type = typeAsLong.intValue();
@@ -260,6 +301,8 @@ public class Repository {
                     account = new Account(username, password, type, 2);
                     break;
             }
+            account.setId(id);
+            account.setIdCounter(idCounter);
             account.setName(name);
             account.setEmailAddress(email);
             account.setBiography(bio);
@@ -269,6 +312,7 @@ public class Repository {
             account.setFollowings(following);
             account.setBlacklist(blacklist);
             account.setMutedAccounts(muted);
+            account.setFollowRequest(followRequest);
             account.setTweets(tweet);
             account.setLikedTweet(liked);
             account.setReplied(replied);
@@ -282,6 +326,7 @@ public class Repository {
             jsonToReadFile(id, path);
 
             Long tweetId = (Long) jsonObject.get("id");
+            Long idCounter = (Long) jsonObject.get("id counter");
             Long accountId = (Long) jsonObject.get("account id");
             String text = (String) jsonObject.get("text");
             Long likeAsLong = (Long) jsonObject.get("like num");
@@ -321,6 +366,7 @@ public class Repository {
 
             Tweet tweet = new Tweet(accountId, replyId, text);
             tweet.setId(tweetId);
+            tweet.setIdCounter(idCounter);
             tweet.setTweetTime(time);
             tweet.setRecord(record);
             tweet.setReplies(idReplies);

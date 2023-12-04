@@ -13,8 +13,6 @@ public class Logger {
         File file = new File(path);
         try {
             PrintStream printStream = new PrintStream(new FileOutputStream(file, true));
-
-            Time time = new Time();
             printStream.println(Time.now() + "  :  " + text);
             printStream.println("");
 

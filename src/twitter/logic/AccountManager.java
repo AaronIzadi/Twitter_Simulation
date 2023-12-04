@@ -13,7 +13,7 @@ import java.util.List;
 public class AccountManager {
 
     TweetRepository tweetRepository = TweetFileRepository.getInstance();
-    AccountRepository accountRepository = SecureAccountRepository.getInstance();
+    AccountRepository accountRepository = AccountFileRepository.getInstance();
     TweetManager tweetManager = new TweetManager();
 
     public Account getUser() {

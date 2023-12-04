@@ -6,6 +6,8 @@ import twitter.logic.AccountManager;
 import twitter.state.profile.ViewProfileState;
 import twitter.utils.Logger;
 
+import java.io.IOException;
+
 public class BlackListState extends State{
 
     @Override
@@ -14,11 +16,11 @@ public class BlackListState extends State{
     }
 
     @Override
-    public State doAction(Context context) {
+    public State doAction(Context context) throws IOException {
 
         printCliMenu(context);
 
-        AccountManager accountManager = context.getHandleAccount();
+        AccountManager accountManager = context.getAccountManager();
         Logger log = context.getLogger();
 
         System.out.println(ConsoleColors.BLUE + accountManager.viewAccountList(accountManager.getUser().getBlacklist()));

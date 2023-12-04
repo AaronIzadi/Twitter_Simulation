@@ -20,6 +20,7 @@ public class TweetFileRepository extends Repository implements TweetRepository {
 
     @Override
     public Tweet add(Tweet tweet) throws IOException {
+        addAppInfo(tweet, tweet.getIdCounter());
         return (Tweet) add(tweet, tweet.getId(), path);
     }
 

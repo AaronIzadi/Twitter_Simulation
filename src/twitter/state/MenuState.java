@@ -8,6 +8,8 @@ import twitter.state.profile.ViewPersonalInfoState;
 import twitter.state.profile.ViewProfileState;
 import twitter.utils.Logger;
 
+import java.io.IOException;
+
 public class MenuState extends State {
 
 
@@ -17,11 +19,11 @@ public class MenuState extends State {
     }
 
     @Override
-    public State doAction(Context context) {
+    public State doAction(Context context) throws IOException {
 
         printCliMenu(context);
 
-        AccountManager accountManager = context.getHandleAccount();
+        AccountManager accountManager = context.getAccountManager();
         Logger log = context.getLogger();
 
         System.out.println(ConsoleColors.YELLOW + "Choose what you want to do:");

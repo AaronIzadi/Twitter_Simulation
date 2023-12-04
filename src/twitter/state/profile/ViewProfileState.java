@@ -7,6 +7,8 @@ import twitter.state.State;
 import twitter.state.TweetListState;
 import twitter.utils.Logger;
 
+import java.io.IOException;
+
 public class ViewProfileState extends State {
 
     private String username;
@@ -27,11 +29,11 @@ public class ViewProfileState extends State {
     }
 
     @Override
-    public State doAction(Context context) {
+    public State doAction(Context context) throws IOException {
 
         printCliMenu(context);
 
-        AccountManager accountManager = context.getHandleAccount();
+        AccountManager accountManager = context.getAccountManager();
         Logger log = context.getLogger();
 
 

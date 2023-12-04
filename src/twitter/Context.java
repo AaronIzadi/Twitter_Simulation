@@ -4,11 +4,13 @@ import twitter.logic.AccountManager;
 import twitter.logic.TimeLineManager;
 import twitter.logic.TweetManager;
 import twitter.model.Account;
+import twitter.repository.Repository;
 import twitter.state.startings.StartState;
 import twitter.state.State;
 import twitter.utils.ConsoleColors;
 import twitter.utils.Logger;
 
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -19,9 +21,12 @@ public class Context {
     private final TimeLineManager timeLineManager = new TimeLineManager();
     private final Stack<State> stateTrace = new Stack<>();
     private final Scanner scanner = new Scanner(System.in);
-    private Logger logger= new Logger();
+    private final Logger logger= new Logger();
+    private final Repository repository = Repository.getInstance();
 
-    public void run() {
+    public void run() throws IOException {
+
+        repository.getIdCounter();
 
         stateTrace.push(new StartState());
         while (!stateTrace.empty()) {
@@ -41,7 +46,7 @@ public class Context {
                 }
                 stateTrace.add(nextState);
             }
-            logStack(); // checking Stack of States by their usage
+            // logStack(); // checking Stack of States by their usage
         }
 
     }
@@ -75,15 +80,15 @@ public class Context {
         return accountManager.getUser();
     }
 
-    public TimeLineManager getHandleTimeLine() {
+    public TimeLineManager getTimeLineManager() {
         return timeLineManager;
     }
 
-    public AccountManager getHandleAccount() {
+    public AccountManager getAccountManager() {
         return accountManager;
     }
 
-    public TweetManager getHandleTweet() {
+    public TweetManager getTweetManager() {
         return tweetManager;
     }
 

@@ -4,10 +4,7 @@ import twitter.model.Account;
 import twitter.model.Record;
 import twitter.model.Time;
 import twitter.model.Tweet;
-import twitter.repository.AccountRepository;
-import twitter.repository.SecureAccountRepository;
-import twitter.repository.TweetHashMapRepository;
-import twitter.repository.TweetRepository;
+import twitter.repository.*;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -15,7 +12,7 @@ import java.util.List;
 
 public class AccountManager {
 
-    TweetRepository tweetRepository = TweetHashMapRepository.getInstance();
+    TweetRepository tweetRepository = TweetFileRepository.getInstance();
     AccountRepository accountRepository = SecureAccountRepository.getInstance();
     TweetManager tweetManager = new TweetManager();
 
@@ -42,9 +39,9 @@ public class AccountManager {
     }
 
     public void makePublicOrPrivate() throws IOException {
-        if (isPublic(getUser().getUserName())){
+        if (isPublic(getUser().getUserName())) {
             getUser().setType(Account.PRIVATE);
-        }else{
+        } else {
             getUser().setType(Account.PUBLIC);
         }
     }
@@ -75,17 +72,17 @@ public class AccountManager {
 
     public void sendFollowRequest(String username) throws IOException {
         getUser().setAccountsRequestedToFollow(accountRepository.getAccountByUserName(username).getId());
-        getUser().setNumberOfAccountsSentRequest(1);
+        getUser().setNumberOfAccountsSentRequest();
         accountRepository.getAccountByUserName(username).setFollowRequest(getUser().getId());
-        accountRepository.getAccountByUserName(username).setNumberOfFollowRequest(1);
+        accountRepository.getAccountByUserName(username).setNumberOfFollowRequest();
         accountRepository.update(accountRepository.getAccountByUserName(username));
         accountRepository.update(getUser());
     }
 
     public void unsendFollowRequest(String username) throws IOException {
         getUser().getAccountsRequestedToFollow().remove(accountRepository.getAccountByUserName(username).getId());
-        getUser().setNumberOfAccountsSentRequest(-1);
-        accountRepository.getAccountByUserName(username).setNumberOfFollowRequest(-1);
+        getUser().setNumberOfAccountsSentRequest();
+        accountRepository.getAccountByUserName(username).setNumberOfFollowRequest();
         accountRepository.getAccountByUserName(username).getFollowRequest().remove(getUser().getId());
         accountRepository.update(accountRepository.getAccountByUserName(username));
         accountRepository.update(getUser());
@@ -95,10 +92,10 @@ public class AccountManager {
         accountRepository.getAccountByUserName(username).setNumberOfFollowings();
         accountRepository.getAccountByUserName(username).setFollowings(getUser().getId());
         accountRepository.getAccountByUserName(username).getAccountsRequestedToFollow().remove(getUser().getId());
-        accountRepository.getAccountByUserName(username).setNumberOfAccountsSentRequest(-1);
+        accountRepository.getAccountByUserName(username).setNumberOfAccountsSentRequest();
         getUser().setNumberOfFollowers();
         getUser().setFollowers(accountRepository.getAccountByUserName(username).getId());
-        getUser().setNumberOfFollowRequest(-1);
+        getUser().setNumberOfFollowRequest();
         getUser().getFollowRequest().remove(accountRepository.getAccountByUserName(username).getId());
         accountRepository.update(accountRepository.getAccountByUserName(username));
         accountRepository.update(getUser());
@@ -106,8 +103,8 @@ public class AccountManager {
 
     public void deleteFollowRequest(String username) throws IOException {
         accountRepository.getAccountByUserName(username).getAccountsRequestedToFollow().remove(getUser().getId());
-        accountRepository.getAccountByUserName(username).setNumberOfAccountsSentRequest(-1);
-        getUser().setNumberOfFollowRequest(-1);
+        accountRepository.getAccountByUserName(username).setNumberOfAccountsSentRequest();
+        getUser().setNumberOfFollowRequest();
         getUser().getFollowRequest().remove(accountRepository.getAccountByUserName(username).getId());
         accountRepository.update(accountRepository.getAccountByUserName(username));
         accountRepository.update(getUser());
@@ -119,7 +116,7 @@ public class AccountManager {
 
     public void block(String userName) throws IOException {
         getUser().setBlacklist(accountRepository.getAccountByUserName(userName).getId());
-        getUser().setNumberOfBlackList(1);
+        getUser().setNumberOfBlackList();
         if (getUser().getFollowers().contains(accountRepository.getAccountByUserName(userName).getId())) {
             getUser().getFollowers().remove(accountRepository.getAccountByUserName(userName).getId());
             getUser().setNumberOfFollowers();
@@ -142,7 +139,7 @@ public class AccountManager {
 
     public void unblock(String userName) throws IOException {
         getUser().getBlacklist().remove(accountRepository.getAccountByUserName(userName).getId());
-        getUser().setNumberOfBlackList(-1);
+        getUser().setNumberOfBlackList();
         accountRepository.update(getUser());
     }
 
@@ -152,12 +149,12 @@ public class AccountManager {
 
     public void likeOrRemoveLike(Tweet tweet) throws IOException {
         if (!isLiked(tweet)) {
-            tweet.setNumberOfLikes(1);
-            tweet.setAccountLiked(new Record(getUser().getId(), Time.now(), Record.LIKE_RECORD));
-            tweet.setIdAccountLiked(getUser().getId());
+            tweet.setNumberOfLikes();
+            tweet.addAccountLiked(new Record(getUser().getId(), Time.now(), Record.LIKE_RECORD));
+            tweet.addIdAccountLiked(getUser().getId());
             getUser().setLikedTweet(tweet.getId());
         } else {
-            tweet.setNumberOfLikes(-1);
+            tweet.setNumberOfLikes();
             getUser().getLikedTweet().remove(tweet.getId());
             tweet.getIdAccountLiked().remove(getUser().getId());
         }
@@ -172,12 +169,12 @@ public class AccountManager {
     public void retweetOrUndo(Tweet tweet) throws IOException {
         if (!isRetweeted(tweet)) {
             getUser().setTweets(tweet.getId());
-            tweet.setNumberOfRetweets(1);
-            tweet.setIdAccountRetweeted(getUser().getId());
-            tweet.setAccountRetweeted(new Record(getUser().getId(), Time.now(), Record.RETWEET_RECORD));
+            tweet.setNumberOfRetweets();
+            tweet.addIdAccountRetweeted(getUser().getId());
+            tweet.addAccountRetweeted(new Record(getUser().getId(), Time.now(), Record.RETWEET_RECORD));
         } else {
             getUser().getTweets().remove(tweet.getId());
-            tweet.setNumberOfRetweets(-1);
+            tweet.setNumberOfRetweets();
             tweet.getIdAccountRetweeted().remove(getUser().getId());
         }
         accountRepository.update(getUser());
@@ -197,7 +194,7 @@ public class AccountManager {
 
     public void saveTweet(Tweet tweet) throws IOException {
         getUser().setSavedTweet(tweet.getId());
-        tweet.setIdAccountSaved(getUser().getId());
+        tweet.addIdAccountSaved(getUser().getId());
         accountRepository.update(getUser());
         tweetRepository.update(tweet);
     }
@@ -318,33 +315,33 @@ public class AccountManager {
         return accountRepository.getAccountByUserName(username).getStatus();
     }
 
-    public boolean ifRecently(){
+    public boolean ifRecently() {
         return getUser().getStatus().equals("Last seen recently");
     }
 
     public void deleteAccount() throws IOException {
-        for (long id: getUser().getTweets()) {
+        for (long id : getUser().getTweets()) {
             Tweet tweet = tweetRepository.getTweet(id);
             tweetManager.deleteTweet(tweet);
         }
-        for (long id: getUser().getFollowers() ) {
+        for (long id : getUser().getFollowers()) {
             accountRepository.getAccount(id).getFollowings().remove(getUser().getId());
             accountRepository.getAccount(id).setNumberOfFollowings();
             accountRepository.update(accountRepository.getAccount(id));
         }
-        for (long id:getUser().getFollowings()) {
+        for (long id : getUser().getFollowings()) {
             accountRepository.getAccount(id).getFollowers().remove(getUser().getId());
             accountRepository.getAccount(id).setNumberOfFollowers();
             accountRepository.update(accountRepository.getAccount(id));
         }
-        for (long id: getUser().getAccountsRequestedToFollow()) {
+        for (long id : getUser().getAccountsRequestedToFollow()) {
             accountRepository.getAccount(id).getFollowRequest().remove(getUser().getId());
-            accountRepository.getAccount(id).setNumberOfFollowRequest(-1);
+            accountRepository.getAccount(id).setNumberOfFollowRequest();
             accountRepository.update(accountRepository.getAccount(id));
         }
-        for (long id: getUser().getFollowRequest()) {
+        for (long id : getUser().getFollowRequest()) {
             accountRepository.getAccount(id).getAccountsRequestedToFollow().remove(getUser().getId());
-            accountRepository.getAccount(id).setNumberOfAccountsSentRequest(-1);
+            accountRepository.getAccount(id).setNumberOfAccountsSentRequest();
             accountRepository.update(accountRepository.getAccount(id));
         }
         accountRepository.removeAccount(getUser().getId());

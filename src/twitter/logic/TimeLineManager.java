@@ -2,17 +2,14 @@ package twitter.logic;
 
 import twitter.model.Record;
 import twitter.model.Tweet;
-import twitter.repository.AccountRepository;
-import twitter.repository.SecureAccountRepository;
-import twitter.repository.TweetHashMapRepository;
-import twitter.repository.TweetRepository;
+import twitter.repository.*;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class TimeLineManager {
-    TweetRepository tweetRepository = TweetHashMapRepository.getInstance();
+    TweetRepository tweetRepository = TweetFileRepository.getInstance();
     AccountRepository accountRepository = SecureAccountRepository.getInstance();
     AccountManager accountManager = new AccountManager();
 

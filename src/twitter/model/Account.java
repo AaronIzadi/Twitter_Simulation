@@ -169,18 +169,17 @@ public class Account {
         this.type = type;
     }
 
-    public void setNumberOfAccountsSentRequest(int num) {
-        numberOfAccountsSentRequest += num;
+    public void setNumberOfAccountsSentRequest() {
+        numberOfAccountsSentRequest = accountsRequestedToFollow.size();
     }
 
-    public void setNumberOfFollowRequest(int followRequest) {
-        numberOfFollowRequest += followRequest;
+    public void setNumberOfFollowRequest() {
+        numberOfFollowRequest = followRequest.size();
     }
 
     public void setFollowRequest(long request) {
         followRequest.add(request);
     }
-    public void setFollowRequest(LinkedList<Long> followRequest) { this.followRequest = followRequest;}
 
     public void setAccountsRequestedToFollow(long sendRequestTo) {
         accountsRequestedToFollow.add(sendRequestTo);
@@ -218,8 +217,8 @@ public class Account {
         replied.add(repliedId);
     }
 
-    public void setNumberOfTweets(int n) {
-        numberOfTweets += n;
+    public void setNumberOfTweets() {
+        numberOfTweets = tweets.size();
     }
 
     public void setNumberOfFollowers() {
@@ -238,8 +237,8 @@ public class Account {
         followings.add(idNum);
     }
 
-    public void setNumberOfBlackList(int n) {
-        numberOfBlackList += n;
+    public void setNumberOfBlackList() {
+        numberOfBlackList = blacklist.size();
     }
 
     public void setBlacklist(long idNum) {
@@ -309,4 +308,9 @@ public class Account {
     public void setAccountsRequestedToFollow(List<Long> accountsRequestedToFollow) {
         this.accountsRequestedToFollow = accountsRequestedToFollow;
     }
+
+    public void setFollowRequest(LinkedList<Long> followRequest) {
+        this.followRequest = followRequest;
+    }
+
 }

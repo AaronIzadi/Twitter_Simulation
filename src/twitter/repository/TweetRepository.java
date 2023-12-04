@@ -12,7 +12,7 @@ public interface TweetRepository {
 
     Tweet add(Tweet tweet) throws IOException;
 
-    Tweet getTweet(long id);
+    Tweet getTweet(long id) throws IOException;
 
     boolean removeTweet(long id);
 

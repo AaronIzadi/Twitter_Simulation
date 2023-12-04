@@ -12,12 +12,12 @@ public class Tweet {
     private int numberOfReplies;
     public static final int DEFAULT_ID = 0;
     private final long idRepliedTweet;
-    private final List<Long> replies = new LinkedList<>();
-    private final List<Record> accountRetweeted = new LinkedList<>();
-    private final List<Record> accountLiked = new LinkedList<>();
-    private final List<Long> idAccountLiked = new LinkedList<>();
-    private final List<Long> idAccountRetweeted = new LinkedList<>();
-    private final List<Long> idAccountSaved = new LinkedList<>();
+    private List<Long> replies = new LinkedList<>();
+    private List<Record> accountRetweeted = new LinkedList<>();
+    private List<Record> accountLiked = new LinkedList<>();
+    private List<Long> idAccountLiked = new LinkedList<>();
+    private List<Long> idAccountRetweeted = new LinkedList<>();
+    private List<Long> idAccountSaved = new LinkedList<>();
     private Time tweetTime;
     private Record record;
 
@@ -58,11 +58,35 @@ public class Tweet {
 
     public List<Long> getIdAccountSaved() { return idAccountSaved; }
 
-    public void setIdAccountSaved(long idAccount) { idAccountSaved.add(idAccount); }
+    public void addIdAccountSaved(long idAccount) { idAccountSaved.add(idAccount); }
 
-    public void setIdAccountLiked(long idAccount) { idAccountLiked.add(idAccount); }
+    public void setReplies(List<Long> replies) {
+        this.replies = replies;
+    }
 
-    public void setIdAccountRetweeted(long idAccount) { idAccountRetweeted.add(idAccount); }
+    public void setAccountRetweeted(List<Record> accountRetweeted) {
+        this.accountRetweeted = accountRetweeted;
+    }
+
+    public void setAccountLiked(List<Record> accountLiked) {
+        this.accountLiked = accountLiked;
+    }
+
+    public void setIdAccountLiked(List<Long> idAccountLiked) {
+        this.idAccountLiked = idAccountLiked;
+    }
+
+    public void setIdAccountRetweeted(List<Long> idAccountRetweeted) {
+        this.idAccountRetweeted = idAccountRetweeted;
+    }
+
+    public void setIdAccountSaved(List<Long> idAccountSaved) {
+        this.idAccountSaved = idAccountSaved;
+    }
+
+    public void addIdAccountLiked(long idAccount) { idAccountLiked.add(idAccount); }
+
+    public void addIdAccountRetweeted(long idAccount) { idAccountRetweeted.add(idAccount); }
 
     public void setRecord(Record record) { this.record = record; }
 
@@ -70,17 +94,17 @@ public class Tweet {
 
     public void setId(long id) { this.id = id; }
 
-    public void setReplies(Long reply) { replies.add(reply); }
+    public void addReply(Long reply) { replies.add(reply); }
 
-    public void setAccountRetweeted(Record idNum) { accountRetweeted.add(idNum); }
+    public void addAccountRetweeted(Record idNum) { accountRetweeted.add(idNum); }
 
-    public void setAccountLiked(Record idNum) { accountLiked.add(idNum); }
+    public void addAccountLiked(Record idNum) { accountLiked.add(idNum); }
 
-    public void setNumberOfLikes(int n) { numberOfLikes += n; }
+    public void setNumberOfLikes() { numberOfLikes = idAccountLiked.size(); }
 
-    public void setNumberOfRetweets(int n) { numberOfRetweets += n; }
+    public void setNumberOfRetweets() { numberOfRetweets = idAccountRetweeted.size();}
 
-    public void setNumberOfReplies(int n) { numberOfReplies += n; }
+    public void setNumberOfReplies() { numberOfReplies = replies.size(); }
 
     public void clearLikes() { numberOfLikes = 0; }
 

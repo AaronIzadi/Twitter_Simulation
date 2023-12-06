@@ -119,7 +119,7 @@ public class TimeLineState extends State {
 
                 if (accountManager.isPublic(accountManager.getUsername(tweet.getAccountId()))) {
                     log.info(accountManager.isRetweeted(tweet) ? "User removed their retweet." : "User retweeted this tweet.");
-                    accountManager.retweetOrUndo(tweet);
+                    accountManager.retweetOrRemoveRetweet(tweet);
                 } else {
                     System.out.println(ConsoleColors.RED + "This account is private. You can't retweet this tweet!");
                 }

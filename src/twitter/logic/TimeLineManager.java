@@ -16,7 +16,7 @@ public class TimeLineManager {
 
     public Map<Record, Tweet> makeTimeLine() throws IOException {
 
-        Map<Record, Tweet> map = new HashMap<>();
+        Map<Record, Tweet> timeLine = new HashMap<>();
 
         //User's tweets
         for (long idTweet : accountManager.getUser().getTweets()) {
@@ -24,13 +24,13 @@ public class TimeLineManager {
                 for (Record rec : tweetRepository.getTweet(idTweet).getAccountRetweeted()) {
                     if (rec.getAccountId() == accountManager.getUser().getId()) {
                         Tweet tweet = tweetRepository.getTweet(idTweet);
-                        map.put(rec, tweet);
+                        timeLine.put(rec, tweet);
                     }
                 }
             } else {
                 Record rec = tweetRepository.getTweet(idTweet).getRecord();
                 Tweet tweet = tweetRepository.getTweet(idTweet);
-                map.put(rec, tweet);
+                timeLine.put(rec, tweet);
             }
         }
         //Followings' tweets and retweets
@@ -42,13 +42,13 @@ public class TimeLineManager {
                         for (Record rec : tweetRepository.getTweet(idTweet).getAccountRetweeted()) {
                             if (rec.getAccountId() == idAcc) {
                                 Tweet tweet = tweetRepository.getTweet(idTweet);
-                                map.put(rec, tweet);
+                                timeLine.put(rec, tweet);
                             }
                         }
                     } else {
                         Record rec = tweetRepository.getTweet(idTweet).getRecord();
                         Tweet tweet = tweetRepository.getTweet(idTweet);
-                        map.put(rec, tweet);
+                        timeLine.put(rec, tweet);
                     }
                 }
             }
@@ -63,7 +63,7 @@ public class TimeLineManager {
                         for (Record rec : tweetRepository.getTweet(idTweet).getAccountLiked()) {
                             if (rec.getAccountId() == idAcc) {
                                 Tweet tweet = tweetRepository.getTweet(idTweet);
-                                map.put(rec, tweet);
+                                timeLine.put(rec, tweet);
                             }
                         }
                     }
@@ -71,7 +71,7 @@ public class TimeLineManager {
             }
 
         }
-        return map;
+        return timeLine;
     }
 
 }

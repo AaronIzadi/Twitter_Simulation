@@ -1,4 +1,4 @@
-package twitter;
+package twitter.main;
 
 import java.io.IOException;
 

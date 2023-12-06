@@ -1,6 +1,6 @@
 package twitter.state;
 
-import twitter.Context;
+import twitter.main.Context;
 import twitter.model.Account;
 
 import java.io.IOException;

@@ -1,6 +1,6 @@
 package twitter.state;
 
-import twitter.Context;
+import twitter.main.Context;
 
 import java.io.IOException;
 
@@ -13,5 +13,4 @@ public abstract class State {
     public abstract void printFinalCliError();
 
     public abstract void close(Context context);
-
 }

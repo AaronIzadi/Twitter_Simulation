@@ -50,8 +50,8 @@ public class AccountManager {
         if (!isFollowed(userName)) {
             getUser().setNumberOfFollowings();
             accountRepository.getAccountByUserName(userName).setNumberOfFollowers();
-            getUser().setFollowings(accountRepository.getAccountByUserName(userName).getId());
-            accountRepository.getAccountByUserName(userName).setFollowers(getUser().getId());
+            getUser().addFollowing(accountRepository.getAccountByUserName(userName).getId());
+            accountRepository.getAccountByUserName(userName).addFollower(getUser().getId());
         } else {
             getUser().setNumberOfFollowings();
             accountRepository.getAccountByUserName(userName).setNumberOfFollowers();
@@ -71,9 +71,9 @@ public class AccountManager {
     }
 
     public void sendFollowRequest(String username) throws IOException {
-        getUser().setAccountsRequestedToFollow(accountRepository.getAccountByUserName(username).getId());
+        getUser().addAccountRequestedToFollow(accountRepository.getAccountByUserName(username).getId());
         getUser().setNumberOfAccountsSentRequest();
-        accountRepository.getAccountByUserName(username).setFollowRequest(getUser().getId());
+        accountRepository.getAccountByUserName(username).addFollowRequest(getUser().getId());
         accountRepository.getAccountByUserName(username).setNumberOfFollowRequest();
         accountRepository.update(accountRepository.getAccountByUserName(username));
         accountRepository.update(getUser());
@@ -90,11 +90,11 @@ public class AccountManager {
 
     public void acceptFollowRequest(String username) throws IOException {
         accountRepository.getAccountByUserName(username).setNumberOfFollowings();
-        accountRepository.getAccountByUserName(username).setFollowings(getUser().getId());
+        accountRepository.getAccountByUserName(username).addFollowing(getUser().getId());
         accountRepository.getAccountByUserName(username).getAccountsRequestedToFollow().remove(getUser().getId());
         accountRepository.getAccountByUserName(username).setNumberOfAccountsSentRequest();
         getUser().setNumberOfFollowers();
-        getUser().setFollowers(accountRepository.getAccountByUserName(username).getId());
+        getUser().addFollower(accountRepository.getAccountByUserName(username).getId());
         getUser().setNumberOfFollowRequest();
         getUser().getFollowRequest().remove(accountRepository.getAccountByUserName(username).getId());
         accountRepository.update(accountRepository.getAccountByUserName(username));
@@ -115,7 +115,7 @@ public class AccountManager {
     }
 
     public void block(String userName) throws IOException {
-        getUser().setBlacklist(accountRepository.getAccountByUserName(userName).getId());
+        getUser().addBlackList(accountRepository.getAccountByUserName(userName).getId());
         getUser().setNumberOfBlackList();
         if (getUser().getFollowers().contains(accountRepository.getAccountByUserName(userName).getId())) {
             getUser().getFollowers().remove(accountRepository.getAccountByUserName(userName).getId());
@@ -152,7 +152,7 @@ public class AccountManager {
             tweet.setNumberOfLikes();
             tweet.addAccountLiked(new Record(getUser().getId(), Time.now(), Record.LIKE_RECORD));
             tweet.addIdAccountLiked(getUser().getId());
-            getUser().setLikedTweet(tweet.getId());
+            getUser().addLikedTweet(tweet.getId());
         } else {
             tweet.setNumberOfLikes();
             getUser().getLikedTweet().remove(tweet.getId());
@@ -168,7 +168,7 @@ public class AccountManager {
 
     public void retweetOrUndo(Tweet tweet) throws IOException {
         if (!isRetweeted(tweet)) {
-            getUser().setTweets(tweet.getId());
+            getUser().addTweet(tweet.getId());
             tweet.setNumberOfRetweets();
             tweet.addIdAccountRetweeted(getUser().getId());
             tweet.addAccountRetweeted(new Record(getUser().getId(), Time.now(), Record.RETWEET_RECORD));
@@ -193,7 +193,7 @@ public class AccountManager {
     }
 
     public void saveTweet(Tweet tweet) throws IOException {
-        getUser().setSavedTweet(tweet.getId());
+        getUser().addSavedTweet(tweet.getId());
         tweet.addIdAccountSaved(getUser().getId());
         accountRepository.update(getUser());
         tweetRepository.update(tweet);
@@ -242,7 +242,7 @@ public class AccountManager {
 
     public void muteOrUnmute(String username) throws IOException {
         if (!isMute(username)) {
-            getUser().setMutedAccounts(accountRepository.getAccountByUserName(username).getId());
+            getUser().addMutedAccount(accountRepository.getAccountByUserName(username).getId());
         } else {
             getUser().getMutedAccounts().remove(accountRepository.getAccountByUserName(username).getId());
         }

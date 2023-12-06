@@ -1,7 +1,7 @@
 package twitter.state;
 
 import twitter.utils.ConsoleColors;
-import twitter.Context;
+import twitter.main.Context;
 import twitter.logic.AccountManager;
 import twitter.logic.TweetManager;
 import twitter.model.Tweet;
@@ -19,7 +19,7 @@ public class MakeTweetState extends State{
 
     @Override
     public void printCliMenu(Context context) {
-        System.out.println(ConsoleColors.YELLOW + "Write..");
+        System.out.println(ConsoleColors.YELLOW + "What's happening?");
     }
 
     @Override

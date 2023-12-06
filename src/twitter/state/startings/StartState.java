@@ -1,6 +1,6 @@
 package twitter.state.startings;
 
-import twitter.Context;
+import twitter.main.Context;
 import twitter.utils.ConsoleColors;
 import twitter.state.ExitState;
 import twitter.state.State;

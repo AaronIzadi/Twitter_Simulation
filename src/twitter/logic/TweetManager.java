@@ -18,13 +18,13 @@ public class TweetManager {
         tweet.setRecord(new Record(tweet.getAccountId(), tweet.getTweetTime(), Record.DEFAULT));
         tweetRepository.add(tweet);
         if (tweet.getIdRepliedTweet() == Tweet.DEFAULT_ID) {
-            accountRepository.getAccount(tweet.getAccountId()).setTweets(tweet.getId());
+            accountRepository.getAccount(tweet.getAccountId()).addTweet(tweet.getId());
             accountRepository.getAccount(tweet.getAccountId()).setNumberOfTweets();
         } else {
             Tweet repliedTweet = tweetRepository.getTweet(tweet.getIdRepliedTweet());
             repliedTweet.setNumberOfReplies();
             tweet.addReply(tweet.getId());
-            accountRepository.getAccount(tweet.getAccountId()).setReplied(tweet.getId());
+            accountRepository.getAccount(tweet.getAccountId()).addReplied(tweet.getId());
             tweetRepository.update(repliedTweet);
         }
         Account acc = accountRepository.getAccount(tweet.getAccountId());

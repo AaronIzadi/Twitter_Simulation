@@ -1,4 +1,4 @@
-package twitter;
+package twitter.main;
 
 import twitter.logic.AccountManager;
 import twitter.logic.TimeLineManager;

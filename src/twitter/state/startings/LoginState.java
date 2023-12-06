@@ -1,6 +1,6 @@
 package twitter.state.startings;
 
-import twitter.Context;
+import twitter.main.Context;
 import twitter.logic.AccountManager;
 import twitter.model.Account;
 import twitter.utils.ConsoleColors;

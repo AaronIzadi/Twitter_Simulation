@@ -1,7 +1,7 @@
 package twitter.state;
 
 import twitter.utils.ConsoleColors;
-import twitter.Context;
+import twitter.main.Context;
 import twitter.logic.AccountManager;
 import twitter.state.profile.ViewProfileState;
 import twitter.utils.Logger;

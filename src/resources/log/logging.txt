@@ -384,3 +384,231 @@
 
 2023-12-4-21-13-21  :  User checked @iz's profile.
 
+2023-12-4-21-13-34  :  App started.
+
+2023-12-4-21-13-36  :  Going to login state.
+
+2023-12-4-21-13-40  :  Logged in as @iz
+
+2023-12-4-21-13-44  :  User chose to search for an account.
+
+2023-12-4-21-13-47  :  User checked @mah's profile.
+
+2023-12-4-21-13-47  :  User entered invalid number.
+
+2023-12-4-21-13-47  :  User checked @mah's profile.
+
+2023-12-6-17-41-5  :  App started.
+
+2023-12-6-17-41-10  :  Going to login state.
+
+2023-12-6-17-41-14  :  Logged in as @iz
+
+2023-12-6-17-41-16  :  User chose to write a new tweet.
+
+2023-12-6-17-41-18  :  User wrote a tweet with id:5
+
+2023-12-6-17-42-23  :  App started.
+
+2023-12-6-17-42-25  :  Going to login state.
+
+2023-12-6-17-42-27  :  Logged in as @iz
+
+2023-12-6-17-42-29  :  User chose to write a new tweet.
+
+2023-12-6-17-42-31  :  User wrote a tweet with id:6
+
+2023-12-6-17-44-38  :  App started.
+
+2023-12-6-17-44-39  :  Going to login state.
+
+2023-12-6-17-44-43  :  Logged in as @iz
+
+2023-12-6-17-44-45  :  User chose to write a new tweet.
+
+2023-12-6-17-44-46  :  User wrote a tweet with id:7
+
+2023-12-6-17-46-12  :  App started.
+
+2023-12-6-17-46-13  :  Going to login state.
+
+2023-12-6-17-46-16  :  Logged in as @iz
+
+2023-12-6-17-46-17  :  User chose to write a new tweet.
+
+2023-12-6-17-46-21  :  User wrote a tweet with id:8
+
+2023-12-6-17-54-38  :  App started.
+
+2023-12-6-17-54-40  :  Going to login state.
+
+2023-12-6-17-54-44  :  Logged in as @iz
+
+2023-12-6-17-54-46  :  User chose to write a new tweet.
+
+2023-12-6-17-54-49  :  User wrote a tweet with id:9
+
+2023-12-6-17-54-56  :  User chose to check their timeline.
+
+2023-12-6-17-55-2  :  User chose to check their profile info.
+
+2023-12-6-17-55-2  :  User checked their profile info.
+
+2023-12-6-17-55-11  :  User wants to view their tweets.
+
+2023-12-6-17-55-11  :  There is no tweet to show.
+
+2023-12-6-17-55-11  :  User checked their profile info.
+
+2023-12-6-17-58-3  :  App started.
+
+2023-12-6-17-58-3  :  Going to create account state.
+
+2023-12-6-17-58-8  :  Username they entered already exists.
+
+2023-12-6-17-58-12  :  App started.
+
+2023-12-6-17-58-13  :  Going to login state.
+
+2023-12-6-17-58-18  :  Logged in as @iz
+
+2023-12-6-17-58-23  :  User chose to write a new tweet.
+
+2023-12-6-17-58-26  :  User wrote a tweet with id:10
+
+2023-12-6-17-58-34  :  User chose to check their timeline.
+
+2023-12-6-18-1-27  :  App started.
+
+2023-12-6-18-1-27  :  Going to login state.
+
+2023-12-6-18-1-30  :  Logged in as @iz
+
+2023-12-6-18-1-33  :  User chose to write a new tweet.
+
+2023-12-6-18-1-36  :  User wrote a tweet with id:11
+
+2023-12-6-18-2-52  :  App started.
+
+2023-12-6-18-2-54  :  Going to login state.
+
+2023-12-6-18-2-59  :  Logged in as @iz
+
+2023-12-6-18-3-1  :  User chose to write a new tweet.
+
+2023-12-6-18-3-5  :  User wrote a tweet with id:12
+
+2023-12-6-18-3-11  :  User chose to check their timeline.
+
+2023-12-6-18-7-30  :  App started.
+
+2023-12-6-18-7-31  :  Going to login state.
+
+2023-12-6-18-7-36  :  Logged in as @iz
+
+2023-12-6-18-7-37  :  User chose to write a new tweet.
+
+2023-12-6-18-7-40  :  User wrote a tweet with id:13
+
+2023-12-6-18-7-47  :  User chose to check their timeline.
+
+2023-12-6-18-8-37  :  App started.
+
+2023-12-6-18-8-38  :  Going to create account state.
+
+2023-12-6-18-8-41  :  Username they entered already exists.
+
+2023-12-6-18-8-42  :  App started.
+
+2023-12-6-18-8-43  :  Going to login state.
+
+2023-12-6-18-8-46  :  Logged in as @iz
+
+2023-12-6-18-8-53  :  User chose to write a new tweet.
+
+2023-12-6-18-8-55  :  User wrote a tweet with id:14
+
+2023-12-6-18-10-18  :  App started.
+
+2023-12-6-18-10-19  :  Going to login state.
+
+2023-12-6-18-10-22  :  Logged in as @iz
+
+2023-12-6-18-10-23  :  User chose to write a new tweet.
+
+2023-12-6-18-10-25  :  User wrote a tweet with id:15
+
+2023-12-6-18-10-32  :  User chose to check their profile info.
+
+2023-12-6-18-10-32  :  User checked their profile info.
+
+2023-12-6-18-13-46  :  App started.
+
+2023-12-6-18-13-48  :  Going to login state.
+
+2023-12-6-18-13-51  :  Logged in as @iz
+
+2023-12-6-18-13-53  :  User chose to write a new tweet.
+
+2023-12-6-18-13-56  :  User wrote a tweet with id:16
+
+2023-12-6-18-14-23  :  User chose to check their profile info.
+
+2023-12-6-18-14-23  :  User checked their profile info.
+
+2023-12-6-18-14-23  :  User wants to view their saved tweets.
+
+2023-12-6-18-14-23  :  User checked their profile info.
+
+2023-12-6-18-14-38  :  User wants to view their tweets.
+
+2023-12-6-18-14-38  :  There is no tweet to show.
+
+2023-12-6-18-14-38  :  User checked their profile info.
+
+2023-12-6-18-17-35  :  App started.
+
+2023-12-6-18-17-36  :  Going to login state.
+
+2023-12-6-18-17-40  :  Logged in as @iz
+
+2023-12-6-18-17-43  :  User chose to write a new tweet.
+
+2023-12-6-18-17-46  :  User wrote a tweet with id:17
+
+2023-12-6-18-18-10  :  User chose to check their timeline.
+
+2023-12-6-18-19-58  :  App started.
+
+2023-12-6-18-19-59  :  Going to login state.
+
+2023-12-6-18-20-6  :  Logged in as @iz
+
+2023-12-6-18-20-10  :  User chose to write a new tweet.
+
+2023-12-6-18-20-12  :  User wrote a tweet with id:18
+
+2023-12-6-18-20-35  :  App started.
+
+2023-12-6-18-20-35  :  Going to login state.
+
+2023-12-6-18-20-40  :  Logged in as @iz
+
+2023-12-6-18-20-41  :  User chose to write a new tweet.
+
+2023-12-6-18-20-44  :  User wrote a tweet with id:19
+
+2023-12-6-18-34-53  :  App started.
+
+2023-12-6-18-34-55  :  Going to login state.
+
+2023-12-6-18-35-1  :  Logged in as @iz
+
+2023-12-6-18-35-3  :  User chose to write a new tweet.
+
+2023-12-6-18-35-6  :  User wrote a tweet with id:20
+
+2023-12-6-18-35-9  :  User chose to check their profile info.
+
+2023-12-6-18-35-9  :  User checked their profile info.
+

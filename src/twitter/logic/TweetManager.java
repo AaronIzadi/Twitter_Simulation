@@ -14,28 +14,30 @@ public class TweetManager {
     AccountRepository accountRepository = AccountFileRepository.getInstance();
 
     public void writeTweet(Tweet tweet) throws IOException {
-        tweet.setTweetTime(Time.now());
-        tweet.setRecord(new Record(tweet.getAccountId(), tweet.getTweetTime(), Record.DEFAULT));
+        Time time = Time.now();
+        tweet.setTweetTime(time);
+        tweet.setRecord(new Record(tweet.getAccountId(), time, Record.DEFAULT));
         tweetRepository.add(tweet);
+        Account account = accountRepository.getUser();
         if (tweet.getIdRepliedTweet() == Tweet.DEFAULT_ID) {
-            accountRepository.getAccount(tweet.getAccountId()).addTweet(tweet.getId());
-            accountRepository.getAccount(tweet.getAccountId()).setNumberOfTweets();
+            account.addTweet(tweet.getId());
+            account.setNumberOfTweets();
         } else {
             Tweet repliedTweet = tweetRepository.getTweet(tweet.getIdRepliedTweet());
             repliedTweet.setNumberOfReplies();
             tweet.addReply(tweet.getId());
-            accountRepository.getAccount(tweet.getAccountId()).addReplied(tweet.getId());
+            account.addReplied(tweet.getId());
             tweetRepository.update(repliedTweet);
         }
-        Account acc = accountRepository.getAccount(tweet.getAccountId());
-        accountRepository.update(acc);
+        accountRepository.update(account);
         tweetRepository.update(tweet);
     }
 
     public void deleteTweet(Tweet tweet) throws IOException {
         tweetRepository.removeTweet(tweet.getId());
-        accountRepository.getAccount(tweet.getAccountId()).getTweets().remove(tweet.getId());
-        accountRepository.getAccount(tweet.getAccountId()).setNumberOfTweets();
+        Account account = accountRepository.getUser();
+        account.getTweets().remove(tweet.getId());
+        account.setNumberOfTweets();
         for (Record idAccount : tweet.getAccountRetweeted()) {
             long idRetweeted = idAccount.getAccountId();
             Account acc = accountRepository.getAccount(idRetweeted);
@@ -43,13 +45,15 @@ public class TweetManager {
             acc.setNumberOfTweets();
             accountRepository.update(acc);
         }
-        for (long idLiked: tweet.getIdAccountLiked()) {
-            accountRepository.getAccount(idLiked).getLikedTweet().remove(tweet.getId());
-            accountRepository.update(accountRepository.getAccount(idLiked));
+        for (long idLiked : tweet.getIdAccountLiked()) {
+            Account acc = accountRepository.getAccount(idLiked);
+            acc.getLikedTweet().remove(tweet.getId());
+            accountRepository.update(acc);
         }
-        for (long idSaved: tweet.getIdAccountSaved()) {
-            accountRepository.getAccount(idSaved).getSavedTweet().remove(tweet.getId());
-            accountRepository.update(accountRepository.getAccount(idSaved));
+        for (long idSaved : tweet.getIdAccountSaved()) {
+            Account acc = accountRepository.getAccount(idSaved);
+            acc.getSavedTweet().remove(tweet.getId());
+            accountRepository.update(acc);
         }
         tweet.getReplies().clear();
         tweet.clearLikes();

@@ -56,7 +56,7 @@ public class Record implements Comparable {
     }
 
     public static Record valueOf(String recordInString){
-        String[] all = recordInString.split("-");
+        String[] all = recordInString.split(" ");
         Time time = Time.valueOf(all[1]);
         Record record = new Record();
 
@@ -71,7 +71,7 @@ public class Record implements Comparable {
     @Override
     public String toString() {
         String record = "";
-        record = accountId + "-" + timeRecord.toString() + "-" + type;
+        record = accountId + " " + timeRecord.toString() + " " + type;
         return record;
     }
 

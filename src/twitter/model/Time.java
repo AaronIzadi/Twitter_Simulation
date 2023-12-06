@@ -75,13 +75,14 @@ public class Time implements Comparable {
 
     public String toString() {
         String time = "";
-        time = year + "-" + month + "-" + day + "-" + hour + "-" + minute + "-" + second;
+        time = year + " " + month + " " + day + " " + hour + " " + minute + " " + second;
         return time;
     }
 
     public static Time valueOf(String timeInString) {
         Time time = new Time();
-        String[] all = timeInString.split("-");
+        System.out.println(timeInString);
+        String[] all = timeInString.split(" ");
         time.setYear(Integer.parseInt(all[0]));
         time.setMonth(Integer.parseInt(all[1]));
         time.setDay(Integer.parseInt(all[2]));

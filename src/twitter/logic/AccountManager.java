@@ -219,8 +219,8 @@ public class AccountManager {
         return getUser().getMutedAccounts().contains(accountRepository.getAccountByUserName(username).getId());
     }
 
-    public List<String> viewAccountList(List<Long> list) throws IOException {
-        List<String> username = new LinkedList<>();
+    public LinkedList<String> viewAccountList(LinkedList<Long> list) throws IOException {
+        LinkedList<String> username = new LinkedList<>();
         for (long id : list) {
             username.add(accountRepository.getAccount(id).getUserName());
         }
@@ -342,15 +342,15 @@ public class AccountManager {
         return accountRepository.getAccountByUserName(username).getNumberOfTweets();
     }
 
-    public List<Long> getFollowersList(String username) throws IOException {
+    public LinkedList<Long> getFollowersList(String username) throws IOException {
         return accountRepository.getAccountByUserName(username).getFollowers();
     }
 
-    public List<Long> getFollowingsList(String username) throws IOException {
+    public LinkedList<Long> getFollowingsList(String username) throws IOException {
         return accountRepository.getAccountByUserName(username).getFollowings();
     }
 
-    public List<Long> getTweetList(String username) throws IOException {
+    public LinkedList<Long> getTweetList(String username) throws IOException {
         return accountRepository.getAccountByUserName(username).getTweets();
     }
 

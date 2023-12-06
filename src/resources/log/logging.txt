@@ -84,3 +84,99 @@
 
 2023 12 6 20 19 38  :  Tweet with id:1 is shown.
 
+2023 12 6 22 44 17  :  App started.
+
+2023 12 6 22 44 18  :  Going to create account state.
+
+2023 12 6 22 44 25  :  Account successfully created.
+
+2023 12 6 22 44 25  :  Logged in as @mah
+
+2023 12 6 22 44 32  :  User chose to write a new tweet.
+
+2023 12 6 22 44 42  :  User wrote a tweet with id:1
+
+2023 12 6 22 44 49  :  User chose to check their profile info.
+
+2023 12 6 22 44 49  :  User checked their profile info.
+
+2023 12 6 22 45 4  :  User wants to go to the settings.
+
+2023 12 6 22 45 10  :  User wants to edit their profile.
+
+2023 12 6 22 45 20  :  User changed their name to:Mahdis
+
+2023 12 6 22 46 22  :  User changed their bio to: Just another dreamer.
+
+2023 12 6 22 46 38  :  User changed their birthday to: 29.9.2000
+
+2023 12 6 22 46 58  :  User changed their email to: mah@gmail.com
+
+2023 12 6 22 47 27  :  User changed their phone number to: 9361383656
+
+2023 12 6 22 47 27  :  User entered invalid number.
+
+2023 12 6 22 47 34  :  User changed their status.
+
+2023 12 6 22 47 51  :  User wants to go back.
+
+2023 12 6 22 47 54  :  User wants to go back.
+
+2023 12 6 22 47 54  :  User checked their profile info.
+
+2023 12 6 22 48 9  :  User chose to go back.
+
+2023 12 6 22 48 15  :  User chose to close the app.
+
+2023 12 6 22 48 23  :  App started.
+
+2023 12 6 22 48 27  :  Going to login state.
+
+2023 12 6 22 48 31  :  Logged in as @iz
+
+2023 12 6 22 48 38  :  User chose to check their profile info.
+
+2023 12 6 22 48 38  :  User checked their profile info.
+
+2023 12 6 22 48 41  :  User wants to go to the settings.
+
+2023 12 6 22 48 43  :  User wants to edit their profile.
+
+2023 12 6 22 48 51  :  User changed their name to:Aaron
+
+2023 12 6 22 49 16  :  User changed their bio to: Wubba lubba dub dub
+
+2023 12 6 22 49 28  :  User changed their birthday to: 8.7.2000
+
+2023 12 6 22 49 48  :  User changed their email to: iz@gmail.com
+
+2023 12 6 22 50 2  :  User changed their phone number to: 9116007793
+
+2023 12 6 22 50 2  :  User entered invalid number.
+
+2023 12 6 22 50 9  :  User wants to go back.
+
+2023 12 6 22 50 11  :  User wants to go back.
+
+2023 12 6 22 50 11  :  User checked their profile info.
+
+2023 12 6 22 50 27  :  User chose to go back.
+
+2023 12 6 22 50 31  :  User chose to write a new tweet.
+
+2023 12 6 22 50 39  :  User wrote a tweet with id:2
+
+2023 12 6 22 50 42  :  User chose to search for an account.
+
+2023 12 6 22 50 45  :  User checked @mah's profile.
+
+2023 12 6 22 50 45  :  User entered invalid number.
+
+2023 12 6 22 50 45  :  User checked @mah's profile.
+
+2023 12 6 22 50 58  :  User followed @mah
+
+2023 12 6 22 50 58  :  User checked @mah's profile.
+
+2023 12 6 22 51 10  :  User checked @mah's profile.
+

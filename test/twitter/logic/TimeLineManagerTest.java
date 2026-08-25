@@ -33,10 +33,10 @@ public class TimeLineManagerTest {
 
     @Test
     public void timelineIncludesUsersOwnTweet() throws Exception {
-        AccountManager accountManager = new AccountManager();
+        TweetManager tweetManager = new TweetManager();
+        AccountManager accountManager = new AccountManager(tweetManager);
         accountManager.createAccount("alice", "password");
 
-        TweetManager tweetManager = new TweetManager();
         Tweet tweet = new Tweet(accountManager.getUser().getId(), Tweet.DEFAULT_ID, "timeline tweet");
         tweetManager.writeTweet(tweet);
         accountManager.refreshLoggedInUser();

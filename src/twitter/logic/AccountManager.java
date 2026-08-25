@@ -9,13 +9,16 @@ import twitter.utils.PasswordHasher;
 
 import java.io.IOException;
 import java.util.LinkedList;
-import java.util.List;
 
 public class AccountManager {
 
-    TweetRepository tweetRepository = TweetFileRepository.getInstance();
-    AccountRepository accountRepository = AccountFileRepository.getInstance();
-    TweetManager tweetManager = new TweetManager();
+    private final TweetRepository tweetRepository = TweetFileRepository.getInstance();
+    private final AccountRepository accountRepository = AccountFileRepository.getInstance();
+    private final TweetManager tweetManager;
+
+    public AccountManager(TweetManager tweetManager) {
+        this.tweetManager = tweetManager;
+    }
 
     public Account getUser() {
         return accountRepository.getUser();
@@ -47,14 +50,14 @@ public class AccountManager {
     }
 
     public boolean isPublic(String username) throws IOException {
-        return accountRepository.getAccountByUserName(username).getType() == Account.DEFAULT;
+        return accountRepository.getAccountByUserName(username).getType() != Account.PRIVATE;
     }
 
     public void makePublicOrPrivate() throws IOException {
-        if (isPublic(getUser().getUserName())) {
-            getUser().setType(Account.PRIVATE);
+        if (getUser().getType() == Account.PRIVATE) {
+            getUser().setType(Account.DEFAULT);
         } else {
-            getUser().setType(Account.PUBLIC);
+            getUser().setType(Account.PRIVATE);
         }
         accountRepository.update(getUser());
     }

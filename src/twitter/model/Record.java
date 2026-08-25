@@ -1,7 +1,7 @@
 package twitter.model;
 
 
-public class Record implements Comparable {
+public class Record implements Comparable<Record> {
 
     private long accountId;
     private Time timeRecord;
@@ -79,15 +79,11 @@ public class Record implements Comparable {
 
     @Override
     public String toString() {
-        String record = "";
-        record = accountId + " " + timeRecord.toString() + " " + type;
-        return record;
+        return accountId + " " + timeRecord.toString() + " " + type;
     }
 
-
     @Override
-    public int compareTo(Object o) {
-        Record rec = (Record) o;
-        return this.timeRecord.compareTo(rec.timeRecord);
+    public int compareTo(Record other) {
+        return this.timeRecord.compareTo(other.timeRecord);
     }
 }

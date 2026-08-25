@@ -2,7 +2,7 @@ package twitter.model;
 
 import java.time.LocalDateTime;
 
-public class Time implements Comparable {
+public class Time implements Comparable<Time> {
     private int year;
     private int month;
     private int day;
@@ -91,43 +91,22 @@ public class Time implements Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
-        Time time = (Time) o;
-        if (this.getYear() > time.getYear()) {
-            return 1;
+    public int compareTo(Time other) {
+        if (this.getYear() != other.getYear()) {
+            return Integer.compare(this.getYear(), other.getYear());
         }
-        if (this.getYear() < time.getYear()) {
-            return -1;
-        } else {
-            if (this.getMonth() > time.getMonth()) {
-                return 1;
-            }
-            if (this.getMonth() < time.getMonth()) {
-                return -1;
-            } else {
-                if (this.getDay() > time.getDay()) {
-                    return 1;
-                }
-                if (this.getDay() < time.getDay()) {
-                    return -1;
-                } else {
-                    if (this.getHour() > time.getHour()) {
-                        return 1;
-                    }
-                    if (this.getHour() < time.getHour()) {
-                        return -1;
-                    } else {
-                        if (this.getMinute() > time.getMinute()) {
-                            return 1;
-                        }
-                        if (this.getMinute() < time.getMinute()) {
-                            return -1;
-                        } else {
-                            return Integer.compare(this.getSecond(), time.getSecond());
-                        }
-                    }
-                }
-            }
+        if (this.getMonth() != other.getMonth()) {
+            return Integer.compare(this.getMonth(), other.getMonth());
         }
+        if (this.getDay() != other.getDay()) {
+            return Integer.compare(this.getDay(), other.getDay());
+        }
+        if (this.getHour() != other.getHour()) {
+            return Integer.compare(this.getHour(), other.getHour());
+        }
+        if (this.getMinute() != other.getMinute()) {
+            return Integer.compare(this.getMinute(), other.getMinute());
+        }
+        return Integer.compare(this.getSecond(), other.getSecond());
     }
 }

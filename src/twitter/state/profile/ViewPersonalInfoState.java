@@ -18,7 +18,6 @@ public class ViewPersonalInfoState extends State {
     public void printCliMenu(Context context) {
 
         AccountManager accountManager = context.getAccountManager();
-        TweetManager tweetManager = context.getTweetManager();
 
         System.out.println(ConsoleColors.BLUE + "Profile information:");
         System.out.println(ConsoleColors.BLUE + "Username: @" + accountManager.getUser().getUserName());

@@ -10,7 +10,7 @@ import twitter.utils.Logger;
 
 import java.io.IOException;
 
-public class MakeTweetState extends State{
+public class MakeTweetState extends State {
 
     private final long fatherId;
 

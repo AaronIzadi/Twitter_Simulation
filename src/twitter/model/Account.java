@@ -17,7 +17,7 @@ public class Account {
     public static final int DEFAULT_STATUS = 2;
     private int type;
     public static final int DEFAULT = 1;
-    public static final int PUBLIC = 1;
+    public static final int PUBLIC = DEFAULT;
     public static final int PRIVATE = 2;
     private long phoneNumber;
     private int numberOfFollowers;

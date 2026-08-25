@@ -10,8 +10,8 @@ import java.io.IOException;
 
 public class TweetManager {
 
-    TweetRepository tweetRepository = TweetFileRepository.getInstance();
-    AccountRepository accountRepository = AccountFileRepository.getInstance();
+    private final TweetRepository tweetRepository = TweetFileRepository.getInstance();
+    private final AccountRepository accountRepository = AccountFileRepository.getInstance();
 
     public void writeTweet(Tweet tweet) throws IOException {
         Time time = Time.now();

@@ -36,10 +36,10 @@ public class AccountFileRepositoryTest {
 
     @Test
     public void writeTweetAddsTweetToAccountFile() throws Exception {
-        AccountManager accountManager = new AccountManager();
+        TweetManager tweetManager = new TweetManager();
+        AccountManager accountManager = new AccountManager(tweetManager);
         accountManager.createAccount("writer", "password");
 
-        TweetManager tweetManager = new TweetManager();
         Tweet tweet = new Tweet(accountManager.getUser().getId(), Tweet.DEFAULT_ID, "stored tweet");
         tweetManager.writeTweet(tweet);
 

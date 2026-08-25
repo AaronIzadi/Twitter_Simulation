@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Map;
 
 public class TimeLineManager {
-    TweetRepository tweetRepository = TweetFileRepository.getInstance();
-    AccountRepository accountRepository = AccountFileRepository.getInstance();
+    private final TweetRepository tweetRepository = TweetFileRepository.getInstance();
+    private final AccountRepository accountRepository = AccountFileRepository.getInstance();
 
     public Map<Record, Tweet> makeTimeLine(AccountManager accountManager) throws IOException {
 

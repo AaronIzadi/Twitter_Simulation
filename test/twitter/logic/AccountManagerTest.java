@@ -34,11 +34,11 @@ public class AccountManagerTest {
 
     @Test
     public void unlikeRemovesLikeRecordsFromTweet() throws Exception {
-        AccountManager accountManager = new AccountManager();
+        TweetManager tweetManager = new TweetManager();
+        AccountManager accountManager = new AccountManager(tweetManager);
         accountManager.createAccount("alice", "password");
         accountManager.login("alice", "password");
 
-        TweetManager tweetManager = new TweetManager();
         Tweet tweet = new Tweet(accountManager.getUser().getId(), Tweet.DEFAULT_ID, "hello");
         tweetManager.writeTweet(tweet);
 
@@ -59,10 +59,10 @@ public class AccountManagerTest {
 
     @Test
     public void deleteAccountPreservesRetweetedOriginalTweet() throws Exception {
-        AccountManager accountManager = new AccountManager();
+        TweetManager tweetManager = new TweetManager();
+        AccountManager accountManager = new AccountManager(tweetManager);
         accountManager.createAccount("author", "password");
 
-        TweetManager tweetManager = new TweetManager();
         Tweet original = new Tweet(accountManager.getUser().getId(), Tweet.DEFAULT_ID, "original");
         tweetManager.writeTweet(original);
         long originalId = original.getId();

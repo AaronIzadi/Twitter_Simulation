@@ -148,7 +148,6 @@ public class AccountFileRepository implements AccountRepository {
 
         Account account = createAccountWithStatus(username, password, type, status);
         account.setId(id);
-        Account.setIdCounter((Long) json.get("id counter"));
         account.setName((String) json.get("name"));
         account.setEmailAddress((String) json.get("email"));
         account.setBiography((String) json.get("biography"));

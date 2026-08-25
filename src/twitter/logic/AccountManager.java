@@ -195,8 +195,7 @@ public class AccountManager {
             tweet.setNumberOfLikes();
         } else {
             getUser().getLikedTweet().remove(tweet.getId());
-            tweet.getIdAccountLiked().remove(getUser().getId());
-            tweet.setNumberOfLikes();
+            tweet.removeAccountLike(getUser().getId());
         }
         accountRepository.update(getUser());
         tweetRepository.update(tweet);
@@ -214,8 +213,7 @@ public class AccountManager {
             tweet.setNumberOfRetweets();
         } else {
             getUser().getTweets().remove(tweet.getId());
-            tweet.getIdAccountRetweeted().remove(getUser().getId());
-            tweet.setNumberOfRetweets();
+            tweet.removeAccountRetweet(getUser().getId());
         }
         accountRepository.update(getUser());
         tweetRepository.update(tweet);
@@ -279,10 +277,43 @@ public class AccountManager {
     }
 
     public void deleteAccount() throws IOException {
-        for (long id : getUser().getTweets()) {
-            Tweet tweet = tweetRepository.getTweet(id);
-            tweetManager.deleteTweet(tweet);
+        long userId = getUser().getId();
+
+        for (long tweetId : new LinkedList<>(getUser().getTweets())) {
+            Tweet tweet = tweetRepository.getTweet(tweetId);
+            if (tweet == null) {
+                continue;
+            }
+            if (tweet.getAccountId() == userId) {
+                tweetManager.deleteTweet(tweet);
+            } else if (isRetweeted(tweet)) {
+                retweetOrRemoveRetweet(tweet);
+            }
         }
+
+        for (long replyId : new LinkedList<>(getUser().getReplied())) {
+            Tweet tweet = tweetRepository.getTweet(replyId);
+            if (tweet != null && tweet.getAccountId() == userId) {
+                tweetManager.deleteTweet(tweet);
+            }
+        }
+
+        for (long likedTweetId : new LinkedList<>(getUser().getLikedTweet())) {
+            Tweet tweet = tweetRepository.getTweet(likedTweetId);
+            if (tweet != null) {
+                tweet.removeAccountLike(userId);
+                tweetRepository.update(tweet);
+            }
+        }
+
+        for (long savedTweetId : new LinkedList<>(getUser().getSavedTweet())) {
+            Tweet tweet = tweetRepository.getTweet(savedTweetId);
+            if (tweet != null) {
+                tweet.removeAccountSaved(userId);
+                tweetRepository.update(tweet);
+            }
+        }
+
         Account account;
         for (long id : getUser().getFollowers()) {
             account = accountRepository.getAccount(id);

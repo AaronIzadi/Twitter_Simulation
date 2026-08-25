@@ -34,10 +34,21 @@ public class TweetManager {
     }
 
     public void deleteTweet(Tweet tweet) throws IOException {
+        if (tweet.getIdRepliedTweet() != Tweet.DEFAULT_ID) {
+            Tweet parentTweet = tweetRepository.getTweet(tweet.getIdRepliedTweet());
+            if (parentTweet != null) {
+                parentTweet.getReplies().remove(tweet.getId());
+                parentTweet.setNumberOfReplies();
+                tweetRepository.update(parentTweet);
+            }
+        }
+
         tweetRepository.removeTweet(tweet.getId());
         Account account = accountRepository.getUser();
         account.getTweets().remove(tweet.getId());
+        account.getReplied().remove(tweet.getId());
         account.setNumberOfTweets();
+        accountRepository.update(account);
         for (Record retweetRecord : tweet.getAccountRetweeted()) {
             long retweeterId = retweetRecord.getAccountId();
             Account acc = accountRepository.getAccount(retweeterId);

@@ -1,7 +1,6 @@
 package twitter.repository;
 
 import org.json.simple.JSONObject;
-import twitter.model.Account;
 import twitter.model.Record;
 import twitter.model.Time;
 import twitter.model.Tweet;
@@ -30,7 +29,7 @@ public class TweetFileRepository implements TweetRepository {
 
     @Override
     public Tweet add(Tweet tweet) throws IOException {
-        Repository.addAppInfo(tweet, Account.getIdCounter());
+        Repository.addAppInfo(tweet, Tweet.getIdCounter());
         if (exists(tweet.getId())) {
             return update(tweet);
         }
@@ -108,7 +107,6 @@ public class TweetFileRepository implements TweetRepository {
 
         Tweet tweet = new Tweet(accountId, idRepliedTweet, text);
         tweet.setId(tweetId);
-        Tweet.setIdCounter((Long) json.get("id counter"));
         tweet.setTweetTime(Time.valueOf((String) json.get("time")));
         tweet.setRecord(Record.valueOf((String) json.get("record")));
         tweet.setReplies(JsonFileHelper.readLongList(json, "reply num", "reply id "));

@@ -183,6 +183,22 @@ public class Tweet {
         numberOfReplies = replies.size();
     }
 
+    public void removeAccountLike(long accountId) {
+        idAccountLiked.remove(accountId);
+        accountLiked.removeIf(record -> record.getAccountId() == accountId);
+        setNumberOfLikes();
+    }
+
+    public void removeAccountRetweet(long accountId) {
+        idAccountRetweeted.remove(accountId);
+        accountRetweeted.removeIf(record -> record.getAccountId() == accountId);
+        setNumberOfRetweets();
+    }
+
+    public void removeAccountSaved(long accountId) {
+        idAccountSaved.remove(accountId);
+    }
+
     public void clearLikes() {
         numberOfLikes = 0;
     }

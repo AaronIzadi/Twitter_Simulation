@@ -28,18 +28,18 @@ public class ViewPersonalInfoState extends State {
         System.out.println(ConsoleColors.BLUE + "Email address: " + accountManager.getUser().getEmailAddress());
         System.out.println(ConsoleColors.BLUE + "Phone number: " + accountManager.getUser().getPhoneNumber());
         System.out.println(ConsoleColors.BLUE + "Followers: " + accountManager.getUser().getNumberOfFollowers());
-        System.out.println(ConsoleColors.BLUE + "Followings: " + accountManager.getUser().getNumberOfFollowings());
+        System.out.println(ConsoleColors.BLUE + "Following: " + accountManager.getUser().getNumberOfFollowings());
         System.out.println(ConsoleColors.BLUE + "Tweets: " + accountManager.getUser().getNumberOfTweets());
 
         System.out.println(ConsoleColors.YELLOW + "What do you want to do next?");
-        System.out.println(ConsoleColors.YELLOW + "1.View saved tweets");
-        System.out.println(ConsoleColors.YELLOW + "2.View followers' list");
-        System.out.println(ConsoleColors.YELLOW + "3.View followings' list");
-        System.out.println(ConsoleColors.YELLOW + "4.View tweets list");
-        System.out.println(ConsoleColors.YELLOW + "5.View follow requests");
-        System.out.println(ConsoleColors.YELLOW + "6.View list of requests you sent");
-        System.out.println(ConsoleColors.YELLOW + "7.Go to setting");
-        System.out.println(ConsoleColors.YELLOW + "8.Back");
+        System.out.println(ConsoleColors.YELLOW + "1. View saved tweets");
+        System.out.println(ConsoleColors.YELLOW + "2. View follower list");
+        System.out.println(ConsoleColors.YELLOW + "3. View following list");
+        System.out.println(ConsoleColors.YELLOW + "4. View your tweets");
+        System.out.println(ConsoleColors.YELLOW + "5. View follow requests");
+        System.out.println(ConsoleColors.YELLOW + "6. View sent follow requests");
+        System.out.println(ConsoleColors.YELLOW + "7. Go to settings");
+        System.out.println(ConsoleColors.YELLOW + "8. Back");
     }
 
     @Override
@@ -80,7 +80,7 @@ public class ViewPersonalInfoState extends State {
                     return new TweetListState(accountManager.getUser().getUserName());
                 } else {
                     log.info("There is no tweet to show.");
-                    System.out.println(ConsoleColors.RED + "There is no tweet to show!");
+                    System.out.println(ConsoleColors.RED + "There are no tweets to show!");
                     return this;
                 }
             case "5":
@@ -89,7 +89,7 @@ public class ViewPersonalInfoState extends State {
                     return new FollowRequestsListState();
                 } else {
                     log.info("There is no list to show.");
-                    System.out.println(ConsoleColors.RED + "There is no list to show!");
+                    System.out.println(ConsoleColors.RED + "The list is empty!");
                     return this;
                 }
             case "6":
@@ -98,7 +98,7 @@ public class ViewPersonalInfoState extends State {
                     return new RequestSentListState();
                 } else {
                     log.info("There is no list to show.");
-                    System.out.println(ConsoleColors.RED + "There is no list to show!");
+                    System.out.println(ConsoleColors.RED + "The list is empty!");
                     return this;
                 }
             case "7":
@@ -121,7 +121,7 @@ public class ViewPersonalInfoState extends State {
 
     @Override
     public void printFinalCliError() {
-        System.out.println(ConsoleColors.RED + "Enter valid number.");
+        System.out.println(ConsoleColors.RED + "Enter a valid number.");
     }
 
     @Override

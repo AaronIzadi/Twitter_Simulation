@@ -32,9 +32,9 @@ public class FollowerListState extends State {
         AccountManager accountManager = context.getAccountManager();
         Logger log = context.getLogger();
 
-        if (accountManager.getUser().getNumberOfFollowers() != 0) {
+        if (accountManager.getNumberOfFollowers(username) == 0) {
             log.info("There is no list to show.");
-            System.out.println(ConsoleColors.RED + "There is no list to show!");
+            System.out.println(ConsoleColors.RED + "The list is empty!");
             return null;
         }
 
@@ -42,7 +42,7 @@ public class FollowerListState extends State {
             System.out.println(ConsoleColors.BLUE + follower);
         }
 
-        System.out.println(ConsoleColors.YELLOW + "Do you want to check a profile?");
+        System.out.println(ConsoleColors.YELLOW + "Do you want to view a profile?");
 
         String choice = context.getScanner().nextLine();
 
@@ -64,7 +64,7 @@ public class FollowerListState extends State {
 
     @Override
     public void printFinalCliError() {
-        System.out.println(ConsoleColors.RED + "Please only enter y or n to continue.");
+        System.out.println(ConsoleColors.RED + "Please enter only y or n to continue.");
     }
 
     @Override

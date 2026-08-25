@@ -180,3 +180,27 @@
 
 2023 12 6 22 51 10  :  User checked @mah's profile.
 
+2026 8 25 15 47 57  :  App started.
+
+2026 8 25 15 48 0  :  Going to login state.
+
+2026 8 25 15 48 12  :  Entered incorrect password for @iz
+
+2026 8 25 15 48 38  :  Logged in as @iz
+
+2026 8 25 15 48 42  :  User chose to check their timeline.
+
+2026 8 25 15 50 8  :  App started.
+
+2026 8 25 15 50 11  :  Going to login state.
+
+2026 8 25 15 50 14  :  Logged in as @iz
+
+2026 8 25 15 50 17  :  User chose to check their timeline.
+
+2026 8 25 15 50 17  :  Tweet with id:2 is shown.
+
+2026 8 25 15 50 31  :  User wants to see next tweet.
+
+2026 8 25 15 50 31  :  Tweet with id:2 is shown.
+

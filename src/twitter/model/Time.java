@@ -81,7 +81,6 @@ public class Time implements Comparable {
 
     public static Time valueOf(String timeInString) {
         Time time = new Time();
-        System.out.println(timeInString);
         String[] all = timeInString.split(" ");
         time.setYear(Integer.parseInt(all[0]));
         time.setMonth(Integer.parseInt(all[1]));

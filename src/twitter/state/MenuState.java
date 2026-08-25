@@ -27,11 +27,11 @@ public class MenuState extends State {
         Logger log = context.getLogger();
 
         System.out.println(ConsoleColors.YELLOW + "Choose what you want to do:");
-        System.out.println(ConsoleColors.YELLOW + "1.Go to timeline");
-        System.out.println(ConsoleColors.YELLOW + "2.Check my profile info");
-        System.out.println(ConsoleColors.YELLOW + "3.Search for a user");
-        System.out.println(ConsoleColors.YELLOW + "4.Make tweet");
-        System.out.println(ConsoleColors.YELLOW + "5.Exit");
+        System.out.println(ConsoleColors.YELLOW + "1. Go to the timeline");
+        System.out.println(ConsoleColors.YELLOW + "2. Check my profile info");
+        System.out.println(ConsoleColors.YELLOW + "3. Search for a user");
+        System.out.println(ConsoleColors.YELLOW + "4. Compose a tweet");
+        System.out.println(ConsoleColors.YELLOW + "5. Exit");
 
         String choice = context.getScanner().nextLine();
 
@@ -71,7 +71,7 @@ public class MenuState extends State {
 
     @Override
     public void printFinalCliError() {
-        System.out.println(ConsoleColors.RED + "Enter valid number.");
+        System.out.println(ConsoleColors.RED + "Enter a valid number.");
     }
 
     @Override

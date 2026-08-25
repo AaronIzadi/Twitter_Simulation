@@ -5,16 +5,17 @@ import twitter.model.Tweet;
 import twitter.repository.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class TimeLineManager {
     TweetRepository tweetRepository = TweetFileRepository.getInstance();
     AccountRepository accountRepository = AccountFileRepository.getInstance();
-    AccountManager accountManager = new AccountManager();
 
-
-    public Map<Record, Tweet> makeTimeLine() throws IOException {
+    public Map<Record, Tweet> makeTimeLine(AccountManager accountManager) throws IOException {
 
         Map<Record, Tweet> timeLine = new HashMap<>();
 
@@ -71,7 +72,13 @@ public class TimeLineManager {
             }
 
         }
-        return timeLine;
+        List<Map.Entry<Record, Tweet>> entries = new ArrayList<>(timeLine.entrySet());
+        entries.sort((a, b) -> -a.getKey().compareTo(b.getKey()));
+        Map<Record, Tweet> sorted = new LinkedHashMap<>();
+        for (Map.Entry<Record, Tweet> entry : entries) {
+            sorted.put(entry.getKey(), entry.getValue());
+        }
+        return sorted;
     }
 
 }

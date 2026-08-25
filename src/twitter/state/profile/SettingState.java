@@ -16,7 +16,7 @@ public class SettingState extends State {
     public void printCliMenu(Context context) {
         System.out.println(ConsoleColors.YELLOW + "What do you want to do?");
         System.out.println(ConsoleColors.YELLOW + "1.Edit profile");
-        System.out.println(ConsoleColors.YELLOW + "2.Check blacklist");
+        System.out.println(ConsoleColors.YELLOW + "2. View blocked users");
         System.out.println(ConsoleColors.YELLOW + "3.Log out");
         System.out.println(ConsoleColors.YELLOW + "4.Delete account permanently");
         System.out.println(ConsoleColors.YELLOW + "5.Back");
@@ -46,7 +46,7 @@ public class SettingState extends State {
             case "3": {
 
                 log.info("User wants to log out.");
-                System.out.println(ConsoleColors.YELLOW + "Sure you want to log out?(y/n)");
+                System.out.println(ConsoleColors.YELLOW + "Are you sure you want to log out? (y/n)");
                 String ch = context.getScanner().nextLine();
                 switch (ch) {
                     case "y":
@@ -61,7 +61,7 @@ public class SettingState extends State {
                         log.info("User chose to stay login.");
                         return this;
                     default:
-                        System.out.println(ConsoleColors.RED + "Please only enter y or n to continue.");
+                        System.out.println(ConsoleColors.RED + "Please enter only y or n to continue.");
                         return this;
                 }
 
@@ -69,7 +69,7 @@ public class SettingState extends State {
             case "4": {
 
                 log.info("User wants to delete their account.");
-                System.out.println(ConsoleColors.YELLOW + "Sure you want to delete your account?(y/n)");
+                System.out.println(ConsoleColors.YELLOW + "Are you sure you want to delete your account? (y/n)");
                 String ch = context.getScanner().nextLine();
                 switch (ch) {
                     case "y":
@@ -83,7 +83,7 @@ public class SettingState extends State {
                         log.info("User changed their mind.");
                         return this;
                     default:
-                        System.out.println(ConsoleColors.RED + "Please only enter y or n to continue.");
+                        System.out.println(ConsoleColors.RED + "Please enter only y or n to continue.");
                         return this;
                 }
 

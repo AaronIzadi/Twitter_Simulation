@@ -10,7 +10,7 @@ public class StartState extends State {
 
     @Override
     public void printCliMenu(Context context) {
-        System.out.println(ConsoleColors.YELLOW + "1.Want to start the app? Or 2.Exit?");
+        System.out.println(ConsoleColors.YELLOW + "1. Start the app or 2. Exit?");
     }
 
     @Override
@@ -25,7 +25,7 @@ public class StartState extends State {
         switch (ch) {
             case "1":
 
-                System.out.println(ConsoleColors.YELLOW + "1.Want to Create account? Or 2.Log in?");
+                System.out.println(ConsoleColors.YELLOW + "1. Create an account or 2. Log in?");
                 log.info("App started.");
 
                 String choice = context.getScanner().nextLine();
@@ -53,7 +53,7 @@ public class StartState extends State {
 
     @Override
     public void printFinalCliError() {
-        System.out.println(ConsoleColors.RED + "Enter valid number.");
+        System.out.println(ConsoleColors.RED + "Enter a valid number.");
     }
 
     @Override

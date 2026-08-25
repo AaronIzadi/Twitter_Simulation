@@ -55,15 +55,24 @@ public class Record implements Comparable {
         }
     }
 
-    public static Record valueOf(String recordInString){
+    public static Record valueOf(String recordInString) {
         String[] all = recordInString.split(" ");
-        Time time = Time.valueOf(all[1]);
         Record record = new Record();
 
         record.setAccountId(Long.parseLong(all[0]));
-        record.setTimeRecord(time);
-        record.setRecordType(Integer.parseInt(all[2]));
-        record.setType(Integer.parseInt(all[2]));
+
+        StringBuilder timeBuilder = new StringBuilder();
+        for (int i = 1; i < all.length - 1; i++) {
+            if (i > 1) {
+                timeBuilder.append(' ');
+            }
+            timeBuilder.append(all[i]);
+        }
+        record.setTimeRecord(Time.valueOf(timeBuilder.toString()));
+
+        int type = Integer.parseInt(all[all.length - 1]);
+        record.setRecordType(type);
+        record.setType(type);
 
         return record;
     }

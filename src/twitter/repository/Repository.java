@@ -1,13 +1,20 @@
 package twitter.repository;
 
 import twitter.model.Account;
-
 import twitter.model.Tweet;
 
-import java.io.*;
-
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
 public class Repository {
+
+    private static final String APP_INFO_DIR = "src/resources/app info";
+    private static final String ACCOUNT_COUNTER_FILE = APP_INFO_DIR + "/account.txt";
+    private static final String TWEET_COUNTER_FILE = APP_INFO_DIR + "/tweet.txt";
 
     private static final Repository instance = new Repository();
 
@@ -16,39 +23,25 @@ public class Repository {
     }
 
     public static void addAppInfo(Object object, long idCounter) throws FileNotFoundException, UnsupportedEncodingException {
-
-        String path;
-
-        if (object instanceof Account) {
-            path = "src/resources/app info/account.txt";
-        } else {
-            path = "src/resources/app info/tweet.txt";
+        String path = object instanceof Account ? ACCOUNT_COUNTER_FILE : TWEET_COUNTER_FILE;
+        try (PrintWriter writer = new PrintWriter(path, "UTF-8")) {
+            writer.print(idCounter);
         }
-
-        PrintWriter writer = new PrintWriter(path, "UTF-8");
-        writer.print(idCounter);
-        writer.close();
     }
 
     public void getIdCounter() throws IOException {
+        Account.setIdCounter(readCounter(ACCOUNT_COUNTER_FILE));
+        Tweet.setIdCounter(readCounter(TWEET_COUNTER_FILE));
+    }
 
-        File account = new File("src/resources/app info/account.txt");
-        File tweet = new File("src/resources/app info/tweet.txt");
-
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(account));
-        String string;
-        long idCounterAccount = 0;
-        while ((string = bufferedReader.readLine()) != null) {
-            idCounterAccount = Long.parseLong(string);
+    private long readCounter(String path) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+            String line;
+            long counter = 0;
+            while ((line = reader.readLine()) != null) {
+                counter = Long.parseLong(line);
+            }
+            return counter;
         }
-        Account.setIdCounter(idCounterAccount);
-
-        bufferedReader = new BufferedReader(new FileReader(tweet));
-        long idCounterTweet = 0;
-        while ((string = bufferedReader.readLine()) != null) {
-            idCounterTweet = Long.parseLong(string);
-        }
-        Tweet.setIdCounter(idCounterTweet);
-
     }
 }

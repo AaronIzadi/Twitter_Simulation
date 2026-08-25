@@ -42,7 +42,7 @@ public class ViewProfileState extends State {
         }
 
         if (!accountManager.checkIfExist(username)) {
-            System.out.println(ConsoleColors.RED + "Sorry! This account seems not to exist!");
+            System.out.println(ConsoleColors.RED + "Sorry! This account does not exist!");
             return null;
         }
 
@@ -51,7 +51,7 @@ public class ViewProfileState extends State {
         System.out.println(ConsoleColors.BLUE + "Name: " + accountManager.getName(username));
         System.out.println(ConsoleColors.BLUE + "Biography: " + accountManager.getBiography(username));
         System.out.println(ConsoleColors.BLUE + "Followers: " + accountManager.getNumberOfFollowers(username));
-        System.out.println(ConsoleColors.BLUE + "Followings: " + accountManager.getNumberOfFollowings(username));
+        System.out.println(ConsoleColors.BLUE + "Following: " + accountManager.getNumberOfFollowings(username));
         System.out.println(ConsoleColors.BLUE + "Tweets: " + accountManager.getNumberOfTweets(username));
 
         if (!accountManager.ifYouAreBlocked(username)) {
@@ -65,7 +65,7 @@ public class ViewProfileState extends State {
         }
 
         if (accountManager.isRequested(username)) {
-            System.out.println(ConsoleColors.BLUE + "You have sent follow request to this user.");
+            System.out.println(ConsoleColors.BLUE + "You have sent a follow request to this user.");
         }
 
         if (accountManager.isFollowingYOu(username)) {
@@ -91,13 +91,13 @@ public class ViewProfileState extends State {
             if (accountManager.isRequested(username)) {
                 System.out.println(ConsoleColors.YELLOW + "3.Delete my follow request");
             } else {
-                System.out.println(ConsoleColors.YELLOW + "3.Send follow request");
+                System.out.println(ConsoleColors.YELLOW + "3. Send a follow request");
             }
             //TODO a private page can also be unfollowed, not just deleting request.
         }
 
         System.out.println(accountManager.isMute(username) ? ConsoleColors.YELLOW + "4.Unmute this user" : ConsoleColors.YELLOW + "4.Mute this user");
-        System.out.println(accountManager.isBlocked(username) ? ConsoleColors.YELLOW + "5.Unlock this user" : ConsoleColors.YELLOW + "5.Block this user");
+        System.out.println(accountManager.isBlocked(username) ? ConsoleColors.YELLOW + "5.Unblock this user" : ConsoleColors.YELLOW + "5.Block this user");
 
         if (accountManager.isPublic(username)) {
             System.out.println(ConsoleColors.YELLOW + "6.Check their follower list");
@@ -163,7 +163,7 @@ public class ViewProfileState extends State {
                         log.info("User wants to check @" + username + "'s follower list.");
                         return new FollowerListState(username);
                     } else {
-                        System.out.println(ConsoleColors.RED + "There is no list to show!");
+                        System.out.println(ConsoleColors.RED + "The list is empty!");
                         return this;
                     }
                 case "7":
@@ -176,7 +176,7 @@ public class ViewProfileState extends State {
                         log.info("User wants to check @" + username + "'s tweets.");
                         return new TweetListState(username);
                     } else {
-                        System.out.println(ConsoleColors.RED + "There is no tweet to show!");
+                        System.out.println(ConsoleColors.RED + "There are no tweets to show!");
                         return this;
                     }
                 default:
@@ -193,7 +193,7 @@ public class ViewProfileState extends State {
 
     @Override
     public void printFinalCliError() {
-        System.out.println(ConsoleColors.RED + "Enter valid number.");
+        System.out.println(ConsoleColors.RED + "Enter a valid number.");
     }
 
     @Override

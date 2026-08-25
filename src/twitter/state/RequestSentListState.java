@@ -12,7 +12,7 @@ public class RequestSentListState extends State {
 
     @Override
     public void printCliMenu(Context context) {
-        System.out.println(ConsoleColors.BLUE + "Request you sent:");
+        System.out.println(ConsoleColors.BLUE + "Requests you sent:");
     }
 
     @Override
@@ -27,7 +27,7 @@ public class RequestSentListState extends State {
         }
 
         System.out.println(ConsoleColors.YELLOW + "What do you want to do next?");
-        System.out.println(ConsoleColors.YELLOW + "1.Unsent a follow request");
+        System.out.println(ConsoleColors.YELLOW + "1. Cancel a follow request");
         System.out.println(ConsoleColors.YELLOW + "2.Check a profile");
         System.out.println(ConsoleColors.YELLOW + "3.Back");
 
@@ -42,7 +42,7 @@ public class RequestSentListState extends State {
                     accountManager.unsendFollowRequest(username);
                     log.info("User unsent their follow request to @" + username);
                 } else {
-                    System.out.println(ConsoleColors.RED + "This user seems not to exist!");
+                    System.out.println(ConsoleColors.RED + "This user does not exist!");
                 }
                 return this;
 
@@ -65,7 +65,7 @@ public class RequestSentListState extends State {
 
     @Override
     public void printFinalCliError() {
-        System.out.println(ConsoleColors.RED + "Enter valid number.");
+        System.out.println(ConsoleColors.RED + "Enter a valid number.");
     }
 
     @Override

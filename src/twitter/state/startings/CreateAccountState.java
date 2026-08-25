@@ -35,7 +35,7 @@ public class CreateAccountState extends State {
 
             accountManager.createAccount(username, password);
             System.out.println(ConsoleColors.BLUE + "Account created.");
-            System.out.println(ConsoleColors.BLUE + "You can later complete your profile info in settings!");
+            System.out.println(ConsoleColors.BLUE + "You can complete your profile information in Settings later!");
             log.info("Account successfully created.");
             log.info("Logged in as @" + username);
             return new MenuState();
@@ -48,7 +48,7 @@ public class CreateAccountState extends State {
 
     @Override
     public void printFinalCliError() {
-        System.out.println(ConsoleColors.RED + "User already exists. Try another one.");
+        System.out.println(ConsoleColors.RED + "This username already exists. Try another one.");
     }
 
     @Override

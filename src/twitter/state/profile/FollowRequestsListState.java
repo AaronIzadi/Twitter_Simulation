@@ -28,7 +28,7 @@ public class FollowRequestsListState extends State {
 
         System.out.println(ConsoleColors.YELLOW + "What do you want to do next?");
         System.out.println(ConsoleColors.YELLOW + "1.Accept a follow request");
-        System.out.println(ConsoleColors.YELLOW + "2.Delete a follow request");
+        System.out.println(ConsoleColors.YELLOW + "2. Decline a follow request");
         System.out.println(ConsoleColors.YELLOW + "3.Check a profile");
         System.out.println(ConsoleColors.YELLOW + "4.Back");
 
@@ -41,7 +41,7 @@ public class FollowRequestsListState extends State {
                 accountManager.acceptFollowRequest(username);
                 log.info("User accepted @" + username + "'s follow request.");
             } else {
-                System.out.println(ConsoleColors.RED + "This user seems not to exist!");
+                System.out.println(ConsoleColors.RED + "This user does not exist!");
             }
             return this;
         } else if (choice == '2') {
@@ -51,7 +51,7 @@ public class FollowRequestsListState extends State {
                 accountManager.deleteFollowRequest(username);
                 log.info("User deleted @" + username + "'s follow request.");
             } else {
-                System.out.println(ConsoleColors.RED + "This user seems not to exist!");
+                System.out.println(ConsoleColors.RED + "This user does not exist!");
             }
             return this;
         } else if (choice == '3') {
@@ -69,7 +69,7 @@ public class FollowRequestsListState extends State {
 
     @Override
     public void printFinalCliError() {
-        System.out.println(ConsoleColors.RED + "Enter valid number.");
+        System.out.println(ConsoleColors.RED + "Enter a valid number.");
     }
 
     @Override

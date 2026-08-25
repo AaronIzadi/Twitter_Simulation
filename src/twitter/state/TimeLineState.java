@@ -23,13 +23,16 @@ public class TimeLineState extends State {
     }
 
     public TimeLineState(Context context) throws IOException {
-        this.index = 0;
-        this.map = context.getTimeLineManager().makeTimeLine();
+        this(context.getTimeLineManager().makeTimeLine(context.getAccountManager()), 0);
+    }
+
+    public TimeLineState(Context context, int index) throws IOException {
+        this(context.getTimeLineManager().makeTimeLine(context.getAccountManager()), index);
     }
 
     @Override
     public void printCliMenu(Context context) {
-        System.out.println(ConsoleColors.YELLOW + "Welcome to timeline!");
+        System.out.println(ConsoleColors.YELLOW + "Welcome to the timeline!");
     }
 
     @Override
@@ -41,9 +44,7 @@ public class TimeLineState extends State {
         TweetManager tweetManager = context.getTweetManager();
         Logger log = context.getLogger();
 
-        map = context.getTimeLineManager().makeTimeLine();
-
-        if (index >= map.size()) {
+        if (map.isEmpty() || index >= map.size()) {
             printFinalCliError();
             return null;
         }
@@ -82,7 +83,7 @@ public class TimeLineState extends State {
 
         System.out.println(ConsoleColors.YELLOW + "8.View this user's profile");
         System.out.println(ConsoleColors.YELLOW + "9.Save this tweet");
-        System.out.println(ConsoleColors.YELLOW + "10.Add comment");
+        System.out.println(ConsoleColors.YELLOW + "10. Add a comment");
         System.out.println(ConsoleColors.YELLOW + "11.Next tweet");
 
 
@@ -113,7 +114,7 @@ public class TimeLineState extends State {
 
                 log.info(accountManager.isLiked(tweet) ? "User removed their like." : "User liked this tweet.");
                 accountManager.likeOrRemoveLike(tweet);
-                return this;
+                return new TimeLineState(context, index);
 
             case "6":
 
@@ -123,7 +124,7 @@ public class TimeLineState extends State {
                 } else {
                     System.out.println(ConsoleColors.RED + "This account is private. You can't retweet this tweet!");
                 }
-                return this;
+                return new TimeLineState(context, index);
 
             case "7":
 
@@ -145,7 +146,7 @@ public class TimeLineState extends State {
 
                 log.info("User saved this tweet.");
                 accountManager.saveTweet(tweet);
-                return this;
+                return new TimeLineState(context, index);
 
             case "10":
 
@@ -160,14 +161,14 @@ public class TimeLineState extends State {
             default:
 
                 printFinalCliError();
-                return this;
+                return new TimeLineState(context, index);
         }
 
     }
 
     @Override
     public void printFinalCliError() {
-        System.out.println(ConsoleColors.RED + "There is no tweet to show!");
+        System.out.println(ConsoleColors.RED + "There are no more tweets to show!");
     }
 
     @Override

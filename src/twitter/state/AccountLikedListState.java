@@ -32,7 +32,7 @@ public class AccountLikedListState extends State {
 
         if(tweet.getNumberOfLikes() == 0) {
             log.info("There is no list to show.");
-            System.out.println(ConsoleColors.RED + "There is no list to show!");
+            System.out.println(ConsoleColors.RED + "The list is empty!");
             return null;
         }
 
@@ -68,7 +68,7 @@ public class AccountLikedListState extends State {
 
     @Override
     public void printFinalCliError() {
-        System.out.println(ConsoleColors.RED + "Enter valid number.");
+        System.out.println(ConsoleColors.RED + "Enter a valid number.");
     }
 
     @Override

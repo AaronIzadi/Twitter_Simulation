@@ -18,7 +18,7 @@ public class FollowingListState extends State {
 
     @Override
     public void printCliMenu(Context context) {
-        System.out.println(ConsoleColors.YELLOW + "Followings:");
+        System.out.println(ConsoleColors.YELLOW + "Following:");
     }
 
     @Override
@@ -29,9 +29,9 @@ public class FollowingListState extends State {
         AccountManager accountManager = context.getAccountManager();
         Logger log = context.getLogger();
 
-        if (accountManager.getUser().getNumberOfFollowings() == 0) {
+        if (accountManager.getNumberOfFollowings(username) == 0) {
             log.info("There is no list to show.");
-            System.out.println(ConsoleColors.RED + "There is no list to show!");
+            System.out.println(ConsoleColors.RED + "The list is empty!");
             return null;
         }
 
@@ -39,7 +39,7 @@ public class FollowingListState extends State {
             System.out.println(ConsoleColors.BLUE + following);
         }
 
-        System.out.println(ConsoleColors.YELLOW + "Do you want to check a profile?");
+        System.out.println(ConsoleColors.YELLOW + "Do you want to view a profile?");
 
         String choice = context.getScanner().nextLine();
 
@@ -60,7 +60,7 @@ public class FollowingListState extends State {
 
     @Override
     public void printFinalCliError() {
-        System.out.println(ConsoleColors.RED + "Please only enter y or n to continue.");
+        System.out.println(ConsoleColors.RED + "Please enter only y or n to continue.");
     }
 
     @Override

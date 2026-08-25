@@ -84,7 +84,7 @@ public class ShowReplyState extends State {
 
         System.out.println(ConsoleColors.YELLOW + "8.View this user's profile");
         System.out.println(ConsoleColors.YELLOW + "9.Save this tweet");
-        System.out.println(ConsoleColors.YELLOW + "10.Add comment");
+        System.out.println(ConsoleColors.YELLOW + "10. Add a comment");
         System.out.println(ConsoleColors.YELLOW + "11.Next tweet");
 
 
@@ -168,7 +168,7 @@ public class ShowReplyState extends State {
 
     @Override
     public void printFinalCliError() {
-        System.out.println(ConsoleColors.RED + "There is no tweet to show!");
+        System.out.println(ConsoleColors.RED + "There are no more comments to show!");
     }
 
     @Override

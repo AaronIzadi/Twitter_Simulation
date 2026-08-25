@@ -24,11 +24,11 @@ public class BlackListState extends State{
         Logger log = context.getLogger();
 
         System.out.println(ConsoleColors.BLUE + accountManager.viewAccountList(accountManager.getUser().getBlacklist()));
-        System.out.println(ConsoleColors.YELLOW + "Do you want to check a profile?(y/n)");
+        System.out.println(ConsoleColors.YELLOW + "Do you want to view a profile? (y/n)");
 
         if(accountManager.getUser().getNumberOfBlackList() == 0) {
             log.info("There is no list to show.");
-            System.out.println(ConsoleColors.RED + "There is no list to show!");
+            System.out.println(ConsoleColors.RED + "The list is empty!");
             return null;
         }
 
@@ -51,7 +51,7 @@ public class BlackListState extends State{
 
     @Override
     public void printFinalCliError() {
-        System.out.println(ConsoleColors.RED + "Please only enter y or n to continue.");
+        System.out.println(ConsoleColors.RED + "Please enter only y or n to continue.");
     }
 
     @Override

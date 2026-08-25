@@ -20,11 +20,11 @@ public class EditProfileState extends State {
         System.out.println(ConsoleColors.YELLOW + "1.Change name");
         System.out.println(ConsoleColors.YELLOW + "2.Edit biography");
         System.out.println(ConsoleColors.YELLOW + "3.Edit date of birth");
-        System.out.println(ConsoleColors.YELLOW + "4.Change Email address");
+        System.out.println(ConsoleColors.YELLOW + "4. Change email address");
         System.out.println(ConsoleColors.YELLOW + "5.Change username");
         System.out.println(ConsoleColors.YELLOW + "6.Change password");
         System.out.println(ConsoleColors.YELLOW + "7.Change phone number");
-        System.out.println(ConsoleColors.YELLOW + "8.Switch status to recently/last seen");
+        System.out.println(ConsoleColors.YELLOW + "8. Switch between 'Last seen recently' and 'Last seen'");
         System.out.println(accountManager.isPublic(accountManager.getUser().getUserName()) ? ConsoleColors.YELLOW + "9.Switch account to private" : ConsoleColors.YELLOW + "9.Switch account to public");
         System.out.println(ConsoleColors.YELLOW + "10.Back");
     }
@@ -80,7 +80,7 @@ public class EditProfileState extends State {
                     accountManager.changeUserName(user);
                     log.info("User changed their username to: " + user);
                 } else {
-                    System.out.println(ConsoleColors.RED + "This user already exists! Try another one.");
+                    System.out.println(ConsoleColors.RED + "This username already exists. Try another one.");
                 }
                 return this;
 
@@ -129,7 +129,7 @@ public class EditProfileState extends State {
 
     @Override
     public void printFinalCliError() {
-        System.out.println(ConsoleColors.RED + "Enter valid number.");
+        System.out.println(ConsoleColors.RED + "Enter a valid number.");
     }
 
     @Override

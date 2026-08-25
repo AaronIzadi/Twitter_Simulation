@@ -82,7 +82,7 @@ public class TweetListState extends State {
 
         System.out.println(ConsoleColors.YELLOW + "8.View this user's profile");
         System.out.println(ConsoleColors.YELLOW + "9.Save this tweet");
-        System.out.println(ConsoleColors.YELLOW + "10.Add comment");
+        System.out.println(ConsoleColors.YELLOW + "10. Add a comment");
         System.out.println(ConsoleColors.YELLOW + "11.Next tweet");
 
 
@@ -107,7 +107,7 @@ public class TweetListState extends State {
                     return new AccountRetweetedListState(tweet);
                 } else {
                     log.info("There is no list to show.");
-                    System.out.println(ConsoleColors.RED + "There is no list to show!");
+                    System.out.println(ConsoleColors.RED + "The list is empty!");
                     return this;
                 }
 
@@ -165,14 +165,14 @@ public class TweetListState extends State {
                 return new TweetListState(username, index + 1);
 
             default:
-                System.out.println(ConsoleColors.RED + "Invalid Input.");
+                System.out.println(ConsoleColors.RED + "Invalid input.");
                 return this;
         }
     }
 
     @Override
     public void printFinalCliError() {
-        System.out.println(ConsoleColors.RED + "There is no tweet to Show!");
+        System.out.println(ConsoleColors.RED + "There are no more tweets to show!");
     }
 
     @Override

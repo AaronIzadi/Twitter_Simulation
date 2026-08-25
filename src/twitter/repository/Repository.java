@@ -3,6 +3,8 @@ package twitter.repository;
 import twitter.model.Account;
 import twitter.model.Tweet;
 
+import twitter.utils.AppPaths;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,14 +12,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Path;
 
 public class Repository {
 
-    private static final String APP_INFO_DIR = "src/resources/app info";
-    private static final String ACCOUNT_DATA_DIR = "src/resources/data/account/";
-    private static final String TWEET_DATA_DIR = "src/resources/data/tweet/";
-    private static final String ACCOUNT_COUNTER_FILE = APP_INFO_DIR + "/account.txt";
-    private static final String TWEET_COUNTER_FILE = APP_INFO_DIR + "/tweet.txt";
+    private static final Path ACCOUNT_DATA_DIR = AppPaths.accountDataDir();
+    private static final Path TWEET_DATA_DIR = AppPaths.tweetDataDir();
+    private static final String ACCOUNT_COUNTER_FILE = AppPaths.appInfoDir().resolve("account.txt").toString();
+    private static final String TWEET_COUNTER_FILE = AppPaths.appInfoDir().resolve("tweet.txt").toString();
 
     private static final Repository instance = new Repository();
 
@@ -50,8 +52,8 @@ public class Repository {
         }
     }
 
-    private long maxEntityId(String directory) {
-        File folder = new File(directory);
+    private long maxEntityId(Path directory) {
+        File folder = directory.toFile();
         File[] files = folder.listFiles();
         if (files == null) {
             return 0;

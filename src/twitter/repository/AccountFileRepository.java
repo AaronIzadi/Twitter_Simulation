@@ -2,15 +2,15 @@ package twitter.repository;
 
 import org.json.simple.JSONObject;
 import twitter.model.Account;
+import twitter.utils.AppPaths;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.LinkedList;
 
 public class AccountFileRepository implements AccountRepository {
 
-    private static final String ACCOUNT_DIR = "src/resources/data/account/";
+    private static final Path ACCOUNT_DIR = AppPaths.accountDataDir();
     private static final AccountFileRepository instance = new AccountFileRepository();
 
     private Account userAccount;
@@ -50,7 +50,7 @@ public class AccountFileRepository implements AccountRepository {
 
     @Override
     public Account getAccountByUserName(String username) throws IOException {
-        File folder = new File(ACCOUNT_DIR);
+        File folder = ACCOUNT_DIR.toFile();
         File[] files = folder.listFiles();
         if (files == null) {
             return null;
@@ -84,12 +84,12 @@ public class AccountFileRepository implements AccountRepository {
         if (!exists(id)) {
             return false;
         }
-        return JsonFileHelper.entityFile(ACCOUNT_DIR, id).toFile().delete();
+        return JsonFileHelper.entityFile(ACCOUNT_DIR.toString(), id).toFile().delete();
     }
 
     @Override
     public boolean exists(long id) {
-        File account = JsonFileHelper.entityFile(ACCOUNT_DIR, id).toFile();
+        File account = JsonFileHelper.entityFile(ACCOUNT_DIR.toString(), id).toFile();
         return account.exists() && !account.isDirectory();
     }
 
@@ -108,7 +108,7 @@ public class AccountFileRepository implements AccountRepository {
     }
 
     private Path filePath(long id) {
-        return JsonFileHelper.entityFile(ACCOUNT_DIR, id);
+        return JsonFileHelper.entityFile(ACCOUNT_DIR.toString(), id);
     }
 
     private JSONObject toJson(Account account) {

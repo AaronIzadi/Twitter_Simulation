@@ -7,13 +7,12 @@ import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Logger {
 
-    private static final String LOG_FILE = "src/resources/log/logging.txt";
+    private static final Path LOG_FILE = AppPaths.logFile();
     private static final DateTimeFormatter TIMESTAMP = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     private static final Object LOCK = new Object();
 
@@ -56,7 +55,7 @@ public class Logger {
 
         synchronized (LOCK) {
             try {
-                Path logPath = Paths.get(LOG_FILE);
+                Path logPath = LOG_FILE;
                 Files.createDirectories(logPath.getParent());
                 try (PrintWriter writer = new PrintWriter(
                         new OutputStreamWriter(

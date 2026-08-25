@@ -55,6 +55,8 @@ public class ShowReplyState extends State {
         }
 
         Tweet replyTweet = tweetManager.getTweet(sourceTweet.getReplies().get(index));
+        System.out.println(ConsoleColors.BLUE + replyTweet.getTextOfTweet());
+        System.out.println(ConsoleColors.BLUE + "User: @" + accountManager.getUsername(replyTweet.getAccountId()));
         System.out.println(ConsoleColors.BLUE + replyTweet.getNumberOfLikes() + " Likes");
         System.out.println(ConsoleColors.BLUE + replyTweet.getNumberOfRetweets() + " Retweets");
         System.out.println(ConsoleColors.BLUE + replyTweet.getNumberOfReplies() + " Comments");

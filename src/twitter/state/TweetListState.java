@@ -58,6 +58,8 @@ public class TweetListState extends State {
         }
 
         Tweet tweet = tweetManager.getTweet(accountManager.getTweetList(username).get(index));
+        System.out.println(ConsoleColors.BLUE + tweet.getTextOfTweet());
+        System.out.println(ConsoleColors.BLUE + "User: @" + accountManager.getUsername(tweet.getAccountId()));
         System.out.println(ConsoleColors.BLUE + tweet.getNumberOfLikes() + " Likes");
         System.out.println(ConsoleColors.BLUE + tweet.getNumberOfRetweets() + " Retweets");
         System.out.println(ConsoleColors.BLUE + tweet.getNumberOfReplies() + " Comments");

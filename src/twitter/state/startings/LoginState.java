@@ -32,9 +32,8 @@ public class LoginState extends State {
 
             System.out.println(ConsoleColors.YELLOW + "Enter your password:");
             String password = context.getScanner().nextLine();
-            if (accountManager.checkPassword(username, password)) {
+            if (accountManager.login(username, password)) {
                 System.out.println(ConsoleColors.BLUE + "Login successful.");
-                accountManager.login(username);
                 accountManager.updateStatus(Account.ONLINE);
                 log.info("Logged in as @" + username);
                 return new MenuState();

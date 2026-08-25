@@ -23,14 +23,14 @@ public class BlackListState extends State{
         AccountManager accountManager = context.getAccountManager();
         Logger log = context.getLogger();
 
-        System.out.println(ConsoleColors.BLUE + accountManager.viewAccountList(accountManager.getUser().getBlacklist()));
-        System.out.println(ConsoleColors.YELLOW + "Do you want to view a profile? (y/n)");
-
-        if(accountManager.getUser().getNumberOfBlackList() == 0) {
+        if (accountManager.getUser().getNumberOfBlackList() == 0) {
             log.info("There is no list to show.");
             System.out.println(ConsoleColors.RED + "The list is empty!");
             return null;
         }
+
+        System.out.println(ConsoleColors.BLUE + accountManager.viewAccountList(accountManager.getUser().getBlacklist()));
+        System.out.println(ConsoleColors.YELLOW + "Do you want to view a profile? (y/n)");
 
         String choice = context.getScanner().nextLine();
 

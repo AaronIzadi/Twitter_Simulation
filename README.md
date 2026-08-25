@@ -38,3 +38,20 @@ It aims to provide hands-on practice with data structures, OOP concepts (like en
 
 - **Java** (Core logic and OOP modeling)
 - **Java Collections Framework** for managing lists, maps, and queues
+- **JUnit 4** for unit tests
+
+## 🔐 Security Notes
+
+- Passwords are stored as SHA-256 hashes (`sha256:...`) for new accounts and password changes.
+- Existing plain-text passwords from older data files still work on login and are upgraded to hashes automatically.
+
+## 🧪 Running Tests
+
+From the project root:
+
+```bash
+javac -encoding UTF-8 -cp "src/library/json-simple-1.1.1.jar;src/library/junit-4.13.2.jar;src/library/hamcrest-core-1.3.jar" -d out src/twitter/**/*.java test/twitter/**/*.java
+java -cp "out;src/library/junit-4.13.2.jar;src/library/hamcrest-core-1.3.jar;src/library/json-simple-1.1.1.jar" org.junit.runner.JUnitCore twitter.model.TimeTest twitter.model.RecordTest twitter.utils.PasswordHasherTest twitter.repository.JsonFileHelperTest
+```
+
+In IntelliJ, right-click the `test` folder and choose **Run 'All Tests'**.

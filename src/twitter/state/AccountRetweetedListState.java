@@ -42,21 +42,22 @@ public class AccountRetweetedListState extends State {
         }
 
         System.out.println(ConsoleColors.YELLOW + "What do you want to do next?");
-        System.out.println(ConsoleColors.YELLOW + "1.Check a profile");
-        System.out.println(ConsoleColors.YELLOW + "2.Back");
+        System.out.println(ConsoleColors.YELLOW + "1. Check a profile");
+        System.out.println(ConsoleColors.YELLOW + "2. Back");
 
-        char choice = context.getScanner().next().charAt(0);
+        String choice = context.getScanner().nextLine().trim();
 
-        if (choice == '1') {
-            log.info("User wants to check a profile.");
-            return new ViewProfileState();
-        } else if (choice == '2') {
-            log.info("User wants to go back.");
-            return null;
-        } else {
-            log.info("User entered invalid number.");
-            printFinalCliError();
-            return this;
+        switch (choice) {
+            case "1":
+                log.info("User wants to check a profile.");
+                return new ViewProfileState();
+            case "2":
+                log.info("User wants to go back.");
+                return null;
+            default:
+                log.info("User entered invalid number.");
+                printFinalCliError();
+                return this;
         }
     }
 

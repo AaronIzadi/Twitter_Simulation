@@ -3,12 +3,12 @@ package twitter.model;
 import java.time.LocalDateTime;
 
 public class Time implements Comparable {
-    private static int year;
-    private static int month;
-    private static int day;
-    private static int hour;
-    private static int minute;
-    private static int second;
+    private int year;
+    private int month;
+    private int day;
+    private int hour;
+    private int minute;
+    private int second;
 
     public Time() {
     }
@@ -38,27 +38,27 @@ public class Time implements Comparable {
     }
 
     public void setYear(int year) {
-        Time.year = year;
+        this.year = year;
     }
 
     public void setMonth(int month) {
-        Time.month = month;
+        this.month = month;
     }
 
     public void setDay(int day) {
-        Time.day = day;
+        this.day = day;
     }
 
     public void setHour(int hour) {
-        Time.hour = hour;
+        this.hour = hour;
     }
 
     public void setMinute(int minute) {
-        Time.minute = minute;
+        this.minute = minute;
     }
 
     public void setSecond(int second) {
-        Time.second = second;
+        this.second = second;
     }
 
     public static Time now() {
@@ -73,10 +73,9 @@ public class Time implements Comparable {
         return time;
     }
 
+    @Override
     public String toString() {
-        String time = "";
-        time = year + " " + month + " " + day + " " + hour + " " + minute + " " + second;
-        return time;
+        return year + " " + month + " " + day + " " + hour + " " + minute + " " + second;
     }
 
     public static Time valueOf(String timeInString) {
@@ -90,7 +89,6 @@ public class Time implements Comparable {
         time.setSecond(Integer.parseInt(all[5]));
         return time;
     }
-
 
     @Override
     public int compareTo(Object o) {

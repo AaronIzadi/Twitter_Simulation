@@ -21,16 +21,18 @@ public class TimeLineManager {
 
         //User's tweets
         for (long idTweet : accountManager.getUser().getTweets()) {
-            if (tweetRepository.getTweet(idTweet).getAccountId() != accountManager.getUser().getId()) {
-                for (Record rec : tweetRepository.getTweet(idTweet).getAccountRetweeted()) {
+            Tweet tweet = tweetRepository.getTweet(idTweet);
+            if (!accountManager.canViewTweetsFrom(tweet.getAccountId())) {
+                continue;
+            }
+            if (tweet.getAccountId() != accountManager.getUser().getId()) {
+                for (Record rec : tweet.getAccountRetweeted()) {
                     if (rec.getAccountId() == accountManager.getUser().getId()) {
-                        Tweet tweet = tweetRepository.getTweet(idTweet);
                         timeLine.put(rec, tweet);
                     }
                 }
             } else {
-                Record rec = tweetRepository.getTweet(idTweet).getRecord();
-                Tweet tweet = tweetRepository.getTweet(idTweet);
+                Record rec = tweet.getRecord();
                 timeLine.put(rec, tweet);
             }
         }
@@ -39,16 +41,18 @@ public class TimeLineManager {
             String username = accountRepository.getAccount(idAcc).getUserName();
             if (!accountManager.isMute(username)) {
                 for (long idTweet : accountRepository.getAccount(idAcc).getTweets()) {
-                    if (tweetRepository.getTweet(idTweet).getAccountId() != idAcc) {
-                        for (Record rec : tweetRepository.getTweet(idTweet).getAccountRetweeted()) {
+                    Tweet tweet = tweetRepository.getTweet(idTweet);
+                    if (!accountManager.canViewTweetsFrom(tweet.getAccountId())) {
+                        continue;
+                    }
+                    if (tweet.getAccountId() != idAcc) {
+                        for (Record rec : tweet.getAccountRetweeted()) {
                             if (rec.getAccountId() == idAcc) {
-                                Tweet tweet = tweetRepository.getTweet(idTweet);
                                 timeLine.put(rec, tweet);
                             }
                         }
                     } else {
-                        Record rec = tweetRepository.getTweet(idTweet).getRecord();
-                        Tweet tweet = tweetRepository.getTweet(idTweet);
+                        Record rec = tweet.getRecord();
                         timeLine.put(rec, tweet);
                     }
                 }
@@ -60,10 +64,13 @@ public class TimeLineManager {
             String username = accountRepository.getAccount(idAcc).getUserName();
             if (!accountManager.isMute(username)) {
                 for (long idTweet : accountRepository.getAccount(idAcc).getLikedTweet()) {
-                    if (!tweetRepository.getTweet(idTweet).getIdAccountRetweeted().contains(idAcc)) {
-                        for (Record rec : tweetRepository.getTweet(idTweet).getAccountLiked()) {
+                    Tweet tweet = tweetRepository.getTweet(idTweet);
+                    if (!accountManager.canViewTweetsFrom(tweet.getAccountId())) {
+                        continue;
+                    }
+                    if (!tweet.getIdAccountRetweeted().contains(idAcc)) {
+                        for (Record rec : tweet.getAccountLiked()) {
                             if (rec.getAccountId() == idAcc) {
-                                Tweet tweet = tweetRepository.getTweet(idTweet);
                                 timeLine.put(rec, tweet);
                             }
                         }

@@ -28,8 +28,8 @@ public class RequestSentListState extends State {
 
         System.out.println(ConsoleColors.YELLOW + "What do you want to do next?");
         System.out.println(ConsoleColors.YELLOW + "1. Cancel a follow request");
-        System.out.println(ConsoleColors.YELLOW + "2.Check a profile");
-        System.out.println(ConsoleColors.YELLOW + "3.Back");
+        System.out.println(ConsoleColors.YELLOW + "2. Check a profile");
+        System.out.println(ConsoleColors.YELLOW + "3. Back");
 
         String choice = context.getScanner().nextLine();
 
@@ -37,7 +37,7 @@ public class RequestSentListState extends State {
             case "1":
 
                 System.out.println(ConsoleColors.YELLOW + "Enter username:");
-                String username = context.getScanner().next();
+                String username = context.getScanner().nextLine().trim();
                 if (accountManager.checkIfExist(username)) {
                     accountManager.unsendFollowRequest(username);
                     log.info("User unsent their follow request to @" + username);

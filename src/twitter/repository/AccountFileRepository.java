@@ -25,6 +25,7 @@ public class AccountFileRepository implements AccountRepository {
             return add(account);
         }
         save(account);
+        syncLoggedInUser(account.getId());
         return account;
     }
 
@@ -35,6 +36,7 @@ public class AccountFileRepository implements AccountRepository {
             return update(account);
         }
         save(account);
+        syncLoggedInUser(account.getId());
         return account;
     }
 
@@ -89,6 +91,12 @@ public class AccountFileRepository implements AccountRepository {
     public boolean exists(long id) {
         File account = JsonFileHelper.entityFile(ACCOUNT_DIR, id).toFile();
         return account.exists() && !account.isDirectory();
+    }
+
+    private void syncLoggedInUser(long accountId) throws IOException {
+        if (userAccount != null && userAccount.getId() == accountId) {
+            userAccount = readFromFile(accountId);
+        }
     }
 
     private void save(Account account) throws IOException {

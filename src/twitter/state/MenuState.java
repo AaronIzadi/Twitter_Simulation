@@ -23,6 +23,8 @@ public class MenuState extends State {
 
         printCliMenu(context);
 
+        context.getAccountManager().refreshLoggedInUser();
+
         AccountManager accountManager = context.getAccountManager();
         Logger log = context.getLogger();
 

@@ -45,6 +45,7 @@ public class ViewPersonalInfoState extends State {
     @Override
     public State doAction(Context context) throws IOException {
 
+        context.getAccountManager().refreshLoggedInUser();
         printCliMenu(context);
 
         AccountManager accountManager = context.getAccountManager();

@@ -47,6 +47,11 @@ public class TweetListState extends State {
         TweetManager tweetManager = context.getTweetManager();
         Logger log = context.getLogger();
 
+        if (!accountManager.canViewProfileContent(username)) {
+            System.out.println(ConsoleColors.RED + "This account is private. You can't view their tweets.");
+            return null;
+        }
+
         if (index >= accountManager.getTweetList(username).size()) {
             printFinalCliError();
             return null;
@@ -67,26 +72,26 @@ public class TweetListState extends State {
         log.info("Tweet with id:" + tweet.getId() + " is shown.");
 
         System.out.println(ConsoleColors.YELLOW + "What do you want to do next?");
-        System.out.println(ConsoleColors.YELLOW + "1.Back");
-        System.out.println(ConsoleColors.YELLOW + "2.View list of accounts that liked this tweet");
-        System.out.println(ConsoleColors.YELLOW + "3.View list of accounts that retweeted this tweet");
-        System.out.println(ConsoleColors.YELLOW + "4.View comments");
-        System.out.println(ConsoleColors.YELLOW + "5.Like/remove like");
-        System.out.println(ConsoleColors.YELLOW + "6.Retweet/undo");
+        System.out.println(ConsoleColors.YELLOW + "1. Back");
+        System.out.println(ConsoleColors.YELLOW + "2. View list of accounts that liked this tweet");
+        System.out.println(ConsoleColors.YELLOW + "3. View list of accounts that retweeted this tweet");
+        System.out.println(ConsoleColors.YELLOW + "4. View comments");
+        System.out.println(ConsoleColors.YELLOW + "5. Like or remove like");
+        System.out.println(ConsoleColors.YELLOW + "6. Retweet or undo retweet");
 
         if (tweet.getAccountId() == accountManager.getUser().getId()) {
-            System.out.println(ConsoleColors.YELLOW + "7.Delete this tweet");
+            System.out.println(ConsoleColors.YELLOW + "7. Delete this tweet");
         } else {
-            System.out.println(ConsoleColors.YELLOW + "7.Mute this user");
+            System.out.println(ConsoleColors.YELLOW + "7. Mute this user");
         }
 
-        System.out.println(ConsoleColors.YELLOW + "8.View this user's profile");
-        System.out.println(ConsoleColors.YELLOW + "9.Save this tweet");
+        System.out.println(ConsoleColors.YELLOW + "8. View this user's profile");
+        System.out.println(ConsoleColors.YELLOW + "9. Save this tweet");
         System.out.println(ConsoleColors.YELLOW + "10. Add a comment");
-        System.out.println(ConsoleColors.YELLOW + "11.Next tweet");
+        System.out.println(ConsoleColors.YELLOW + "11. Next tweet");
 
 
-        String choice = context.getScanner().next();
+        String choice = context.getScanner().nextLine();
 
         switch (choice) {
             case "1":

@@ -24,8 +24,8 @@ public class TweetManager {
             account.setNumberOfTweets();
         } else {
             Tweet repliedTweet = tweetRepository.getTweet(tweet.getIdRepliedTweet());
+            repliedTweet.addReply(tweet.getId());
             repliedTweet.setNumberOfReplies();
-            tweet.addReply(tweet.getId());
             account.addReplied(tweet.getId());
             tweetRepository.update(repliedTweet);
         }
@@ -38,10 +38,10 @@ public class TweetManager {
         Account account = accountRepository.getUser();
         account.getTweets().remove(tweet.getId());
         account.setNumberOfTweets();
-        for (Record idAccount : tweet.getAccountRetweeted()) {
-            long idRetweeted = idAccount.getAccountId();
-            Account acc = accountRepository.getAccount(idRetweeted);
-            acc.getTweets().remove(idRetweeted);
+        for (Record retweetRecord : tweet.getAccountRetweeted()) {
+            long retweeterId = retweetRecord.getAccountId();
+            Account acc = accountRepository.getAccount(retweeterId);
+            acc.getTweets().remove(tweet.getId());
             acc.setNumberOfTweets();
             accountRepository.update(acc);
         }

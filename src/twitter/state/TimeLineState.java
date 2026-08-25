@@ -23,11 +23,16 @@ public class TimeLineState extends State {
     }
 
     public TimeLineState(Context context) throws IOException {
-        this(context.getTimeLineManager().makeTimeLine(context.getAccountManager()), 0);
+        this(makeTimeline(context), 0);
     }
 
     public TimeLineState(Context context, int index) throws IOException {
-        this(context.getTimeLineManager().makeTimeLine(context.getAccountManager()), index);
+        this(makeTimeline(context), index);
+    }
+
+    private static Map<Record, Tweet> makeTimeline(Context context) throws IOException {
+        context.getAccountManager().refreshLoggedInUser();
+        return context.getTimeLineManager().makeTimeLine(context.getAccountManager());
     }
 
     @Override
@@ -68,23 +73,23 @@ public class TimeLineState extends State {
         log.info("Tweet with id:" + tweet.getId() + " is shown.");
 
         System.out.println(ConsoleColors.YELLOW + "What do you want to do next?");
-        System.out.println(ConsoleColors.YELLOW + "1.Back");
-        System.out.println(ConsoleColors.YELLOW + "2.View list of accounts that liked this tweet");
-        System.out.println(ConsoleColors.YELLOW + "3.View list of accounts that retweeted this tweet");
-        System.out.println(ConsoleColors.YELLOW + "4.View comments");
-        System.out.println(ConsoleColors.YELLOW + "5.Like/remove like");
-        System.out.println(ConsoleColors.YELLOW + "6.Retweet/undo");
+        System.out.println(ConsoleColors.YELLOW + "1. Back");
+        System.out.println(ConsoleColors.YELLOW + "2. View list of accounts that liked this tweet");
+        System.out.println(ConsoleColors.YELLOW + "3. View list of accounts that retweeted this tweet");
+        System.out.println(ConsoleColors.YELLOW + "4. View comments");
+        System.out.println(ConsoleColors.YELLOW + "5. Like or remove like");
+        System.out.println(ConsoleColors.YELLOW + "6. Retweet or undo retweet");
 
         if (tweet.getAccountId() == accountManager.getUser().getId()) {
-            System.out.println(ConsoleColors.YELLOW + "7.Delete this tweet");
+            System.out.println(ConsoleColors.YELLOW + "7. Delete this tweet");
         } else {
-            System.out.println(ConsoleColors.YELLOW + "7.Mute this user");
+            System.out.println(ConsoleColors.YELLOW + "7. Mute this user");
         }
 
-        System.out.println(ConsoleColors.YELLOW + "8.View this user's profile");
-        System.out.println(ConsoleColors.YELLOW + "9.Save this tweet");
+        System.out.println(ConsoleColors.YELLOW + "8. View this user's profile");
+        System.out.println(ConsoleColors.YELLOW + "9. Save this tweet");
         System.out.println(ConsoleColors.YELLOW + "10. Add a comment");
-        System.out.println(ConsoleColors.YELLOW + "11.Next tweet");
+        System.out.println(ConsoleColors.YELLOW + "11. Next tweet");
 
 
         String choice = context.getScanner().nextLine();

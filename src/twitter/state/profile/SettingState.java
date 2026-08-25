@@ -15,11 +15,11 @@ public class SettingState extends State {
     @Override
     public void printCliMenu(Context context) {
         System.out.println(ConsoleColors.YELLOW + "What do you want to do?");
-        System.out.println(ConsoleColors.YELLOW + "1.Edit profile");
+        System.out.println(ConsoleColors.YELLOW + "1. Edit profile");
         System.out.println(ConsoleColors.YELLOW + "2. View blocked users");
-        System.out.println(ConsoleColors.YELLOW + "3.Log out");
-        System.out.println(ConsoleColors.YELLOW + "4.Delete account permanently");
-        System.out.println(ConsoleColors.YELLOW + "5.Back");
+        System.out.println(ConsoleColors.YELLOW + "3. Log out");
+        System.out.println(ConsoleColors.YELLOW + "4. Delete account permanently");
+        System.out.println(ConsoleColors.YELLOW + "5. Back");
     }
 
     @Override

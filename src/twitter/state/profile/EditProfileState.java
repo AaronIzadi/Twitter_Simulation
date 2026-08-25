@@ -17,16 +17,16 @@ public class EditProfileState extends State {
 
         System.out.println(ConsoleColors.YELLOW + "Edit profile:");
         System.out.println(ConsoleColors.YELLOW + "What do you want to do?");
-        System.out.println(ConsoleColors.YELLOW + "1.Change name");
-        System.out.println(ConsoleColors.YELLOW + "2.Edit biography");
-        System.out.println(ConsoleColors.YELLOW + "3.Edit date of birth");
+        System.out.println(ConsoleColors.YELLOW + "1. Change name");
+        System.out.println(ConsoleColors.YELLOW + "2. Edit biography");
+        System.out.println(ConsoleColors.YELLOW + "3. Edit date of birth");
         System.out.println(ConsoleColors.YELLOW + "4. Change email address");
-        System.out.println(ConsoleColors.YELLOW + "5.Change username");
-        System.out.println(ConsoleColors.YELLOW + "6.Change password");
-        System.out.println(ConsoleColors.YELLOW + "7.Change phone number");
+        System.out.println(ConsoleColors.YELLOW + "5. Change username");
+        System.out.println(ConsoleColors.YELLOW + "6. Change password");
+        System.out.println(ConsoleColors.YELLOW + "7. Change phone number");
         System.out.println(ConsoleColors.YELLOW + "8. Switch between 'Last seen recently' and 'Last seen'");
-        System.out.println(accountManager.isPublic(accountManager.getUser().getUserName()) ? ConsoleColors.YELLOW + "9.Switch account to private" : ConsoleColors.YELLOW + "9.Switch account to public");
-        System.out.println(ConsoleColors.YELLOW + "10.Back");
+        System.out.println(accountManager.isPublic(accountManager.getUser().getUserName()) ? ConsoleColors.YELLOW + "9. Switch account to private" : ConsoleColors.YELLOW + "9. Switch account to public");
+        System.out.println(ConsoleColors.YELLOW + "10. Back");
     }
 
     @Override
@@ -91,13 +91,18 @@ public class EditProfileState extends State {
                 String oldPass = context.getScanner().nextLine();
                 System.out.println(ConsoleColors.YELLOW + "Enter your new password:");
                 String newPass = context.getScanner().nextLine();
-                accountManager.changePassword(oldPass, newPass);
+                if (accountManager.changePassword(oldPass, newPass)) {
+                    log.info("User changed their password.");
+                    System.out.println(ConsoleColors.BLUE + "Password updated.");
+                } else {
+                    System.out.println(ConsoleColors.RED + "Incorrect old password.");
+                }
                 return this;
 
             case "7":
 
                 System.out.println(ConsoleColors.YELLOW + "Enter your new phone number:");
-                long phoneNum = context.getScanner().nextLong();
+                long phoneNum = Long.parseLong(context.getScanner().nextLine().trim());
                 accountManager.changePhoneNumber(phoneNum);
                 log.info("User changed their phone number to: " + phoneNum);
                 return this;

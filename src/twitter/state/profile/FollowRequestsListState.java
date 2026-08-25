@@ -27,43 +27,44 @@ public class FollowRequestsListState extends State {
         }
 
         System.out.println(ConsoleColors.YELLOW + "What do you want to do next?");
-        System.out.println(ConsoleColors.YELLOW + "1.Accept a follow request");
+        System.out.println(ConsoleColors.YELLOW + "1. Accept a follow request");
         System.out.println(ConsoleColors.YELLOW + "2. Decline a follow request");
-        System.out.println(ConsoleColors.YELLOW + "3.Check a profile");
-        System.out.println(ConsoleColors.YELLOW + "4.Back");
+        System.out.println(ConsoleColors.YELLOW + "3. Check a profile");
+        System.out.println(ConsoleColors.YELLOW + "4. Back");
 
-        char choice = context.getScanner().next().charAt(0);
+        String choice = context.getScanner().nextLine().trim();
 
-        if (choice == '1') {
-            System.out.println(ConsoleColors.YELLOW + "Enter username:");
-            String username = context.getScanner().next();
-            if (accountManager.checkIfExist(username)) {
-                accountManager.acceptFollowRequest(username);
-                log.info("User accepted @" + username + "'s follow request.");
-            } else {
-                System.out.println(ConsoleColors.RED + "This user does not exist!");
-            }
-            return this;
-        } else if (choice == '2') {
-            System.out.println(ConsoleColors.YELLOW + "Enter username:");
-            String username = context.getScanner().next();
-            if (accountManager.checkIfExist(username)) {
-                accountManager.deleteFollowRequest(username);
-                log.info("User deleted @" + username + "'s follow request.");
-            } else {
-                System.out.println(ConsoleColors.RED + "This user does not exist!");
-            }
-            return this;
-        } else if (choice == '3') {
-            log.info("User wants to check a profile.");
-            return new ViewProfileState();
-        } else if (choice == '4') {
-            log.info("User wants to go back.");
-            return null;
-        } else {
-            log.info("User entered invalid number.");
-            printFinalCliError();
-            return this;
+        switch (choice) {
+            case "1":
+                System.out.println(ConsoleColors.YELLOW + "Enter username:");
+                String acceptUsername = context.getScanner().nextLine().trim();
+                if (accountManager.checkIfExist(acceptUsername)) {
+                    accountManager.acceptFollowRequest(acceptUsername);
+                    log.info("User accepted @" + acceptUsername + "'s follow request.");
+                } else {
+                    System.out.println(ConsoleColors.RED + "This user does not exist!");
+                }
+                return this;
+            case "2":
+                System.out.println(ConsoleColors.YELLOW + "Enter username:");
+                String declineUsername = context.getScanner().nextLine().trim();
+                if (accountManager.checkIfExist(declineUsername)) {
+                    accountManager.deleteFollowRequest(declineUsername);
+                    log.info("User deleted @" + declineUsername + "'s follow request.");
+                } else {
+                    System.out.println(ConsoleColors.RED + "This user does not exist!");
+                }
+                return this;
+            case "3":
+                log.info("User wants to check a profile.");
+                return new ViewProfileState();
+            case "4":
+                log.info("User wants to go back.");
+                return null;
+            default:
+                log.info("User entered invalid number.");
+                printFinalCliError();
+                return this;
         }
     }
 

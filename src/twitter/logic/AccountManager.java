@@ -5,6 +5,7 @@ import twitter.model.Record;
 import twitter.model.Time;
 import twitter.model.Tweet;
 import twitter.repository.*;
+import twitter.utils.PasswordHasher;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -20,8 +21,18 @@ public class AccountManager {
         return accountRepository.getUser();
     }
 
-    public void login(String userName) throws IOException {
-        accountRepository.setUser(accountRepository.getAccountByUserName(userName));
+    public boolean login(String userName, String password) throws IOException {
+        if (!checkPassword(userName, password)) {
+            return false;
+        }
+        Account account = accountRepository.getAccountByUserName(userName);
+        if (!PasswordHasher.isHashed(account.getPassword())) {
+            account.setPassword(PasswordHasher.hash(password));
+            accountRepository.update(account);
+        }
+        accountRepository.setUser(accountRepository.getAccount(account.getId()));
+        refreshLoggedInUser();
+        return true;
     }
 
     public void logout() {
@@ -30,6 +41,7 @@ public class AccountManager {
 
     public void createAccount(String username, String password) throws IOException {
         Account account = new Account(username, password, Account.DEFAULT);
+        account.setPassword(PasswordHasher.hash(password));
         accountRepository.add(account);
         accountRepository.setUser(account);
     }
@@ -44,6 +56,28 @@ public class AccountManager {
         } else {
             getUser().setType(Account.PUBLIC);
         }
+        accountRepository.update(getUser());
+    }
+
+    public void refreshLoggedInUser() throws IOException {
+        Account user = accountRepository.getUser();
+        if (user != null) {
+            accountRepository.setUser(accountRepository.getAccount(user.getId()));
+        }
+    }
+
+    public boolean canViewProfileContent(String username) throws IOException {
+        if (username.equals(getUser().getUserName())) {
+            return true;
+        }
+        return isPublic(username) || isFollowed(username);
+    }
+
+    public boolean canViewTweetsFrom(long accountId) throws IOException {
+        if (accountId == getUser().getId()) {
+            return true;
+        }
+        return canViewProfileContent(getUsername(accountId));
     }
 
     public void followOrUnfollow(String userName) throws IOException {
@@ -203,7 +237,7 @@ public class AccountManager {
     }
 
     public boolean checkPassword(String userName, String password) throws IOException {
-        return accountRepository.getAccountByUserName(userName).getPassword().equals(password);
+        return PasswordHasher.matches(password, accountRepository.getAccountByUserName(userName).getPassword());
     }
 
     public void muteOrUnmute(String username) throws IOException {
@@ -277,11 +311,13 @@ public class AccountManager {
         accountRepository.removeAccount(getUser().getId());
     }
 
-    public void changePassword(String oldPassword, String newPassword) throws IOException {
-        if (getUser().getPassword().equals(oldPassword)) {
-            getUser().setPassword(newPassword);
+    public boolean changePassword(String oldPassword, String newPassword) throws IOException {
+        if (!PasswordHasher.matches(oldPassword, getUser().getPassword())) {
+            return false;
         }
+        getUser().setPassword(PasswordHasher.hash(newPassword));
         accountRepository.update(getUser());
+        return true;
     }
 
     public void changeUserName(String newUserName) throws IOException {

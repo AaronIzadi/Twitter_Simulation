@@ -42,8 +42,8 @@ public class AccountLikedListState extends State {
         }
 
         System.out.println(ConsoleColors.YELLOW + "What do you want to do next?");
-        System.out.println(ConsoleColors.YELLOW + "1.Check a profile");
-        System.out.println(ConsoleColors.YELLOW + "2.Back");
+        System.out.println(ConsoleColors.YELLOW + "1. Check a profile");
+        System.out.println(ConsoleColors.YELLOW + "2. Back");
 
         String choice = context.getScanner().nextLine();
 

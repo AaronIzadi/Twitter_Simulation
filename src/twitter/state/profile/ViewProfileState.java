@@ -121,6 +121,7 @@ public class ViewProfileState extends State {
             case "2":
 
                 log.info("Opened account search");
+                username = null;
                 return this;
 
             case "3":
@@ -160,42 +161,45 @@ public class ViewProfileState extends State {
                 }
                 return this;
 
-        }
-        //TODO this if is mess because of splitting the switchcase. you need to make it one chain again.
-        if (canViewContent) {
-            switch (ch) {
-                case "6":
+            case "6":
+                if (canViewContent) {
                     if (accountManager.getNumberOfFollowers(username) != 0) {
                         log.info("Opened follower list | username=@" + username);
                         return new FollowerListState(username);
-                    } else {
-                        log.info("Empty list | context=followers | username=@" + username);
-                        System.out.println(ConsoleColors.RED + "The list is empty!");
-                        return this;
                     }
-                case "7":
+                    log.info("Empty list | context=followers | username=@" + username);
+                    System.out.println(ConsoleColors.RED + "The list is empty!");
+                    return this;
+                }
+                break;
 
+            case "7":
+                if (canViewContent) {
                     log.info("Opened following list | username=@" + username);
                     return new FollowingListState(username);
+                }
+                break;
 
-                case "8":
+            case "8":
+                if (canViewContent) {
                     if (accountManager.getNumberOfTweets(username) != 0) {
                         log.info("Opened tweet list | username=@" + username);
                         return new TweetListState(username);
-                    } else {
-                        System.out.println(ConsoleColors.RED + "There are no tweets to show!");
-                        return this;
                     }
-                default:
-                    log.warn("Invalid menu selection");
-                    printFinalCliError();
+                    System.out.println(ConsoleColors.RED + "There are no tweets to show!");
                     return this;
-            }
-        } else {
-            log.warn("Invalid menu selection");
-            printFinalCliError();
-            return this;
+                }
+                break;
+
+            default:
+                log.warn("Invalid menu selection");
+                printFinalCliError();
+                return this;
         }
+
+        log.warn("Invalid menu selection");
+        printFinalCliError();
+        return this;
     }
 
     @Override

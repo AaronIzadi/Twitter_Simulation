@@ -52,14 +52,14 @@ public class ViewPersonalInfoState extends State {
         TweetManager tweetManager = context.getTweetManager();
         Logger log = context.getLogger();
 
-        log.info("User checked their profile info.");
+        log.info("Personal profile viewed");
 
         String choice = context.getScanner().nextLine();
 
         switch (choice) {
             case "1":
 
-                log.info("User wants to view their saved tweets.");
+                log.info("Viewed saved tweets");
                 for (long idTweet : accountManager.getUser().getSavedTweet()) {
                     String tweet = tweetManager.getTweet(idTweet).getTextOfTweet();
                     System.out.println(ConsoleColors.BLUE + tweet);
@@ -68,53 +68,53 @@ public class ViewPersonalInfoState extends State {
 
             case "2":
 
-                log.info("User wants to view their followers' list.");
+                log.info("Opened follower list | username=@" + accountManager.getUser().getUserName());
                 return new FollowerListState(accountManager.getUser().getUserName());
 
             case "3":
-                log.info("User wants to view their followings' list.");
+                log.info("Opened following list | username=@" + accountManager.getUser().getUserName());
                 return new FollowingListState(accountManager.getUser().getUserName());
 
             case "4":
-                log.info("User wants to view their tweets.");
+                log.info("Opened tweet list | username=@" + accountManager.getUser().getUserName());
                 if (accountManager.getUser().getNumberOfTweets() != 0) {
                     return new TweetListState(accountManager.getUser().getUserName());
                 } else {
-                    log.info("There is no tweet to show.");
+                    log.info("Empty list | context=tweets");
                     System.out.println(ConsoleColors.RED + "There are no tweets to show!");
                     return this;
                 }
             case "5":
-                log.info("User wants to view follow request's list.");
+                log.info("Opened follow requests");
                 if (accountManager.getUser().getNumberOfFollowRequest() != 0) {
                     return new FollowRequestsListState();
                 } else {
-                    log.info("There is no list to show.");
+                    log.info("Empty list | context=followRequests");
                     System.out.println(ConsoleColors.RED + "The list is empty!");
                     return this;
                 }
             case "6":
-                log.info("User wants to view the list of follow request that they sent.");
+                log.info("Opened sent follow requests");
                 if (accountManager.getUser().getNumberOfAccountsSentRequest() != 0) {
                     return new RequestSentListState();
                 } else {
-                    log.info("There is no list to show.");
+                    log.info("Empty list | context=sentFollowRequests");
                     System.out.println(ConsoleColors.RED + "The list is empty!");
                     return this;
                 }
             case "7":
 
-                log.info("User wants to go to the settings.");
+                log.info("Opened settings");
                 return new SettingState();
 
             case "8":
 
-                log.info("User chose to go back.");
+                log.info("Returned to previous screen");
                 return null;
 
             default:
 
-                log.info("User entered invalid number.");
+                log.warn("Invalid menu selection");
                 printFinalCliError();
                 return this;
         }

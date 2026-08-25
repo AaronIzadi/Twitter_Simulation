@@ -30,7 +30,7 @@ public class FollowingListState extends State {
         Logger log = context.getLogger();
 
         if (accountManager.getNumberOfFollowings(username) == 0) {
-            log.info("There is no list to show.");
+            log.info("Empty list");
             System.out.println(ConsoleColors.RED + "The list is empty!");
             return null;
         }
@@ -46,11 +46,11 @@ public class FollowingListState extends State {
         switch (choice) {
             case "y":
             case "Y":
-                log.info("User wants to check a profile.");
+                log.info("Opened profile search");
                 return new ViewProfileState();
             case "n":
             case "N":
-                log.info("User wants to go back.");
+                log.info("Returned to previous screen");
                 return null;
             default:
                 printFinalCliError();

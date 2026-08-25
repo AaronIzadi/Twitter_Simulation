@@ -40,33 +40,33 @@ public class MenuState extends State {
         switch (choice) {
             case "1":
 
-                log.info("User chose to check their timeline.");
+                log.info("Menu: timeline");
                 return new TimeLineState(context);
 
             case "2":
 
-                log.info("User chose to check their profile info.");
+                log.info("Menu: profile");
                 return new ViewPersonalInfoState();
 
             case "3":
 
-                log.info("User chose to search for an account.");
+                log.info("Menu: search");
                 return new ViewProfileState();
 
             case "4":
 
-                log.info("User chose to write a new tweet.");
+                log.info("Menu: compose tweet");
                 return new MakeTweetState(Tweet.DEFAULT_ID);
 
             case "5":
 
-                log.info("User chose to close the app.");
+                log.info("Application exit requested");
                 return new ExitState();
 
             default:
 
                 printFinalCliError();
-                log.info("User entered invalid number.");
+                log.warn("Invalid menu selection");
                 return this;
         }
     }

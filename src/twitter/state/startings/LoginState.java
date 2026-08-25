@@ -34,16 +34,17 @@ public class LoginState extends State {
             String password = context.getScanner().nextLine();
             if (accountManager.login(username, password)) {
                 System.out.println(ConsoleColors.BLUE + "Login successful.");
+                context.getLogger().setSessionUser(username);
                 accountManager.updateStatus(Account.ONLINE);
-                log.info("Logged in as @" + username);
+                log.info("Login successful for user @" + username);
                 return new MenuState();
             }
-            log.info("Entered incorrect password for @" + username);
+            log.warn("Login failed: incorrect password for @" + username);
             printFinalCliError();
             return this;
         }
         System.out.println(ConsoleColors.RED + "User not found. Try again.");
-        log.info("Username they entered seems not to exist.");
+        log.warn("Login failed: user not found");
         return null;
     }
 

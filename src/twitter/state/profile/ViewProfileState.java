@@ -79,7 +79,7 @@ public class ViewProfileState extends State {
             System.out.println(ConsoleColors.BLUE + "You have muted this user.");
         }
 
-        log.info("User checked @" + username + "'s profile.");
+        log.info("Profile viewed | username=@" + username);
 
         System.out.println(ConsoleColors.YELLOW + "What do you want to do next?");
         System.out.println(ConsoleColors.YELLOW + "1. Back");
@@ -115,29 +115,29 @@ public class ViewProfileState extends State {
         switch (ch) {
             case "1":
 
-                log.info("User wants to go back.");
+                log.info("Returned to previous screen");
                 return null;
 
             case "2":
 
-                log.info("User wants to check another account.");
+                log.info("Opened account search");
                 return this;
 
             case "3":
 
                 if (accountManager.isPublic(username)) {
-                    log.info(accountManager.isFollowed(username) ? "User unfollowed @" + username : "User followed @" + username);
+                    log.info("Follow action | username=@" + username + " | action=" + (accountManager.isFollowed(username) ? "unfollowed" : "followed"));
                     accountManager.followOrUnfollow(username);
                     return this;
                 } else {
                     if (accountManager.isFollowed(username)) {
-                        log.info("User unfollowed @" + username);
+                        log.info("Follow action | username=@" + username + " | action=unfollowed");
                         accountManager.followOrUnfollow(username);
                     } else if (accountManager.isRequested(username)) {
-                        log.info("User unsent their follow request to @" + username);
+                        log.info("Follow request cancelled | username=@" + username);
                         accountManager.unsendFollowRequest(username);
                     } else {
-                        log.info("User sent follow request to @" + username);
+                        log.info("Follow request sent | username=@" + username);
                         accountManager.sendFollowRequest(username);
                     }
                     return this;
@@ -145,17 +145,17 @@ public class ViewProfileState extends State {
 
             case "4":
 
-                log.info(accountManager.isMute(username) ? "User unmuted @" + username : "User muted @" + username);
+                log.info("Mute action | username=@" + username + " | action=" + (accountManager.isMute(username) ? "unmuted" : "muted"));
                 accountManager.muteOrUnmute(username);
                 return this;
 
             case "5":
 
                 if (accountManager.isBlocked(username)) {
-                    log.info("User unblocked @" + username);
+                    log.info("Block action | username=@" + username + " | action=unblocked");
                     accountManager.unblock(username);
                 } else {
-                    log.info("User blocked @" + username);
+                    log.info("Block action | username=@" + username + " | action=blocked");
                     accountManager.block(username);
                 }
                 return this;
@@ -166,32 +166,33 @@ public class ViewProfileState extends State {
             switch (ch) {
                 case "6":
                     if (accountManager.getNumberOfFollowers(username) != 0) {
-                        log.info("User wants to check @" + username + "'s follower list.");
+                        log.info("Opened follower list | username=@" + username);
                         return new FollowerListState(username);
                     } else {
+                        log.info("Empty list | context=followers | username=@" + username);
                         System.out.println(ConsoleColors.RED + "The list is empty!");
                         return this;
                     }
                 case "7":
 
-                    log.info("User wants to check @" + username + "'s following list.");
+                    log.info("Opened following list | username=@" + username);
                     return new FollowingListState(username);
 
                 case "8":
                     if (accountManager.getNumberOfTweets(username) != 0) {
-                        log.info("User wants to check @" + username + "'s tweets.");
+                        log.info("Opened tweet list | username=@" + username);
                         return new TweetListState(username);
                     } else {
                         System.out.println(ConsoleColors.RED + "There are no tweets to show!");
                         return this;
                     }
                 default:
-                    log.info("User entered invalid number.");
+                    log.warn("Invalid menu selection");
                     printFinalCliError();
                     return this;
             }
         } else {
-            log.info("User entered invalid number.");
+            log.warn("Invalid menu selection");
             printFinalCliError();
             return this;
         }

@@ -34,14 +34,14 @@ public class CreateAccountState extends State {
             String password = context.getScanner().nextLine();
 
             accountManager.createAccount(username, password);
+            context.getLogger().setSessionUser(username);
             System.out.println(ConsoleColors.BLUE + "Account created.");
             System.out.println(ConsoleColors.BLUE + "You can complete your profile information in Settings later!");
-            log.info("Account successfully created.");
-            log.info("Logged in as @" + username);
+            log.info("Account created for user @" + username);
             return new MenuState();
         } else {
             printFinalCliError();
-            log.info("Username they entered already exists.");
+            log.warn("Account creation failed: username already exists");
             return null;
         }
     }

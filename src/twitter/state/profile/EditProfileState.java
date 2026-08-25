@@ -45,7 +45,7 @@ public class EditProfileState extends State {
                 System.out.println(ConsoleColors.YELLOW + "Enter your new name:");
                 String name = context.getScanner().nextLine();
                 accountManager.changeName(name);
-                log.info("User changed their name to:" + name);
+                log.info("Profile updated | field=name");
                 return this;
 
             case "2":
@@ -53,7 +53,7 @@ public class EditProfileState extends State {
                 System.out.println(ConsoleColors.YELLOW + "Enter your new bio:");
                 String bio = context.getScanner().nextLine();
                 accountManager.changeBiography(bio);
-                log.info("User changed their bio to: " + bio);
+                log.info("Profile updated | field=biography");
                 return this;
 
             case "3":
@@ -61,7 +61,7 @@ public class EditProfileState extends State {
                 System.out.println(ConsoleColors.YELLOW + "Enter your date of birth:");
                 String birthday = context.getScanner().nextLine();
                 accountManager.changeDateOfBirth(birthday);
-                log.info("User changed their birthday to: " + birthday);
+                log.info("Profile updated | field=dateOfBirth");
                 return this;
 
             case "4":
@@ -69,7 +69,7 @@ public class EditProfileState extends State {
                 System.out.println(ConsoleColors.YELLOW + "Enter your new email address:");
                 String email = context.getScanner().nextLine();
                 accountManager.changeEmailAddress(email);
-                log.info("User changed their email to: " + email);
+                log.info("Profile updated | field=email");
                 return this;
 
             case "5":
@@ -78,23 +78,25 @@ public class EditProfileState extends State {
                 String user = context.getScanner().nextLine();
                 if (!accountManager.checkIfExist(user)) {
                     accountManager.changeUserName(user);
-                    log.info("User changed their username to: " + user);
+                    log.info("Profile updated | field=username | value=@" + user);
                 } else {
+                    log.warn("Username change failed: already exists | value=@" + user);
                     System.out.println(ConsoleColors.RED + "This username already exists. Try another one.");
                 }
                 return this;
 
             case "6":
 
-                log.info("User wants to change their password.");
+                log.info("Password change requested");
                 System.out.println(ConsoleColors.YELLOW + "Enter your old password:");
                 String oldPass = context.getScanner().nextLine();
                 System.out.println(ConsoleColors.YELLOW + "Enter your new password:");
                 String newPass = context.getScanner().nextLine();
                 if (accountManager.changePassword(oldPass, newPass)) {
-                    log.info("User changed their password.");
+                    log.info("Password updated");
                     System.out.println(ConsoleColors.BLUE + "Password updated.");
                 } else {
+                    log.warn("Password change failed: incorrect old password");
                     System.out.println(ConsoleColors.RED + "Incorrect old password.");
                 }
                 return this;
@@ -104,29 +106,29 @@ public class EditProfileState extends State {
                 System.out.println(ConsoleColors.YELLOW + "Enter your new phone number:");
                 long phoneNum = Long.parseLong(context.getScanner().nextLine().trim());
                 accountManager.changePhoneNumber(phoneNum);
-                log.info("User changed their phone number to: " + phoneNum);
+                log.info("Profile updated | field=phoneNumber");
                 return this;
 
             case "8":
 
-                log.info("User changed their status.");
+                log.info("Profile updated | field=lastSeenStatus");
                 accountManager.updateStatus(accountManager.ifRecently() ? Account.ONLINE : Account.DEFAULT_STATUS);
                 return this;
 
             case "9":
 
-                log.info("User switched their account to public/private.");
+                log.info("Profile updated | field=visibility");
                 accountManager.makePublicOrPrivate();
                 return this;
 
             case "10":
 
-                log.info("User wants to go back.");
+                log.info("Returned to previous screen");
                 return null;
 
             default:
 
-                log.info("User entered invalid number.");
+                log.warn("Invalid menu selection");
                 printFinalCliError();
                 return this;
         }

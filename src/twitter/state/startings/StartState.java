@@ -26,20 +26,19 @@ public class StartState extends State {
             case "1":
 
                 System.out.println(ConsoleColors.YELLOW + "1. Create an account or 2. Log in?");
-                log.info("App started.");
 
                 String choice = context.getScanner().nextLine();
 
                 switch (choice) {
                     case "1":
-                        log.info("Going to create account state.");
+                        log.info("Session setup: create account");
                         return new CreateAccountState();
                     case "2":
-                        log.info("Going to login state.");
+                        log.info("Session setup: login");
                         return new LoginState();
                     default:
                         printFinalCliError();
-                        log.info("Entered invalid number.");
+                        log.warn("Invalid menu selection");
                         return this;
                 }
 
@@ -47,6 +46,7 @@ public class StartState extends State {
                 return new ExitState();
             default:
                 printFinalCliError();
+                log.warn("Invalid menu selection");
                 return this;
         }
     }

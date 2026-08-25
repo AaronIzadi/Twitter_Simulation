@@ -27,13 +27,14 @@ public class Context {
     public void run() throws IOException {
 
         repository.getIdCounter();
+        logger.info("Application started");
 
         stateTrace.push(new StartState());
         while (!stateTrace.empty()) {
             State state = getLastState();
 
-
             State nextState = state.doAction(this);
+            logStateTransition(state, nextState);
             state.close(this);
 
             if (nextState == null) {
@@ -49,6 +50,7 @@ public class Context {
             // logStack(); // checking Stack of States by their usage
         }
 
+        logger.info("Application stopped");
     }
 
     public State getLastState() {
@@ -71,6 +73,18 @@ public class Context {
     }
 
     public Logger getLogger() { return logger; }
+
+    private void logStateTransition(State current, State next) {
+        if (current == null) {
+            return;
+        }
+        String from = current.getClass().getSimpleName();
+        if (next == null) {
+            logger.info("Navigation: " + from + " -> Menu");
+        } else if (current != next) {
+            logger.info("Navigation: " + from + " -> " + next.getClass().getSimpleName());
+        }
+    }
 
     public void clearStack() {
         stateTrace.clear();

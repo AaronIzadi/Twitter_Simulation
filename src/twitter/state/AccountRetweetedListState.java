@@ -31,7 +31,7 @@ public class AccountRetweetedListState extends State {
         Logger log = context.getLogger();
 
         if (tweet.getNumberOfRetweets() == 0) {
-            log.info("There is no list to show.");
+            log.info("Empty list");
             System.out.println(ConsoleColors.RED + "The list is empty!");
             return null;
         }
@@ -49,13 +49,13 @@ public class AccountRetweetedListState extends State {
 
         switch (choice) {
             case "1":
-                log.info("User wants to check a profile.");
+                log.info("Opened profile search");
                 return new ViewProfileState();
             case "2":
-                log.info("User wants to go back.");
+                log.info("Returned to previous screen");
                 return null;
             default:
-                log.info("User entered invalid number.");
+                log.warn("Invalid menu selection");
                 printFinalCliError();
                 return this;
         }

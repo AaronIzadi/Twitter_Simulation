@@ -40,8 +40,9 @@ public class FollowRequestsListState extends State {
                 String acceptUsername = context.getScanner().nextLine().trim();
                 if (accountManager.checkIfExist(acceptUsername)) {
                     accountManager.acceptFollowRequest(acceptUsername);
-                    log.info("User accepted @" + acceptUsername + "'s follow request.");
+                    log.info("Follow request accepted | username=@" + acceptUsername);
                 } else {
+                    log.warn("Follow request accept failed: user not found | username=@" + acceptUsername);
                     System.out.println(ConsoleColors.RED + "This user does not exist!");
                 }
                 return this;
@@ -50,19 +51,20 @@ public class FollowRequestsListState extends State {
                 String declineUsername = context.getScanner().nextLine().trim();
                 if (accountManager.checkIfExist(declineUsername)) {
                     accountManager.deleteFollowRequest(declineUsername);
-                    log.info("User deleted @" + declineUsername + "'s follow request.");
+                    log.info("Follow request declined | username=@" + declineUsername);
                 } else {
+                    log.warn("Follow request decline failed: user not found | username=@" + declineUsername);
                     System.out.println(ConsoleColors.RED + "This user does not exist!");
                 }
                 return this;
             case "3":
-                log.info("User wants to check a profile.");
+                log.info("Opened profile search");
                 return new ViewProfileState();
             case "4":
-                log.info("User wants to go back.");
+                log.info("Returned to previous screen");
                 return null;
             default:
-                log.info("User entered invalid number.");
+                log.warn("Invalid menu selection");
                 printFinalCliError();
                 return this;
         }

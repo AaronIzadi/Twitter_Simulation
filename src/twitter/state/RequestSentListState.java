@@ -40,7 +40,7 @@ public class RequestSentListState extends State {
                 String username = context.getScanner().nextLine().trim();
                 if (accountManager.checkIfExist(username)) {
                     accountManager.unsendFollowRequest(username);
-                    log.info("User unsent their follow request to @" + username);
+                    log.info("Follow request cancelled | username=@" + username);
                 } else {
                     System.out.println(ConsoleColors.RED + "This user does not exist!");
                 }
@@ -48,12 +48,12 @@ public class RequestSentListState extends State {
 
             case "2":
 
-                log.info("User wants to check a profile.");
+                log.info("Opened profile search");
                 return new ViewProfileState();
 
             case "3":
 
-                log.info("User wants to go back.");
+                log.info("Returned to previous screen");
                 return null;
 
             default:

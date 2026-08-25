@@ -66,7 +66,7 @@ public class ShowReplyState extends State {
         }
         System.out.println();
 
-        log.info("Tweet with id:" + replyTweet.getId() + " is shown.");
+        log.info("Tweet viewed | tweetId=" + replyTweet.getId());
 
         System.out.println(ConsoleColors.YELLOW + "What do you want to do next?");
         System.out.println(ConsoleColors.YELLOW + "1. Back");
@@ -93,34 +93,34 @@ public class ShowReplyState extends State {
         switch (choice) {
             case "1":
 
-                log.info("User chose to go back.");
+                log.info("Returned to previous screen");
                 return null;
 
             case "2":
 
-                log.info("User wants to see the list of people that liked this tweet.");
+                log.info("Opened like list | tweetId=" + replyTweet.getId());
                 return new AccountLikedListState(replyTweet);
 
             case "3":
 
-                log.info("User wants to see the list of people that retweeted this tweet.");
+                log.info("Opened retweet list | tweetId=" + replyTweet.getId());
                 return new AccountRetweetedListState(replyTweet);
 
             case "4":
 
-                log.info("User wants to see the list of comments for this tweet.");
+                log.info("Opened reply list | tweetId=" + replyTweet.getId());
                 return new ShowReplyState(replyTweet);
 
             case "5":
 
-                log.info(accountManager.isLiked(replyTweet) ? "User removed their like." : "User liked this tweet.");
+                log.info((accountManager.isLiked(replyTweet) ? "Like removed" : "Like added") + " | tweetId=" + replyTweet.getId());
                 accountManager.likeOrRemoveLike(replyTweet);
                 return this;
 
             case "6":
 
                 if (accountManager.isPublic(accountManager.getUsername(replyTweet.getAccountId()))) {
-                    log.info(accountManager.isRetweeted(replyTweet) ? "User removed their retweet." : "User retweeted this tweet.");
+                    log.info((accountManager.isRetweeted(replyTweet) ? "Retweet removed" : "Retweet added") + " | tweetId=" + replyTweet.getId());
                     accountManager.retweetOrRemoveRetweet(replyTweet);
                 } else {
                     System.out.println(ConsoleColors.RED + "This account is private. You can't retweet this tweet!");
@@ -130,37 +130,38 @@ public class ShowReplyState extends State {
             case "7":
 
                 if (replyTweet.getAccountId() == accountManager.getUser().getId()) {
-                    log.info("User deleted this tweet.");
+                    log.info("Tweet deleted | tweetId=" + replyTweet.getId());
                     tweetManager.deleteTweet(replyTweet);
                 } else {
-                    log.info("User muted this tweet's owner.");
+                    log.info("Tweet owner muted | username=" + accountManager.getUsername(replyTweet.getAccountId()));
                     accountManager.muteOrUnmute(accountManager.getUsername(replyTweet.getAccountId()));
                 }
                 return this;
 
             case "8":
 
-                log.info("User wants to check this tweet's owner's profile.");
+                log.info("Opened author profile | username=" + accountManager.getUsername(replyTweet.getAccountId()));
                 return new ViewProfileState(accountManager.getUsername(replyTweet.getAccountId()));
 
             case "9":
 
-                log.info("User saved this tweet.");
+                log.info("Tweet saved | tweetId=" + replyTweet.getId());
                 accountManager.saveTweet(replyTweet);
                 return this;
 
             case "10":
 
-                log.info("User wants to write a new comment.");
+                log.info("Opened reply composer | tweetId=" + replyTweet.getId());
                 return new MakeTweetState(replyTweet.getId());
 
             case "11":
 
-                log.info("User wants to see next tweet.");
+                log.info("Navigated to next tweet");
                 return new ShowReplyState(sourceTweet, index + 1);
 
             default:
 
+                log.warn("Invalid menu selection");
                 printFinalCliError();
                 return this;
         }

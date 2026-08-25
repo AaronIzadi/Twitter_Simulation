@@ -35,32 +35,35 @@ public class SettingState extends State {
         switch (choice) {
             case "1":
 
-                log.info("User wants to edit their profile.");
+                log.info("Opened edit profile");
                 return new EditProfileState();
 
             case "2":
 
-                log.info("User wants to view their blacklist.");
+                log.info("Opened blocked users list");
                 return new BlackListState();
 
             case "3": {
 
-                log.info("User wants to log out.");
+                log.info("Logout requested");
                 System.out.println(ConsoleColors.YELLOW + "Are you sure you want to log out? (y/n)");
                 String ch = context.getScanner().nextLine();
                 switch (ch) {
                     case "y":
                     case "Y":
-                        log.info("Logged out of @" + accountManager.getUser().getUserName());
+                        String username = accountManager.getUser().getUserName();
+                        log.info("Logout completed for user @" + username);
                         accountManager.updateStatus(Account.OFFLINE);
                         context.getAccountManager().logout();
+                        context.getLogger().clearSessionUser();
                         context.clearStack();
                         return new StartState();
                     case "n":
                     case "N":
-                        log.info("User chose to stay login.");
+                        log.info("Logout cancelled");
                         return this;
                     default:
+                        log.warn("Invalid confirmation input during logout");
                         System.out.println(ConsoleColors.RED + "Please enter only y or n to continue.");
                         return this;
                 }
@@ -68,21 +71,24 @@ public class SettingState extends State {
             }
             case "4": {
 
-                log.info("User wants to delete their account.");
+                log.info("Account deletion requested");
                 System.out.println(ConsoleColors.YELLOW + "Are you sure you want to delete your account? (y/n)");
                 String ch = context.getScanner().nextLine();
                 switch (ch) {
                     case "y":
                     case "Y":
-                        log.info("User @" + accountManager.getUser().getUserName() + "has just deleted their account.");
+                        String deletedUser = accountManager.getUser().getUserName();
+                        log.info("Account deleted for user @" + deletedUser);
                         accountManager.deleteAccount();
+                        context.getLogger().clearSessionUser();
                         context.clearStack();
                         return new StartState();
                     case "n":
                     case "N":
-                        log.info("User changed their mind.");
+                        log.info("Account deletion cancelled");
                         return this;
                     default:
+                        log.warn("Invalid confirmation input during account deletion");
                         System.out.println(ConsoleColors.RED + "Please enter only y or n to continue.");
                         return this;
                 }
@@ -90,12 +96,12 @@ public class SettingState extends State {
             }
             case "5":
 
-                log.info("User wants to go back.");
+                log.info("Returned to previous screen");
                 return null;
 
             default:
 
-                log.info("User entered invalid number.");
+                log.warn("Invalid menu selection in settings");
                 printFinalCliError();
                 return this;
         }

@@ -36,7 +36,7 @@ public class MakeTweetState extends State{
         Tweet tweet = new Tweet(accountManager.getUser().getId(), fatherId, text);
         tweetManager.writeTweet(tweet);
 
-        log.info("User wrote a tweet with id:" + tweet.getId());
+        log.info("Tweet created | tweetId=" + tweet.getId());
 
         return null;
     }

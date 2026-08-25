@@ -5,6 +5,7 @@ import twitter.logic.AccountManager;
 import twitter.utils.ConsoleColors;
 import twitter.state.MenuState;
 import twitter.state.State;
+import twitter.utils.InputValidator;
 import twitter.utils.Logger;
 
 import java.io.IOException;
@@ -24,14 +25,26 @@ public class CreateAccountState extends State {
 
         AccountManager accountManager = context.getAccountManager();
 
-        String username = context.getScanner().nextLine();
+        String username = context.getScanner().nextLine().trim();
 
         Logger log = context.getLogger();
+
+        if (!InputValidator.isValidUsername(username)) {
+            System.out.println(ConsoleColors.RED + "Invalid username. Use 3-20 letters, numbers, or underscores.");
+            log.warn("Account creation failed: invalid username");
+            return this;
+        }
 
         if (!accountManager.checkIfExist(username)) {
             System.out.println(ConsoleColors.YELLOW + "Set password:");
 
             String password = context.getScanner().nextLine();
+
+            if (!InputValidator.isValidPassword(password)) {
+                System.out.println(ConsoleColors.RED + "Invalid password. It must be at least 4 characters.");
+                log.warn("Account creation failed: invalid password");
+                return this;
+            }
 
             accountManager.createAccount(username, password);
             context.getLogger().setSessionUser(username);
@@ -42,7 +55,7 @@ public class CreateAccountState extends State {
         } else {
             printFinalCliError();
             log.warn("Account creation failed: username already exists");
-            return null;
+            return this;
         }
     }
 

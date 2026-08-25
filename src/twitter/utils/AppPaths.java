@@ -7,29 +7,37 @@ import java.nio.file.Paths;
 public final class AppPaths {
 
     private static final String ENV_HOME = "TWITTER_SIM_HOME";
-    private static final Path RESOURCES_ROOT = resolveResourcesRoot();
+    private static Path resourcesRoot = resolveResourcesRoot();
 
     private AppPaths() {
     }
 
     public static Path resourcesRoot() {
-        return RESOURCES_ROOT;
+        return resourcesRoot;
+    }
+
+    public static void setResourcesRootForTests(Path root) {
+        resourcesRoot = root.toAbsolutePath().normalize();
+    }
+
+    public static void resetResourcesRootForTests() {
+        resourcesRoot = resolveResourcesRoot();
     }
 
     public static Path accountDataDir() {
-        return RESOURCES_ROOT.resolve("data").resolve("account");
+        return resourcesRoot.resolve("data").resolve("account");
     }
 
     public static Path tweetDataDir() {
-        return RESOURCES_ROOT.resolve("data").resolve("tweet");
+        return resourcesRoot.resolve("data").resolve("tweet");
     }
 
     public static Path appInfoDir() {
-        return RESOURCES_ROOT.resolve("app info");
+        return resourcesRoot.resolve("app info");
     }
 
     public static Path logFile() {
-        return RESOURCES_ROOT.resolve("log").resolve("logging.txt");
+        return resourcesRoot.resolve("log").resolve("logging.txt");
     }
 
     private static Path resolveResourcesRoot() {

@@ -16,11 +16,6 @@ import java.nio.file.Path;
 
 public class Repository {
 
-    private static final Path ACCOUNT_DATA_DIR = AppPaths.accountDataDir();
-    private static final Path TWEET_DATA_DIR = AppPaths.tweetDataDir();
-    private static final String ACCOUNT_COUNTER_FILE = AppPaths.appInfoDir().resolve("account.txt").toString();
-    private static final String TWEET_COUNTER_FILE = AppPaths.appInfoDir().resolve("tweet.txt").toString();
-
     private static final Repository instance = new Repository();
 
     public static Repository getInstance() {
@@ -28,15 +23,15 @@ public class Repository {
     }
 
     public static void addAppInfo(Object object, long idCounter) throws FileNotFoundException, UnsupportedEncodingException {
-        String path = object instanceof Account ? ACCOUNT_COUNTER_FILE : TWEET_COUNTER_FILE;
+        String path = object instanceof Account ? accountCounterFile() : tweetCounterFile();
         try (PrintWriter writer = new PrintWriter(path, "UTF-8")) {
             writer.print(idCounter);
         }
     }
 
     public void getIdCounter() throws IOException {
-        long accountCounter = Math.max(readCounter(ACCOUNT_COUNTER_FILE), maxEntityId(ACCOUNT_DATA_DIR) + 1);
-        long tweetCounter = Math.max(readCounter(TWEET_COUNTER_FILE), maxEntityId(TWEET_DATA_DIR) + 1);
+        long accountCounter = Math.max(readCounter(accountCounterFile()), maxEntityId(AppPaths.accountDataDir()) + 1);
+        long tweetCounter = Math.max(readCounter(tweetCounterFile()), maxEntityId(AppPaths.tweetDataDir()) + 1);
         Account.setIdCounter(accountCounter);
         Tweet.setIdCounter(tweetCounter);
     }
@@ -72,5 +67,13 @@ public class Repository {
             }
         }
         return maxId;
+    }
+
+    private static String accountCounterFile() {
+        return AppPaths.appInfoDir().resolve("account.txt").toString();
+    }
+
+    private static String tweetCounterFile() {
+        return AppPaths.appInfoDir().resolve("tweet.txt").toString();
     }
 }

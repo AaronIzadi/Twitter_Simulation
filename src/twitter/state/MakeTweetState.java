@@ -5,6 +5,7 @@ import twitter.main.Context;
 import twitter.logic.AccountManager;
 import twitter.logic.TweetManager;
 import twitter.model.Tweet;
+import twitter.utils.InputValidator;
 import twitter.utils.Logger;
 
 import java.io.IOException;
@@ -33,7 +34,13 @@ public class MakeTweetState extends State{
 
         String text = context.getScanner().nextLine();
 
-        Tweet tweet = new Tweet(accountManager.getUser().getId(), fatherId, text);
+        if (!InputValidator.isValidTweetText(text)) {
+            System.out.println(ConsoleColors.RED + "Tweet cannot be empty and must be at most 280 characters.");
+            log.warn("Tweet creation failed: invalid text");
+            return this;
+        }
+
+        Tweet tweet = new Tweet(accountManager.getUser().getId(), fatherId, text.trim());
         tweetManager.writeTweet(tweet);
 
         log.info("Tweet created | tweetId=" + tweet.getId());

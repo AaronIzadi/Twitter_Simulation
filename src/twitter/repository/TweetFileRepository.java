@@ -12,7 +12,6 @@ import java.nio.file.Path;
 
 public class TweetFileRepository implements TweetRepository {
 
-    private static final Path TWEET_DIR = AppPaths.tweetDataDir();
     private static final TweetFileRepository instance = new TweetFileRepository();
 
     public static TweetFileRepository getInstance() {
@@ -51,12 +50,12 @@ public class TweetFileRepository implements TweetRepository {
         if (!exists(id)) {
             return false;
         }
-        return JsonFileHelper.entityFile(TWEET_DIR.toString(), id).toFile().delete();
+        return JsonFileHelper.entityFile(tweetDir().toString(), id).toFile().delete();
     }
 
     @Override
     public boolean exists(long id) {
-        File tweet = JsonFileHelper.entityFile(TWEET_DIR.toString(), id).toFile();
+        File tweet = JsonFileHelper.entityFile(tweetDir().toString(), id).toFile();
         return tweet.exists() && !tweet.isDirectory();
     }
 
@@ -69,7 +68,11 @@ public class TweetFileRepository implements TweetRepository {
     }
 
     private Path filePath(long id) {
-        return JsonFileHelper.entityFile(TWEET_DIR.toString(), id);
+        return JsonFileHelper.entityFile(tweetDir().toString(), id);
+    }
+
+    private Path tweetDir() {
+        return AppPaths.tweetDataDir();
     }
 
     private JSONObject toJson(Tweet tweet) {

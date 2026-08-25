@@ -10,7 +10,6 @@ import java.nio.file.Path;
 
 public class AccountFileRepository implements AccountRepository {
 
-    private static final Path ACCOUNT_DIR = AppPaths.accountDataDir();
     private static final AccountFileRepository instance = new AccountFileRepository();
 
     private Account userAccount;
@@ -50,7 +49,7 @@ public class AccountFileRepository implements AccountRepository {
 
     @Override
     public Account getAccountByUserName(String username) throws IOException {
-        File folder = ACCOUNT_DIR.toFile();
+        File folder = accountDir().toFile();
         File[] files = folder.listFiles();
         if (files == null) {
             return null;
@@ -84,12 +83,12 @@ public class AccountFileRepository implements AccountRepository {
         if (!exists(id)) {
             return false;
         }
-        return JsonFileHelper.entityFile(ACCOUNT_DIR.toString(), id).toFile().delete();
+        return JsonFileHelper.entityFile(accountDir().toString(), id).toFile().delete();
     }
 
     @Override
     public boolean exists(long id) {
-        File account = JsonFileHelper.entityFile(ACCOUNT_DIR.toString(), id).toFile();
+        File account = JsonFileHelper.entityFile(accountDir().toString(), id).toFile();
         return account.exists() && !account.isDirectory();
     }
 
@@ -108,7 +107,11 @@ public class AccountFileRepository implements AccountRepository {
     }
 
     private Path filePath(long id) {
-        return JsonFileHelper.entityFile(ACCOUNT_DIR.toString(), id);
+        return JsonFileHelper.entityFile(accountDir().toString(), id);
+    }
+
+    private Path accountDir() {
+        return AppPaths.accountDataDir();
     }
 
     private JSONObject toJson(Account account) {

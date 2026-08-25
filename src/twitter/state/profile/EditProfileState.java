@@ -5,6 +5,7 @@ import twitter.logic.AccountManager;
 import twitter.model.Account;
 import twitter.utils.ConsoleColors;
 import twitter.state.State;
+import twitter.utils.InputValidator;
 import twitter.utils.Logger;
 
 import java.io.IOException;
@@ -44,7 +45,12 @@ public class EditProfileState extends State {
 
                 System.out.println(ConsoleColors.YELLOW + "Enter your new name:");
                 String name = context.getScanner().nextLine();
-                accountManager.changeName(name);
+                if (!InputValidator.isValidDisplayName(name)) {
+                    System.out.println(ConsoleColors.RED + "Name cannot be empty.");
+                    log.warn("Profile update failed: invalid name");
+                    return this;
+                }
+                accountManager.changeName(name.trim());
                 log.info("Profile updated | field=name");
                 return this;
 
@@ -52,6 +58,11 @@ public class EditProfileState extends State {
 
                 System.out.println(ConsoleColors.YELLOW + "Enter your new bio:");
                 String bio = context.getScanner().nextLine();
+                if (!InputValidator.isValidBio(bio)) {
+                    System.out.println(ConsoleColors.RED + "Biography must be at most 160 characters.");
+                    log.warn("Profile update failed: biography too long");
+                    return this;
+                }
                 accountManager.changeBiography(bio);
                 log.info("Profile updated | field=biography");
                 return this;
@@ -60,7 +71,12 @@ public class EditProfileState extends State {
 
                 System.out.println(ConsoleColors.YELLOW + "Enter your date of birth:");
                 String birthday = context.getScanner().nextLine();
-                accountManager.changeDateOfBirth(birthday);
+                if (InputValidator.isBlank(birthday)) {
+                    System.out.println(ConsoleColors.RED + "Date of birth cannot be empty.");
+                    log.warn("Profile update failed: invalid date of birth");
+                    return this;
+                }
+                accountManager.changeDateOfBirth(birthday.trim());
                 log.info("Profile updated | field=dateOfBirth");
                 return this;
 
@@ -68,14 +84,24 @@ public class EditProfileState extends State {
 
                 System.out.println(ConsoleColors.YELLOW + "Enter your new email address:");
                 String email = context.getScanner().nextLine();
-                accountManager.changeEmailAddress(email);
+                if (!InputValidator.isValidEmail(email)) {
+                    System.out.println(ConsoleColors.RED + "Enter a valid email address.");
+                    log.warn("Profile update failed: invalid email");
+                    return this;
+                }
+                accountManager.changeEmailAddress(email.trim());
                 log.info("Profile updated | field=email");
                 return this;
 
             case "5":
 
                 System.out.println(ConsoleColors.YELLOW + "Enter your new username:");
-                String user = context.getScanner().nextLine();
+                String user = context.getScanner().nextLine().trim();
+                if (!InputValidator.isValidUsername(user)) {
+                    System.out.println(ConsoleColors.RED + "Invalid username. Use 3-20 letters, numbers, or underscores.");
+                    log.warn("Profile update failed: invalid username");
+                    return this;
+                }
                 if (!accountManager.checkIfExist(user)) {
                     accountManager.changeUserName(user);
                     log.info("Profile updated | field=username | value=@" + user);
@@ -92,6 +118,11 @@ public class EditProfileState extends State {
                 String oldPass = context.getScanner().nextLine();
                 System.out.println(ConsoleColors.YELLOW + "Enter your new password:");
                 String newPass = context.getScanner().nextLine();
+                if (!InputValidator.isValidPassword(newPass)) {
+                    System.out.println(ConsoleColors.RED + "New password must be at least 4 characters.");
+                    log.warn("Password change failed: invalid new password");
+                    return this;
+                }
                 if (accountManager.changePassword(oldPass, newPass)) {
                     log.info("Password updated");
                     System.out.println(ConsoleColors.BLUE + "Password updated.");
@@ -104,7 +135,12 @@ public class EditProfileState extends State {
             case "7":
 
                 System.out.println(ConsoleColors.YELLOW + "Enter your new phone number:");
-                long phoneNum = Long.parseLong(context.getScanner().nextLine().trim());
+                Long phoneNum = InputValidator.parsePhoneNumber(context.getScanner().nextLine());
+                if (phoneNum == null) {
+                    System.out.println(ConsoleColors.RED + "Enter a valid phone number using digits only.");
+                    log.warn("Profile update failed: invalid phone number");
+                    return this;
+                }
                 accountManager.changePhoneNumber(phoneNum);
                 log.info("Profile updated | field=phoneNumber");
                 return this;

@@ -12,7 +12,6 @@ import java.time.format.DateTimeFormatter;
 
 public class Logger {
 
-    private static final Path LOG_FILE = AppPaths.logFile();
     private static final DateTimeFormatter TIMESTAMP = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     private static final Object LOCK = new Object();
 
@@ -55,7 +54,7 @@ public class Logger {
 
         synchronized (LOCK) {
             try {
-                Path logPath = LOG_FILE;
+                Path logPath = AppPaths.logFile();
                 Files.createDirectories(logPath.getParent());
                 try (PrintWriter writer = new PrintWriter(
                         new OutputStreamWriter(
